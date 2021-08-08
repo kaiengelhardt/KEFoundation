@@ -40,6 +40,7 @@
 		5E1E248626C04B6100DC80B1 /* Project-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Project-Release.xcconfig"; sourceTree = "<group>"; };
 		5E1E248726C04B6100DC80B1 /* Project-Shared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Project-Shared.xcconfig"; sourceTree = "<group>"; };
 		5E1E248826C04B6100DC80B1 /* Project-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Project-Debug.xcconfig"; sourceTree = "<group>"; };
+		5E1E248926C04E8500DC80B1 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +65,7 @@
 		5E1E245326C049ED00DC80B1 = {
 			isa = PBXGroup;
 			children = (
+				5E1E248926C04E8500DC80B1 /* README.md */,
 				5E1E245F26C049ED00DC80B1 /* Sources */,
 				5E1E246A26C049ED00DC80B1 /* Unit Tests */,
 				5E1E247926C04A1D00DC80B1 /* Other Sources */,
