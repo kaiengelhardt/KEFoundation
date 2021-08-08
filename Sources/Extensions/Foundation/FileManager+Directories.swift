@@ -1,9 +1,6 @@
 //
-//  KEFoundation.h
-//  KEFoundation
-//
-//  Created by Kai Engelhardt on 08.08.21.
-//  Copyright © 2021 Kai Engelhardt. All rights reserved.
+//  Created by Kai Engelhardt on 08.01.18
+//  Copyright © 2018 Kai Engelhardt. All rights reserved.
 //
 //  Distributed under the permissive MIT license
 //  Get the latest version from here:
@@ -29,16 +26,33 @@
 //  SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+import Foundation
 
-//! Project version number for KEFoundation.
-FOUNDATION_EXPORT double KEFoundationVersionNumber;
-
-//! Project version string for KEFoundation.
-FOUNDATION_EXPORT const unsigned char KEFoundationVersionString[];
-
-#if TARGET_OS_IPHONE
-#import "UIResponder+FirstResponder.h"
-#elif TARGET_OS_TV
-#import "UIResponder+FirstResponder.h"
-#endif
+extension FileManager {
+	
+    public class var documentDirectoryURL: URL {
+		return self.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+	}
+	
+    public class var libraryDirectoryURL: URL {
+		return self.default.urls(for: .libraryDirectory, in: .userDomainMask).first!
+	}
+	
+    public class var cachesDirectoryURL: URL {
+		return self.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
+	}
+	
+	// MARK: - App Group Container Directories
+	
+    public class func groupContainerURL(for groupIdentifier: String) -> URL {
+		return self.default.containerURL(forSecurityApplicationGroupIdentifier: groupIdentifier)!
+	}
+	
+    public class func groupContainerLibraryDirectoryURL(for groupIdentifier: String) -> URL {
+		return groupContainerURL(for: groupIdentifier).appendingPathComponent("Library")
+	}
+	
+    public class func groupContainerCachesDirectoryURL(for groupIdentifier: String) -> URL {
+		return groupContainerLibraryDirectoryURL(for: groupIdentifier).appendingPathComponent("Caches")
+	}
+}

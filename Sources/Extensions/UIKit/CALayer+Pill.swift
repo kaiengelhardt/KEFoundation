@@ -1,9 +1,6 @@
 //
-//  KEFoundation.h
-//  KEFoundation
-//
-//  Created by Kai Engelhardt on 08.08.21.
-//  Copyright © 2021 Kai Engelhardt. All rights reserved.
+//  Created by Kai Engelhardt on 10.12.19.
+//  Copyright © 2019 Kai Engelhardt. All rights reserved.
 //
 //  Distributed under the permissive MIT license
 //  Get the latest version from here:
@@ -29,16 +26,11 @@
 //  SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+import QuartzCore
 
-//! Project version number for KEFoundation.
-FOUNDATION_EXPORT double KEFoundationVersionNumber;
-
-//! Project version string for KEFoundation.
-FOUNDATION_EXPORT const unsigned char KEFoundationVersionString[];
-
-#if TARGET_OS_IPHONE
-#import "UIResponder+FirstResponder.h"
-#elif TARGET_OS_TV
-#import "UIResponder+FirstResponder.h"
-#endif
+extension CALayer {
+	
+    public func makePillShaped() {
+		cornerRadius = bounds.smallestSide / 2
+	}
+}

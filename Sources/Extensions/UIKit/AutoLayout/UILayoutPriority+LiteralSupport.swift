@@ -1,8 +1,5 @@
 //
-//  KEFoundation.h
-//  KEFoundation
-//
-//  Created by Kai Engelhardt on 08.08.21.
+//  Created by Kai Engelhardt on 09.08.21.
 //  Copyright © 2021 Kai Engelhardt. All rights reserved.
 //
 //  Distributed under the permissive MIT license
@@ -29,16 +26,19 @@
 //  SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
 
-//! Project version number for KEFoundation.
-FOUNDATION_EXPORT double KEFoundationVersionNumber;
+import UIKit
 
-//! Project version string for KEFoundation.
-FOUNDATION_EXPORT const unsigned char KEFoundationVersionString[];
+extension UILayoutPriority: ExpressibleByIntegerLiteral {
 
-#if TARGET_OS_IPHONE
-#import "UIResponder+FirstResponder.h"
-#elif TARGET_OS_TV
-#import "UIResponder+FirstResponder.h"
-#endif
+    public init(integerLiteral value: Int) {
+        self.init(rawValue: Float(value))
+    }
+}
+
+extension UILayoutPriority: ExpressibleByFloatLiteral {
+
+    public init(floatLiteral value: Float) {
+        self.init(rawValue: value)
+    }
+}

@@ -1,9 +1,6 @@
 //
-//  KEFoundation.h
-//  KEFoundation
-//
-//  Created by Kai Engelhardt on 08.08.21.
-//  Copyright © 2021 Kai Engelhardt. All rights reserved.
+//  Created by Kai Engelhardt on 28.11.19.
+//  Copyright © 2019 Kai Engelhardt. All rights reserved.
 //
 //  Distributed under the permissive MIT license
 //  Get the latest version from here:
@@ -29,16 +26,35 @@
 //  SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#if DEBUG
 
-//! Project version number for KEFoundation.
-FOUNDATION_EXPORT double KEFoundationVersionNumber;
+import UIKit
+import SwiftUI
 
-//! Project version string for KEFoundation.
-FOUNDATION_EXPORT const unsigned char KEFoundationVersionString[];
+public extension UIView {
+	
+	@available(iOS 13.0, *)
+	var liveView: some View {
+		LiveView(view: self)
+	}
+	
+	struct LiveView<V: UIView>: UIViewRepresentable {
+		
+		let view: V
+		
+		@available(iOS 13.0, *)
+		public func makeUIView(context: UIViewRepresentableContext<LiveView<V>>) -> V {
+			return view
+		}
+		
+		@available(iOS 13.0, *)
+		public func updateUIView(_ uiView: V, context: UIViewRepresentableContext<LiveView<V>>) {
+			uiView.setContentHuggingPriority(.required, for: .horizontal)
+			uiView.setContentHuggingPriority(.required, for: .vertical)
+		}
+		
+	}
+	
+}
 
-#if TARGET_OS_IPHONE
-#import "UIResponder+FirstResponder.h"
-#elif TARGET_OS_TV
-#import "UIResponder+FirstResponder.h"
 #endif

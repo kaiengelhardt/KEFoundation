@@ -1,9 +1,6 @@
 //
-//  KEFoundation.h
-//  KEFoundation
-//
-//  Created by Kai Engelhardt on 08.08.21.
-//  Copyright © 2021 Kai Engelhardt. All rights reserved.
+//  Created by Kai Engelhardt on 25.11.19.
+//  Copyright © 2019 Kai Engelhardt. All rights reserved.
 //
 //  Distributed under the permissive MIT license
 //  Get the latest version from here:
@@ -29,16 +26,19 @@
 //  SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+import UIKit
 
-//! Project version number for KEFoundation.
-FOUNDATION_EXPORT double KEFoundationVersionNumber;
+extension String {
 
-//! Project version string for KEFoundation.
-FOUNDATION_EXPORT const unsigned char KEFoundationVersionString[];
-
-#if TARGET_OS_IPHONE
-#import "UIResponder+FirstResponder.h"
-#elif TARGET_OS_TV
-#import "UIResponder+FirstResponder.h"
-#endif
+    public func image(ofSize size: CGSize) -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(size, false, 0)
+        UIColor.clear.set()
+        let rect = CGRect(origin: .zero, size: size)
+        UIRectFill(CGRect(origin: .zero, size: size))
+		// Make the font smaller to prevent clipping the emoji.
+		(self as NSString).draw(in: rect, withAttributes: [.font: UIFont.systemFont(ofSize: size.height * 0.9)])
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
+    }
+}

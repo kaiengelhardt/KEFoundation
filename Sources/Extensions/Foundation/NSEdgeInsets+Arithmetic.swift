@@ -1,9 +1,6 @@
 //
-//  KEFoundation.h
-//  KEFoundation
-//
-//  Created by Kai Engelhardt on 08.08.21.
-//  Copyright © 2021 Kai Engelhardt. All rights reserved.
+//  Created by Kai Engelhardt on 30.05.18
+//  Copyright © 2018 Kai Engelhardt. All rights reserved.
 //
 //  Distributed under the permissive MIT license
 //  Get the latest version from here:
@@ -29,16 +26,35 @@
 //  SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+import Foundation
 
-//! Project version number for KEFoundation.
-FOUNDATION_EXPORT double KEFoundationVersionNumber;
+#if os(macOS)
 
-//! Project version string for KEFoundation.
-FOUNDATION_EXPORT const unsigned char KEFoundationVersionString[];
+extension NSEdgeInsets {
+	
+    public static let zero: NSEdgeInsets = NSEdgeInsetsZero
+}
 
-#if TARGET_OS_IPHONE
-#import "UIResponder+FirstResponder.h"
-#elif TARGET_OS_TV
-#import "UIResponder+FirstResponder.h"
+public prefix func -(insets: NSEdgeInsets) -> NSEdgeInsets {
+	return NSEdgeInsets(top: -insets.top, left: -insets.left, bottom: -insets.bottom, right: -insets.right)
+}
+
+public func +(lhs: NSEdgeInsets, rhs: NSEdgeInsets) -> NSEdgeInsets {
+	return UIEdgeInsets(
+        top: lhs.top + rhs.top,
+        left: lhs.left + rhs.left,
+        bottom: lhs.bottom + rhs.bottom,
+        right: lhs.right + rhs.right
+    )
+}
+
+public func -(lhs: NSEdgeInsets, rhs: NSEdgeInsets) -> NSEdgeInsets {
+	return UIEdgeInsets(
+        top: lhs.top - rhs.top,
+        left: lhs.left - rhs.left,
+        bottom: lhs.bottom - rhs.bottom,
+        right: lhs.right - rhs.right
+    )
+}
+
 #endif

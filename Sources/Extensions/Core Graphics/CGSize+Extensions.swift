@@ -1,9 +1,6 @@
 //
-//  KEFoundation.h
-//  KEFoundation
-//
-//  Created by Kai Engelhardt on 08.08.21.
-//  Copyright © 2021 Kai Engelhardt. All rights reserved.
+//  Created by Kai Engelhardt on 13.10.17
+//  Copyright © 2018 Kai Engelhardt. All rights reserved.
 //
 //  Distributed under the permissive MIT license
 //  Get the latest version from here:
@@ -29,16 +26,23 @@
 //  SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+import CoreGraphics
 
-//! Project version number for KEFoundation.
-FOUNDATION_EXPORT double KEFoundationVersionNumber;
-
-//! Project version string for KEFoundation.
-FOUNDATION_EXPORT const unsigned char KEFoundationVersionString[];
-
-#if TARGET_OS_IPHONE
-#import "UIResponder+FirstResponder.h"
-#elif TARGET_OS_TV
-#import "UIResponder+FirstResponder.h"
-#endif
+public extension CGSize {
+	
+	init(point: CGPoint) {
+		self.init(width: point.x, height: point.y)
+	}
+	
+	init(allDimensions axisLength: CGFloat) {
+		self.init(width: axisLength, height: axisLength)
+	}
+	
+	var smallestDimension: CGFloat {
+		min(width, height)
+	}
+	
+	var largestDimension: CGFloat {
+		max(width, height)
+	}
+}

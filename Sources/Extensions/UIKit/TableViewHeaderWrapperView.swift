@@ -1,9 +1,6 @@
 //
-//  KEFoundation.h
-//  KEFoundation
-//
-//  Created by Kai Engelhardt on 08.08.21.
-//  Copyright © 2021 Kai Engelhardt. All rights reserved.
+//  Created by Kai Engelhardt on 06.05.20.
+//  Copyright © 2020 Kai Engelhardt. All rights reserved.
 //
 //  Distributed under the permissive MIT license
 //  Get the latest version from here:
@@ -29,16 +26,36 @@
 //  SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+import UIKit
 
-//! Project version number for KEFoundation.
-FOUNDATION_EXPORT double KEFoundationVersionNumber;
-
-//! Project version string for KEFoundation.
-FOUNDATION_EXPORT const unsigned char KEFoundationVersionString[];
-
-#if TARGET_OS_IPHONE
-#import "UIResponder+FirstResponder.h"
-#elif TARGET_OS_TV
-#import "UIResponder+FirstResponder.h"
-#endif
+public class TableViewHeaderWrapperView: UIView {
+	
+	public weak var tableView: UITableView?
+	
+	public init(tableView: UITableView) {
+		self.tableView = tableView
+		super.init(frame: .zero)
+		setUpUI()
+	}
+	
+	@available(*, unavailable)
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+	
+	private func setUpUI() {
+		guard let tableView = tableView else {
+			return
+		}
+		translatesAutoresizingMaskIntoConstraints = false
+		tableView.tableHeaderView = self
+		NSLayoutConstraint.activate([
+            widthAnchor.constraint(equalTo: tableView.widthAnchor),
+        ])
+	}
+	
+	public override func layoutSubviews() {
+		super.layoutSubviews()
+		tableView?.tableHeaderView = self
+	}
+}

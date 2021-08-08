@@ -1,9 +1,6 @@
 //
-//  KEFoundation.h
-//  KEFoundation
-//
-//  Created by Kai Engelhardt on 08.08.21.
-//  Copyright © 2021 Kai Engelhardt. All rights reserved.
+//  Created by Kai Engelhardt on 22.10.17
+//  Copyright © 2018 Kai Engelhardt. All rights reserved.
 //
 //  Distributed under the permissive MIT license
 //  Get the latest version from here:
@@ -29,16 +26,30 @@
 //  SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+import UIKit
 
-//! Project version number for KEFoundation.
-FOUNDATION_EXPORT double KEFoundationVersionNumber;
-
-//! Project version string for KEFoundation.
-FOUNDATION_EXPORT const unsigned char KEFoundationVersionString[];
-
-#if TARGET_OS_IPHONE
-#import "UIResponder+FirstResponder.h"
-#elif TARGET_OS_TV
-#import "UIResponder+FirstResponder.h"
-#endif
+public extension CGRect {
+	
+	var center: CGPoint {
+		CGPoint(x: midX, y: midY)
+	}
+	
+	var smallestSide: CGFloat {
+		size.smallestDimension
+	}
+	
+	var largestSide: CGFloat {
+		size.largestDimension
+	}
+	
+	#if os(iOS) || os(tvOS) || os(watchOS)
+	func insetBy(insets: UIEdgeInsets) -> CGRect {
+		return CGRect(
+            x: origin.x + insets.left,
+            y: origin.y + insets.top,
+            width: width - (insets.left + insets.right),
+            height: height - (insets.top + insets.bottom)
+        )
+	}
+	#endif
+}

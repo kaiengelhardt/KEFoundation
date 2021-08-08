@@ -1,9 +1,6 @@
 //
-//  KEFoundation.h
-//  KEFoundation
-//
-//  Created by Kai Engelhardt on 08.08.21.
-//  Copyright © 2021 Kai Engelhardt. All rights reserved.
+//  Created by Kai Engelhardt on 16.10.17
+//  Copyright © 2018 Kai Engelhardt. All rights reserved.
 //
 //  Distributed under the permissive MIT license
 //  Get the latest version from here:
@@ -29,16 +26,30 @@
 //  SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+import Foundation
 
-//! Project version number for KEFoundation.
-FOUNDATION_EXPORT double KEFoundationVersionNumber;
-
-//! Project version string for KEFoundation.
-FOUNDATION_EXPORT const unsigned char KEFoundationVersionString[];
-
-#if TARGET_OS_IPHONE
-#import "UIResponder+FirstResponder.h"
-#elif TARGET_OS_TV
-#import "UIResponder+FirstResponder.h"
-#endif
+extension Array {
+	
+	/**
+	Shuffles the collection in place. The item at `index` will be first in the array.
+		
+	- Parameter index: The position of the item which should be first in the resulting array.
+	*/
+    public mutating func shuffleBeginningWithItem(at index: Int) {
+		self = shuffledBeginningWithItem(at: index)
+	}
+	
+	/**
+	Returns the elements of the sequence, shuffled. The item at `index` will be first in the returned array.
+	
+	- Parameter index: The position of the item which should be first in the resulting array.
+	- Returns: A shuffled array of this sequence’s elements.
+	*/
+    public func shuffledBeginningWithItem(at index: Int) -> [Element] {
+		var array = self
+		let item = array.remove(at: index)
+		var shuffledArray = array.shuffled()
+		shuffledArray.insert(item, at: 0)
+		return shuffledArray
+	}
+}

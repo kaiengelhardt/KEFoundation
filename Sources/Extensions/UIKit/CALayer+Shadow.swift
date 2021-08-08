@@ -1,9 +1,6 @@
 //
-//  KEFoundation.h
-//  KEFoundation
-//
-//  Created by Kai Engelhardt on 08.08.21.
-//  Copyright © 2021 Kai Engelhardt. All rights reserved.
+//  Created by Kai Engelhardt on 05.12.19.
+//  Copyright © 2019 Kai Engelhardt. All rights reserved.
 //
 //  Distributed under the permissive MIT license
 //  Get the latest version from here:
@@ -29,16 +26,41 @@
 //  SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+import QuartzCore
+import UIKit
 
-//! Project version number for KEFoundation.
-FOUNDATION_EXPORT double KEFoundationVersionNumber;
+public struct Shadow {
+	
+	public var color: CGColor?
+	public var opacity: Float
+	public var offset: CGSize
+	public var radius: CGFloat
+	public var path: CGPath?
+	
+	public static let noShadow = Shadow(color: nil, opacity: 0, offset: .zero, radius: 0)
+	public static let `default` = Shadow(color: UIColor.black.cgColor, opacity: 0.2, offset: .zero, radius: 16)
+	
+	public init(color: CGColor?, opacity: Float, offset: CGSize, radius: CGFloat, path: CGPath? = nil) {
+		self.color = color
+		self.opacity = opacity
+		self.offset = offset
+		self.radius = radius
+		self.path = path
+	}
+}
 
-//! Project version string for KEFoundation.
-FOUNDATION_EXPORT const unsigned char KEFoundationVersionString[];
-
-#if TARGET_OS_IPHONE
-#import "UIResponder+FirstResponder.h"
-#elif TARGET_OS_TV
-#import "UIResponder+FirstResponder.h"
-#endif
+extension CALayer {
+	
+    public var shadow: Shadow {
+		get {
+			Shadow(color: shadowColor, opacity: shadowOpacity, offset: shadowOffset, radius: shadowRadius, path: shadowPath)
+		}
+		set {
+			shadowColor = newValue.color
+			shadowOpacity = newValue.opacity
+			shadowOffset = newValue.offset
+			shadowRadius = newValue.radius
+			shadowPath = newValue.path
+		}
+	}
+}

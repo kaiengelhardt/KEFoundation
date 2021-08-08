@@ -1,9 +1,6 @@
 //
-//  KEFoundation.h
-//  KEFoundation
-//
 //  Created by Kai Engelhardt on 08.08.21.
-//  Copyright © 2021 Kai Engelhardt. All rights reserved.
+//  Copyright © 2018 Kai Engelhardt. All rights reserved.
 //
 //  Distributed under the permissive MIT license
 //  Get the latest version from here:
@@ -29,16 +26,26 @@
 //  SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+import Foundation
 
-//! Project version number for KEFoundation.
-FOUNDATION_EXPORT double KEFoundationVersionNumber;
+extension Array where Element: Hashable {
 
-//! Project version string for KEFoundation.
-FOUNDATION_EXPORT const unsigned char KEFoundationVersionString[];
+    /**
+    Returns an array containing the unique elements from the current array.
+    The ordering of elements is preserved, i.e. if an element has multiple occurrences, the first element is kept and the remaining elements are discarded.
+    */
+    public func unique() -> [Element] {
+        var result: [Element] = []
+        var memory: Set<Element> = []
 
-#if TARGET_OS_IPHONE
-#import "UIResponder+FirstResponder.h"
-#elif TARGET_OS_TV
-#import "UIResponder+FirstResponder.h"
-#endif
+        for element in self {
+            guard !memory.contains(element) else {
+                continue
+            }
+            result.append(element)
+            memory.insert(element)
+        }
+
+        return result
+    }
+}

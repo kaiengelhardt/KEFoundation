@@ -1,9 +1,6 @@
 //
-//  KEFoundation.h
-//  KEFoundation
-//
-//  Created by Kai Engelhardt on 08.08.21.
-//  Copyright © 2021 Kai Engelhardt. All rights reserved.
+//  Created by Kai Engelhardt on 28.11.19.
+//  Copyright © 2019 Kai Engelhardt. All rights reserved.
 //
 //  Distributed under the permissive MIT license
 //  Get the latest version from here:
@@ -29,16 +26,27 @@
 //  SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#if DEBUG
 
-//! Project version number for KEFoundation.
-FOUNDATION_EXPORT double KEFoundationVersionNumber;
+import UIKit
+import SwiftUI
 
-//! Project version string for KEFoundation.
-FOUNDATION_EXPORT const unsigned char KEFoundationVersionString[];
+public extension UIViewController {
+	
+	var liveView: some View {
+		LiveViewController(viewController: self)
+	}
+	
+	struct LiveViewController<VC: UIViewController>: UIViewControllerRepresentable {
+		
+		let viewController: VC
+		
+		public func makeUIViewController(context: UIViewControllerRepresentableContext<LiveViewController<VC>>) -> VC {
+			return viewController
+		}
+		
+		public func updateUIViewController(_ uiViewController: VC, context: UIViewControllerRepresentableContext<UIViewController.LiveViewController<VC>>) {}
+	}
+}
 
-#if TARGET_OS_IPHONE
-#import "UIResponder+FirstResponder.h"
-#elif TARGET_OS_TV
-#import "UIResponder+FirstResponder.h"
 #endif

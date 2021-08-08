@@ -1,8 +1,5 @@
 //
-//  KEFoundation.h
-//  KEFoundation
-//
-//  Created by Kai Engelhardt on 08.08.21.
+//  Created by Kai Engelhardt on 10.03.21
 //  Copyright © 2021 Kai Engelhardt. All rights reserved.
 //
 //  Distributed under the permissive MIT license
@@ -29,16 +26,31 @@
 //  SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+import Foundation
+import QuartzCore
 
-//! Project version number for KEFoundation.
-FOUNDATION_EXPORT double KEFoundationVersionNumber;
+@propertyWrapper
+public struct AutoInvalidatingObject<Object: Invalidatable> {
 
-//! Project version string for KEFoundation.
-FOUNDATION_EXPORT const unsigned char KEFoundationVersionString[];
+	public var wrappedValue: Object? {
+		didSet {
+			guard oldValue !== wrappedValue else {
+				return
+			}
+			oldValue?.invalidate()
+		}
+	}
 
-#if TARGET_OS_IPHONE
-#import "UIResponder+FirstResponder.h"
-#elif TARGET_OS_TV
-#import "UIResponder+FirstResponder.h"
-#endif
+	public init(wrappedValue: Object?) {
+		self.wrappedValue = wrappedValue
+	}
+}
+
+public protocol Invalidatable: AnyObject {
+
+    func invalidate()
+}
+
+extension Timer: Invalidatable {}
+
+extension CADisplayLink: Invalidatable {}

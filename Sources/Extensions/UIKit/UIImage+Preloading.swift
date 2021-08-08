@@ -1,9 +1,6 @@
 //
-//  KEFoundation.h
-//  KEFoundation
-//
-//  Created by Kai Engelhardt on 08.08.21.
-//  Copyright © 2021 Kai Engelhardt. All rights reserved.
+//  Created by Kai Engelhardt on 26.07.19
+//  Copyright © 2019 Kai Engelhardt. All rights reserved.
 //
 //  Distributed under the permissive MIT license
 //  Get the latest version from here:
@@ -29,16 +26,37 @@
 //  SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+import UIKit
+import CoreGraphics
 
-//! Project version number for KEFoundation.
-FOUNDATION_EXPORT double KEFoundationVersionNumber;
-
-//! Project version string for KEFoundation.
-FOUNDATION_EXPORT const unsigned char KEFoundationVersionString[];
-
-#if TARGET_OS_IPHONE
-#import "UIResponder+FirstResponder.h"
-#elif TARGET_OS_TV
-#import "UIResponder+FirstResponder.h"
-#endif
+public extension UIImage {
+	
+	var preloaded: UIImage {
+		guard let image = cgImage else {
+			return self
+		}
+		
+		let width = image.width
+		let height = image.height
+		
+		let colorSpace = CGColorSpaceCreateDeviceRGB()
+		let imageContext = CGContext(
+			data: nil,
+			width: width,
+			height: height,
+			bitsPerComponent: 8,
+			bytesPerRow: width * 4,
+			space: colorSpace,
+			bitmapInfo: CGBitmapInfo.byteOrder32Little.rawValue | CGImageAlphaInfo.premultipliedFirst.rawValue
+		)
+		imageContext?.draw(image, in: CGRect(x: 0, y: 0, width: width, height: height))
+		let outputImage = imageContext?.makeImage()
+		
+		if let outputImage = outputImage {
+			return UIImage(cgImage: outputImage)
+		}
+		
+		return self
+	}
+	
+}

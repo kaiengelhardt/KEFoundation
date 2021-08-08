@@ -1,9 +1,6 @@
 //
-//  KEFoundation.h
-//  KEFoundation
-//
-//  Created by Kai Engelhardt on 08.08.21.
-//  Copyright © 2021 Kai Engelhardt. All rights reserved.
+//  Created by Kai Engelhardt on 13.10.17
+//  Copyright © 2018 Kai Engelhardt. All rights reserved.
 //
 //  Distributed under the permissive MIT license
 //  Get the latest version from here:
@@ -29,16 +26,29 @@
 //  SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+import UIKit
 
-//! Project version number for KEFoundation.
-FOUNDATION_EXPORT double KEFoundationVersionNumber;
-
-//! Project version string for KEFoundation.
-FOUNDATION_EXPORT const unsigned char KEFoundationVersionString[];
-
-#if TARGET_OS_IPHONE
-#import "UIResponder+FirstResponder.h"
-#elif TARGET_OS_TV
-#import "UIResponder+FirstResponder.h"
-#endif
+public extension UIViewController {
+	
+	/// A Boolean value indicating wether the view controller *or any of its parent view controllers* are being presented.
+	var isBeingPresentedRegardlessOfParentViewController: Bool {
+		var isBeingPresented = false
+		var viewController: UIViewController? = self
+		while let current = viewController {
+			isBeingPresented = isBeingPresented || current.isBeingPresented
+			viewController = current.parent
+		}
+		return isBeingPresented
+	}
+	
+	/// A Boolean value indicating wether the view controller *or any of its parent view controllers* are being dismissed.
+	var isBeingDismissedRegardlessOfParentViewController: Bool {
+		var isBeingDismissed = false
+		var viewController: UIViewController? = self
+		while let current = viewController {
+			isBeingDismissed = isBeingDismissed || current.isBeingDismissed
+			viewController = current.parent
+		}
+		return isBeingDismissed
+	}
+}

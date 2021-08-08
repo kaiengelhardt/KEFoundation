@@ -1,9 +1,6 @@
 //
-//  KEFoundation.h
-//  KEFoundation
-//
-//  Created by Kai Engelhardt on 08.08.21.
-//  Copyright © 2021 Kai Engelhardt. All rights reserved.
+//  Created by Kai Engelhardt on 21.01.20.
+//  Copyright © 2020 Kai Engelhardt. All rights reserved.
 //
 //  Distributed under the permissive MIT license
 //  Get the latest version from here:
@@ -29,16 +26,39 @@
 //  SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+import UIKit
 
-//! Project version number for KEFoundation.
-FOUNDATION_EXPORT double KEFoundationVersionNumber;
-
-//! Project version string for KEFoundation.
-FOUNDATION_EXPORT const unsigned char KEFoundationVersionString[];
-
-#if TARGET_OS_IPHONE
-#import "UIResponder+FirstResponder.h"
-#elif TARGET_OS_TV
-#import "UIResponder+FirstResponder.h"
-#endif
+open class EmbeddableCollectionView: UICollectionView {
+	
+	public override var contentSize: CGSize {
+		didSet {
+			invalidateIntrinsicContentSize()
+		}
+	}
+	
+	public override var contentInset: UIEdgeInsets {
+		didSet {
+			invalidateIntrinsicContentSize()
+		}
+	}
+	
+	public override var intrinsicContentSize: CGSize {
+		let contentSize = collectionViewLayout.collectionViewContentSize
+		return CGSize(width: contentSize.width + contentInset.left + contentInset.right, height: contentSize.height + contentInset.top + contentInset.bottom)
+	}
+	
+	public override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
+		super.init(frame: frame, collectionViewLayout: layout)
+		setUp()
+	}
+	
+	@available(*, unavailable)
+	public required init?(coder aDecoder: NSCoder) {
+		super.init(coder: aDecoder)
+		setUp()
+	}
+	
+	private func setUp() {
+		isScrollEnabled = false
+	}
+}

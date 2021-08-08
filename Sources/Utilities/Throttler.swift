@@ -1,8 +1,5 @@
 //
-//  KEFoundation.h
-//  KEFoundation
-//
-//  Created by Kai Engelhardt on 08.08.21.
+//  Created by Kai Engelhardt on 26.04.18
 //  Copyright © 2021 Kai Engelhardt. All rights reserved.
 //
 //  Distributed under the permissive MIT license
@@ -29,16 +26,36 @@
 //  SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+import Foundation
 
-//! Project version number for KEFoundation.
-FOUNDATION_EXPORT double KEFoundationVersionNumber;
-
-//! Project version string for KEFoundation.
-FOUNDATION_EXPORT const unsigned char KEFoundationVersionString[];
-
-#if TARGET_OS_IPHONE
-#import "UIResponder+FirstResponder.h"
-#elif TARGET_OS_TV
-#import "UIResponder+FirstResponder.h"
-#endif
+/// Based on this [tweet](https://twitter.com/_inside/status/984827954432798723) by Guilherme Rambo.
+public final class Throttler<Event> {
+	
+	public typealias Handler = (Event) -> Void
+	
+	public let interval: TimeInterval
+	public let queue: DispatchQueue
+	public var handler: Handler?
+	
+	private var workItem: DispatchWorkItem?
+	
+	public init(interval: TimeInterval = 0.333, queue: DispatchQueue = .main, handler: Handler? = nil) {
+		self.interval = interval
+		self.queue = queue
+		self.handler = handler
+	}
+	
+	public func send(event: Event) {
+		invalidatePendingEvents()
+		workItem = DispatchWorkItem { [weak self] in
+			self?.handler?(event)
+		}
+		if let workItem = workItem {
+			queue.asyncAfter(deadline: .now() + interval, execute: workItem)
+		}
+	}
+	
+	public func invalidatePendingEvents() {
+		workItem?.cancel()
+	}
+}

@@ -1,9 +1,6 @@
 //
-//  KEFoundation.h
-//  KEFoundation
-//
-//  Created by Kai Engelhardt on 08.08.21.
-//  Copyright © 2021 Kai Engelhardt. All rights reserved.
+//  Created by Kai Engelhardt on 04.08.20.
+//  Copyright © 2020 Kai Engelhardt. All rights reserved.
 //
 //  Distributed under the permissive MIT license
 //  Get the latest version from here:
@@ -29,16 +26,24 @@
 //  SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+import Foundation
+import MediaPlayer
 
-//! Project version number for KEFoundation.
-FOUNDATION_EXPORT double KEFoundationVersionNumber;
-
-//! Project version string for KEFoundation.
-FOUNDATION_EXPORT const unsigned char KEFoundationVersionString[];
-
-#if TARGET_OS_IPHONE
-#import "UIResponder+FirstResponder.h"
-#elif TARGET_OS_TV
-#import "UIResponder+FirstResponder.h"
-#endif
+extension MPVolumeView {
+	
+	/// Based on this [StackOverFlow question](https://stackoverflow.com/questions/33168497/ios-9-how-to-change-volume-programmatically-without-showing-system-sound-bar-po/50740234).
+	public var volume: Float {
+		return volumeSlider?.value ?? 0
+	}
+	
+	private var volumeSlider: UISlider? {
+		subviews.first(where: { $0 is UISlider }) as? UISlider
+	}
+	
+	/// Based on this [StackOverFlow question](https://stackoverflow.com/questions/33168497/ios-9-how-to-change-volume-programmatically-without-showing-system-sound-bar-po/50740234).
+	public func setVolume(_ volume: Float) {
+		DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.01) {
+			self.volumeSlider?.value = volume
+		}
+	}
+}
