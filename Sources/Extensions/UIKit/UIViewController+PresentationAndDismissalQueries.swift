@@ -29,9 +29,9 @@
 import UIKit
 
 extension UIViewController {
-
+	
 	/// A Boolean value indicating wether the view controller *or any of its parent view controllers* are being presented.
-    public var isBeingPresentedRegardlessOfParentViewController: Bool {
+	public var isBeingPresentedRegardlessOfParentViewController: Bool {
 		var isBeingPresented = false
 		var viewController: UIViewController? = self
 		while let current = viewController {
@@ -40,9 +40,9 @@ extension UIViewController {
 		}
 		return isBeingPresented
 	}
-
+	
 	/// A Boolean value indicating wether the view controller *or any of its parent view controllers* are being dismissed.
-    public var isBeingDismissedRegardlessOfParentViewController: Bool {
+	public var isBeingDismissedRegardlessOfParentViewController: Bool {
 		var isBeingDismissed = false
 		var viewController: UIViewController? = self
 		while let current = viewController {

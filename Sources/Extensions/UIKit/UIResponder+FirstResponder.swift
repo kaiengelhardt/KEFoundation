@@ -29,18 +29,18 @@
 import UIKit
 
 extension UIResponder {
-
-    private static weak var _firstResponder: UIResponder?
-
-    @available(iOSApplicationExtension, unavailable)
-    public static var firstResponder: UIResponder? {
-        _firstResponder = nil
-        UIApplication.shared.sendAction(#selector(_findFirstResponder), to: nil, from: nil, for: nil)
-        return _firstResponder
-    }
-
-    @objc
-    private func _findFirstResponder() {
-        Self._firstResponder = self
-    }
+	
+	private static weak var _firstResponder: UIResponder?
+	
+	@available(iOSApplicationExtension, unavailable)
+	public static var firstResponder: UIResponder? {
+		_firstResponder = nil
+		UIApplication.shared.sendAction(#selector(_findFirstResponder), to: nil, from: nil, for: nil)
+		return _firstResponder
+	}
+	
+	@objc
+	private func _findFirstResponder() {
+		Self._firstResponder = self
+	}
 }

@@ -29,7 +29,7 @@
 import Foundation
 
 extension DateFormatter {
-
+	
 	/// Taken from this [Stackoverflow answer](https://stackoverflow.com/a/16254918).
 	public static let iso8601Formatter: DateFormatter = {
 		let formatter = DateFormatter()

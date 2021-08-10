@@ -30,15 +30,15 @@ import UIKit
 import CoreGraphics
 
 extension UIImage {
-
-    public var preloaded: UIImage {
+	
+	public var preloaded: UIImage {
 		guard let image = cgImage else {
 			return self
 		}
-
+		
 		let width = image.width
 		let height = image.height
-
+		
 		let colorSpace = CGColorSpaceCreateDeviceRGB()
 		let imageContext = CGContext(
 			data: nil,
@@ -51,11 +51,11 @@ extension UIImage {
 		)
 		imageContext?.draw(image, in: CGRect(x: 0, y: 0, width: width, height: height))
 		let outputImage = imageContext?.makeImage()
-
+		
 		if let outputImage = outputImage {
 			return UIImage(cgImage: outputImage)
 		}
-
+		
 		return self
 	}
 }

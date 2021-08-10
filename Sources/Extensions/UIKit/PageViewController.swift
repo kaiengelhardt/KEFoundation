@@ -29,19 +29,19 @@
 import UIKit
 
 public class PageViewController: UIViewController {
-
+	
 	public var embeddedViewControllers: [UIViewController] = [] {
 		didSet {
 			remove(oldViewControllers: oldValue)
 			updateEmbeddedViewControllers()
 		}
 	}
-
+	
 	public let scrollView = UIScrollView()
 	public let pageControl: UIPageControl
-
+	
 	private let stackView = UIStackView()
-
+	
 	private var currentPage: Int {
 		let horizontalContentOffset = scrollView.contentOffset.x
 		let width = scrollView.bounds.width
@@ -53,24 +53,24 @@ public class PageViewController: UIViewController {
 		}
 		return currentPage
 	}
-
+	
 	public init(pageControl: UIPageControl) {
 		self.pageControl = pageControl
 		super.init(nibName: nil, bundle: nil)
 		setUpUI()
 	}
-
+	
 	@available(*, unavailable)
 	public required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
-
+	
 	private func setUpUI() {
 		var constraints: [NSLayoutConstraint] = []
 		defer {
 			NSLayoutConstraint.activate(constraints)
 		}
-
+		
 		view.addSubview(scrollView)
 		constraints += [
 			scrollView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -78,27 +78,27 @@ public class PageViewController: UIViewController {
 			scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
 			scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
 		]
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
+		scrollView.translatesAutoresizingMaskIntoConstraints = false
 		scrollView.isPagingEnabled = true
 		scrollView.delegate = self
 		scrollView.showsHorizontalScrollIndicator = false
 		pageControl.numberOfPages = 0
-
+		
 		scrollView.addSubview(stackView)
 		constraints += stackView.constraintsMatchingEdges(of: scrollView.contentLayoutGuide)
 		constraints += [
 			stackView.topAnchor.constraint(equalTo: view.topAnchor),
 			stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 		]
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+		stackView.translatesAutoresizingMaskIntoConstraints = false
 		stackView.axis = .horizontal
 		stackView.alignment = .fill
 		stackView.distribution = .fillEqually
 		stackView.spacing = 0
-
+		
 		pageControl.hidesForSinglePage = true
 	}
-
+	
 	private func updateEmbeddedViewControllers() {
 		for viewController in embeddedViewControllers {
 			stackView.addArrangedSubview(viewController.view)
@@ -106,26 +106,26 @@ public class PageViewController: UIViewController {
 		}
 		if let firstViewController = embeddedViewControllers.first {
 			NSLayoutConstraint.activate([
-                firstViewController.view.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+				firstViewController.view.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
 			])
 		}
 		scrollView.contentOffset = .zero
 		pageControl.numberOfPages = embeddedViewControllers.count
 		pageControl.currentPage = 0
 	}
-
+	
 	private func remove(oldViewControllers: [UIViewController]) {
 		for viewController in oldViewControllers {
 			viewController.view.removeFromSuperview()
 			viewController.removeFromParent()
 		}
 	}
-
+	
 	private func fixContentOffset() {
 		let width = scrollView.bounds.width
 		scrollView.contentOffset.x = CGFloat(currentPage) * width
 	}
-
+	
 	public override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
 		fixContentOffset()
@@ -135,7 +135,7 @@ public class PageViewController: UIViewController {
 // MARK: - UIScrollViewDelegate
 
 extension PageViewController: UIScrollViewDelegate {
-
+	
 	public func scrollViewDidScroll(_ scrollView: UIScrollView) {
 		pageControl.currentPage = currentPage
 	}

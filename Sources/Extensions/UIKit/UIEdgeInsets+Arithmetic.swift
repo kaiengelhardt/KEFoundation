@@ -29,31 +29,31 @@
 import UIKit
 
 extension UIEdgeInsets {
-
-    public static prefix func - (insets: UIEdgeInsets) -> UIEdgeInsets {
-        return UIEdgeInsets(
-            top: -insets.top,
-            left: -insets.left,
-            bottom: -insets.bottom,
-            right: -insets.right
-        )
-    }
-
-    public static func + (lhs: UIEdgeInsets, rhs: UIEdgeInsets) -> UIEdgeInsets {
-        return UIEdgeInsets(
-            top: lhs.top + rhs.top,
-            left: lhs.left + rhs.left,
-            bottom: lhs.bottom + rhs.bottom,
-            right: lhs.right + rhs.right
-        )
-    }
-
-    public static func - (lhs: UIEdgeInsets, rhs: UIEdgeInsets) -> UIEdgeInsets {
-        return UIEdgeInsets(
-            top: lhs.top - rhs.top,
-            left: lhs.left - rhs.left,
-            bottom: lhs.bottom - rhs.bottom,
-            right: lhs.right - rhs.right
-        )
-    }
+	
+	public static prefix func - (insets: UIEdgeInsets) -> UIEdgeInsets {
+		return UIEdgeInsets(
+			top: -insets.top,
+			left: -insets.left,
+			bottom: -insets.bottom,
+			right: -insets.right
+		)
+	}
+	
+	public static func + (lhs: UIEdgeInsets, rhs: UIEdgeInsets) -> UIEdgeInsets {
+		return UIEdgeInsets(
+			top: lhs.top + rhs.top,
+			left: lhs.left + rhs.left,
+			bottom: lhs.bottom + rhs.bottom,
+			right: lhs.right + rhs.right
+		)
+	}
+	
+	public static func - (lhs: UIEdgeInsets, rhs: UIEdgeInsets) -> UIEdgeInsets {
+		return UIEdgeInsets(
+			top: lhs.top - rhs.top,
+			left: lhs.left - rhs.left,
+			bottom: lhs.bottom - rhs.bottom,
+			right: lhs.right - rhs.right
+		)
+	}
 }

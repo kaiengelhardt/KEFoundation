@@ -29,12 +29,12 @@
 import Foundation
 
 extension FloatingPoint {
-
-    public var radians: Self {
+	
+	public var radians: Self {
 		return self / 180 * .pi
 	}
-
-    public var degrees: Self {
+	
+	public var degrees: Self {
 		return self / .pi * 180
 	}
 }

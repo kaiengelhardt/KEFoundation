@@ -29,16 +29,16 @@
 import UIKit
 
 extension String {
-
-    public func image(ofSize size: CGSize) -> UIImage? {
-        UIGraphicsBeginImageContextWithOptions(size, false, 0)
-        UIColor.clear.set()
-        let rect = CGRect(origin: .zero, size: size)
-        UIRectFill(CGRect(origin: .zero, size: size))
+	
+	public func image(ofSize size: CGSize) -> UIImage? {
+		UIGraphicsBeginImageContextWithOptions(size, false, 0)
+		UIColor.clear.set()
+		let rect = CGRect(origin: .zero, size: size)
+		UIRectFill(CGRect(origin: .zero, size: size))
 		// Make the font smaller to prevent clipping the emoji.
 		(self as NSString).draw(in: rect, withAttributes: [.font: UIFont.systemFont(ofSize: size.height * 0.9)])
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return image
-    }
+		let image = UIGraphicsGetImageFromCurrentImageContext()
+		UIGraphicsEndImageContext()
+		return image
+	}
 }

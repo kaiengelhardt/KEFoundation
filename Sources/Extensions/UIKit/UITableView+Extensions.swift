@@ -29,13 +29,13 @@
 import UIKit
 
 extension UITableView {
-
-    public struct StaticSection: Equatable {
+	
+	public struct StaticSection: Equatable {
 		public var identifier = UUID()
 		public var headerTitle: String?
 		public var footerTitle: String?
 		public var cells: [UITableViewCell]
-
+		
 		public init(cells: [UITableViewCell], headerTitle: String? = nil, footerTitle: String? = nil) {
 			self.cells = cells
 			self.headerTitle = headerTitle
@@ -45,15 +45,15 @@ extension UITableView {
 }
 
 extension Array where Element == UITableView.StaticSection {
-
-    public subscript(indexPath: IndexPath) -> UITableViewCell {
+	
+	public subscript(indexPath: IndexPath) -> UITableViewCell {
 		return self[indexPath.section].cells[indexPath.row]
 	}
 }
 
 extension UITableView {
-
-    public func deselectCurrentlySelectRow(with transitionCoordinator: UIViewControllerTransitionCoordinator?) {
+	
+	public func deselectCurrentlySelectRow(with transitionCoordinator: UIViewControllerTransitionCoordinator?) {
 		let indexPath = indexPathForSelectedRow
 		if let indexPath = indexPath {
 			deselectRow(at: indexPath, animated: true)

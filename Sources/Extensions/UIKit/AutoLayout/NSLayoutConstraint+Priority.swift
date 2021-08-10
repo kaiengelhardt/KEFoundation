@@ -37,36 +37,36 @@ import AppKit
 #endif
 
 extension NSLayoutConstraint {
-
-	#if canImport(UIKit)
-
-    public typealias LayoutPriority = UILayoutPriority
-
-	#elseif canImport(AppKit)
-
-    public typealias LayoutPriority = NSLayoutConstraint.Priority
-
-	#endif
-
-    public func with(priority: LayoutPriority) -> NSLayoutConstraint {
+	
+#if canImport(UIKit)
+	
+	public typealias LayoutPriority = UILayoutPriority
+	
+#elseif canImport(AppKit)
+	
+	public typealias LayoutPriority = NSLayoutConstraint.Priority
+	
+#endif
+	
+	public func with(priority: LayoutPriority) -> NSLayoutConstraint {
 		self.priority = priority
 		return self
 	}
 }
 
 extension Array where Element == NSLayoutConstraint {
-
-	#if canImport(UIKit)
-
-    public typealias LayoutPriority = UILayoutPriority
-
-	#elseif canImport(AppKit)
-
-    public typealias LayoutPriority = NSLayoutConstraint.Priority
-
-	#endif
-
-    public func with(priority: LayoutPriority) -> [NSLayoutConstraint] {
+	
+#if canImport(UIKit)
+	
+	public typealias LayoutPriority = UILayoutPriority
+	
+#elseif canImport(AppKit)
+	
+	public typealias LayoutPriority = NSLayoutConstraint.Priority
+	
+#endif
+	
+	public func with(priority: LayoutPriority) -> [NSLayoutConstraint] {
 		for constraint in self {
 			constraint.priority = priority
 		}

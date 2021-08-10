@@ -31,8 +31,8 @@ import Foundation
 public typealias KeyValueObservationBag = Set<NSKeyValueObservation>
 
 extension NSKeyValueObservation {
-
-    public func store(in observationBag: inout KeyValueObservationBag) {
+	
+	public func store(in observationBag: inout KeyValueObservationBag) {
 		observationBag.insert(self)
 	}
 }

@@ -69,29 +69,29 @@ import SwiftUI
 /// in the dictionary it will fallback to the system preferred
 /// font.
 public final class ScaledFont {
-
+	
 	private struct FontDescription: Decodable {
 		let fontSize: CGFloat
 		let fontName: String
 	}
-
+	
 	private typealias StyleDictionary = [UIFont.TextStyle.RawValue: FontDescription]
 	private var styleDictionary: StyleDictionary?
-
+	
 	/// Create a `ScaledFont`
 	///
 	/// - Parameter fontName: Name of a plist file (without the extension)
 	///   in the main bundle that contains the style dictionary used to
 	///   scale fonts for each text style.
-
+	
 	public init(fontName: String, bundle: Bundle = .main) {
 		if let url = bundle.url(forResource: fontName, withExtension: "plist"),
-			let data = try? Data(contentsOf: url) {
+		   let data = try? Data(contentsOf: url) {
 			let decoder = PropertyListDecoder()
 			styleDictionary = try? decoder.decode(StyleDictionary.self, from: data)
 		}
 	}
-
+	
 	/// Get the scaled font for the given text style using the
 	/// style dictionary supplied at initialization.
 	///
@@ -108,54 +108,54 @@ public final class ScaledFont {
 		guard
 			let fontDescription = styleDictionary?[textStyle.rawValue],
 			let font = UIFont(name: fontDescription.fontName, size: fontDescription.fontSize) else
-		{
-			return UIFont.preferredFont(forTextStyle: textStyle)
-		}
-
+			{
+				return UIFont.preferredFont(forTextStyle: textStyle)
+			}
+		
 		let fontMetrics = UIFontMetrics(forTextStyle: textStyle)
 		let scaledFont = fontMetrics.scaledFont(for: font)
 		return scaledFont
 	}
-
+	
 	public func unscaledFont(forTextStyle textStyle: UIFont.TextStyle) -> UIFont {
 		guard
 			let fontDescription = styleDictionary?[textStyle.rawValue],
 			let font = UIFont(name: fontDescription.fontName, size: fontDescription.fontSize) else
-		{
-			return UIFont.preferredFont(forTextStyle: textStyle)
-		}
-
+			{
+				return UIFont.preferredFont(forTextStyle: textStyle)
+			}
+		
 		return font
 	}
-
+	
 	@available(iOS 13, *)
 	public func swiftUIFont(forTextStyle textStyle: Font.TextStyle) -> Font {
 		let uiKitTextStyle = textStyle.uiKitTextStyle
 		guard let fontDescription = styleDictionary?[uiKitTextStyle.rawValue] else {
 			return Font.preferredFont(forTextStyle: textStyle)
 		}
-
+		
 		let fontMetrics = UIFontMetrics(forTextStyle: uiKitTextStyle)
 		let scaledSize = fontMetrics.scaledValue(for: fontDescription.fontSize)
-
+		
 		let font = Font.custom(fontDescription.fontName, size: scaledSize)
 		return font
 	}
-
+	
 	@available(iOS 13, *)
 	public func unscaledSwiftUIFont(forTextStyle textStyle: Font.TextStyle) -> Font {
 		let uiKitTextStyle = textStyle.uiKitTextStyle
 		guard let fontDescription = styleDictionary?[uiKitTextStyle.rawValue] else {
 			return Font.preferredFont(forTextStyle: textStyle)
 		}
-
+		
 		let font = Font.custom(fontDescription.fontName, size: fontDescription.fontSize)
 		return font
 	}
 }
 
 extension UIFont.TextStyle {
-
+	
 	@available(iOS 13, *)
 	var swiftUITextStyle: Font.TextStyle {
 		if #available(iOS 14, *) {
@@ -218,7 +218,7 @@ extension UIFont.TextStyle {
 
 @available(iOS 13, *)
 extension Font.TextStyle {
-
+	
 	public var uiKitTextStyle: UIFont.TextStyle {
 		switch self {
 		case .largeTitle:
@@ -251,7 +251,7 @@ extension Font.TextStyle {
 
 @available(iOS 13, *)
 extension Font {
-
+	
 	public static func preferredFont(forTextStyle textStyle: TextStyle) -> Font {
 		switch textStyle {
 		case .largeTitle:

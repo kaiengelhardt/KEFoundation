@@ -29,10 +29,10 @@
 import Foundation
 
 extension NSSortDescriptor {
-
-    public typealias Order = (AnyObject, AnyObject) -> Bool
-
-    public var order: Order {
+	
+	public typealias Order = (AnyObject, AnyObject) -> Bool
+	
+	public var order: Order {
 		return {
 			self.compare($0, to: $1) == .orderedAscending
 		}
@@ -40,10 +40,10 @@ extension NSSortDescriptor {
 }
 
 extension Array where Element: NSSortDescriptor {
-
-    public typealias Order = (AnyObject, AnyObject) -> Bool
-
-    public var order: Order {
+	
+	public typealias Order = (AnyObject, AnyObject) -> Bool
+	
+	public var order: Order {
 		return {
 			var comparisonResult: ComparisonResult = .orderedSame
 			for sortDescriptor in self {

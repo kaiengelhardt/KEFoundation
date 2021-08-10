@@ -29,23 +29,23 @@
 import Foundation
 
 extension Array {
-
+	
 	/**
-	Shuffles the collection in place. The item at `index` will be first in the array.
-		
-	- Parameter index: The position of the item which should be first in the resulting array.
-	*/
-    public mutating func shuffleBeginningWithItem(at index: Int) {
+	 Shuffles the collection in place. The item at `index` will be first in the array.
+	 
+	 - Parameter index: The position of the item which should be first in the resulting array.
+	 */
+	public mutating func shuffleBeginningWithItem(at index: Int) {
 		self = shuffledBeginningWithItem(at: index)
 	}
-
-	/**
-	Returns the elements of the sequence, shuffled. The item at `index` will be first in the returned array.
 	
-	- Parameter index: The position of the item which should be first in the resulting array.
-	- Returns: A shuffled array of this sequence’s elements.
-	*/
-    public func shuffledBeginningWithItem(at index: Int) -> [Element] {
+	/**
+	 Returns the elements of the sequence, shuffled. The item at `index` will be first in the returned array.
+	 
+	 - Parameter index: The position of the item which should be first in the resulting array.
+	 - Returns: A shuffled array of this sequence’s elements.
+	 */
+	public func shuffledBeginningWithItem(at index: Int) -> [Element] {
 		var array = self
 		let item = array.remove(at: index)
 		var shuffledArray = array.shuffled()

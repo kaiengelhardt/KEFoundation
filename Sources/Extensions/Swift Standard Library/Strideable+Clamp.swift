@@ -30,19 +30,19 @@ import Foundation
 
 extension Strideable where Stride: SignedInteger {
 
-    public func clamped(to range: CountableClosedRange<Self>) -> Self {
-        return min(max(self, range.lowerBound), range.upperBound)
-    }
+	public func clamped(to range: CountableClosedRange<Self>) -> Self {
+		return min(max(self, range.lowerBound), range.upperBound)
+	}
 
-    public mutating func clamp(to range: CountableClosedRange<Self>) {
-        self = min(max(self, range.lowerBound), range.upperBound)
-    }
+	public mutating func clamp(to range: CountableClosedRange<Self>) {
+		self = min(max(self, range.lowerBound), range.upperBound)
+	}
 
-    public func clamped(to range: CountablePartialRangeFrom<Self>) -> Self {
-        return max(self, range.lowerBound)
-    }
+	public func clamped(to range: CountablePartialRangeFrom<Self>) -> Self {
+		return max(self, range.lowerBound)
+	}
 
-    public mutating func clamp(to range: CountablePartialRangeFrom<Self>) {
-        self = max(self, range.lowerBound)
-    }
+	public mutating func clamp(to range: CountablePartialRangeFrom<Self>) {
+		self = max(self, range.lowerBound)
+	}
 }

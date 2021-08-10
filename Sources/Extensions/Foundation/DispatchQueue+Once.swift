@@ -29,39 +29,39 @@
 import Foundation
 
 extension DispatchQueue {
-
-	private static var onceTokens: Set<String> = []
-
-	/**
-	Executes a block of code, associated with a unique token, only once.  The code is thread safe and will
-	only execute the code once even in the presence of multithreaded calls.
-	Based on this [Stackoverflow question](https://stackoverflow.com/questions/37886994/dispatch-once-after-the-swift-3-gcd-api-changes).
 	
-	- parameter token: A unique reverse DNS style name such as com.vectorform.<name> or a GUID
-	- parameter block: Block to execute once
-	*/
-    public class func once(token: String, closure: () -> Void) {
+	private static var onceTokens: Set<String> = []
+	
+	/**
+	 Executes a block of code, associated with a unique token, only once.  The code is thread safe and will
+	 only execute the code once even in the presence of multithreaded calls.
+	 Based on this [Stackoverflow question](https://stackoverflow.com/questions/37886994/dispatch-once-after-the-swift-3-gcd-api-changes).
+	 
+	 - parameter token: A unique reverse DNS style name such as com.vectorform.<name> or a GUID
+	 - parameter block: Block to execute once
+	 */
+	public class func once(token: String, closure: () -> Void) {
 		objc_sync_enter(self)
 		defer {
 			objc_sync_exit(self)
 		}
-
+		
 		guard !onceTokens.contains(token) else {
 			return
 		}
-
+		
 		onceTokens.insert(token)
 		closure()
 	}
-
-	/**
-	Executes a block of code, associated with a unique token, only once.  The code is thread safe and will
-	only execute the code once even in the presence of multithreaded calls.
-	Based on this [Stackoverflow question](https://stackoverflow.com/questions/37886994/dispatch-once-after-the-swift-3-gcd-api-changes).
 	
-	- parameter block: Block to execute once
-	*/
-    public class func once(file: String = #file, function: String = #function, line: Int = #line, closure: () -> Void) {
+	/**
+	 Executes a block of code, associated with a unique token, only once.  The code is thread safe and will
+	 only execute the code once even in the presence of multithreaded calls.
+	 Based on this [Stackoverflow question](https://stackoverflow.com/questions/37886994/dispatch-once-after-the-swift-3-gcd-api-changes).
+	 
+	 - parameter block: Block to execute once
+	 */
+	public class func once(file: String = #file, function: String = #function, line: Int = #line, closure: () -> Void) {
 		let token = "\(file):\(function):\(line)"
 		once(token: token, closure: closure)
 	}

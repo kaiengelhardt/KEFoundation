@@ -29,8 +29,8 @@
 import QuartzCore
 
 extension CALayer {
-
-    public func makePillShaped() {
+	
+	public func makePillShaped() {
 		cornerRadius = bounds.smallestSide / 2
 	}
 }

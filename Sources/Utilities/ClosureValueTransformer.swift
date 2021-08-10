@@ -44,14 +44,14 @@ public class ClosureValueTransformer<Source: AnyObject, Destination: AnyObject>:
 	}
 
 	public static func registerTransformer(
-        withName name: String,
-        transform: @escaping Transform,
-        reverseTransform: @escaping ReverseTransform
-    ) {
+		withName name: String,
+		transform: @escaping Transform,
+		reverseTransform: @escaping ReverseTransform
+	) {
 		let vt = ClosureValueTransformer(transform: transform, reverseTransform: reverseTransform)
 		Foundation.ValueTransformer.setValueTransformer(vt, forName: NSValueTransformerName(rawValue: name))
 	}
-
+	
 	public override class func transformedValueClass() -> AnyClass {
 		return Destination.self
 	}

@@ -29,46 +29,46 @@
 import UIKit
 
 public class MaskOverlayView: UIView {
-
+	
 	public weak var maskPath: CGPath? {
 		didSet {
 			updatePath()
 		}
 	}
-
+	
 	public var maskColor: UIColor? {
 		didSet {
 			updateColor()
 		}
 	}
-
+	
 	public override class var layerClass: AnyClass {
 		CAShapeLayer.self
 	}
-
+	
 	private var shapeLayer: CAShapeLayer {
 		layer as! CAShapeLayer // swiftlint:disable:this force_cast
 	}
-
+	
 	public init() {
 		super.init(frame: .zero)
 		setUpUI()
 	}
-
+	
 	@available(*, unavailable)
 	public required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
-
+	
 	private func setUpUI() {
 		shapeLayer.fillRule = .evenOdd
 	}
-
+	
 	public override func layoutSubviews() {
 		super.layoutSubviews()
 		updatePath()
 	}
-
+	
 	public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
 		super.traitCollectionDidChange(previousTraitCollection)
 		if #available(iOS 13, *) {
@@ -77,7 +77,7 @@ public class MaskOverlayView: UIView {
 			}
 		}
 	}
-
+	
 	private func updatePath() {
 		if let maskPath = maskPath {
 			let path = CGMutablePath()
@@ -88,7 +88,7 @@ public class MaskOverlayView: UIView {
 			shapeLayer.path = nil
 		}
 	}
-
+	
 	private func updateColor() {
 		shapeLayer.fillColor = maskColor?.cgColor
 	}

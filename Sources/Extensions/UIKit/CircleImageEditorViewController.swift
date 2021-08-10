@@ -29,50 +29,50 @@
 import UIKit
 
 public protocol CircleImageEditorViewControllerDelegate: AnyObject {
-
+	
 	func circleImageEditorViewController(_ viewController: CircleImageEditorViewController, didFinishWith image: UIImage)
 	func circleImageEditorViewControllerDidCancel(_ viewController: CircleImageEditorViewController)
 	func circleImageEditorViewControllerDidFail(_ viewController: CircleImageEditorViewController)
 }
 
 public class CircleImageEditorViewController: UIViewController {
-
+	
 	public weak var delegate: CircleImageEditorViewControllerDelegate?
-
+	
 	private let imageView = UIImageView()
 	private let scrollView = UIScrollView()
 	private let overlayView = OverlayView()
 	private let circleViewLayoutGuide = UILayoutGuide()
 	private let circleView = CircleMaskView()
-
+	
 	private let bottomToolbar = UIToolbar()
-
+	
 	public var image: UIImage {
 		didSet {
 			imageView.image = image
 			resetScrollViewZoom()
 		}
 	}
-
+	
 	public init(image: UIImage) {
 		self.image = image
 		super.init(nibName: nil, bundle: nil)
 		setUpUI()
 	}
-
+	
 	@available(*, unavailable)
 	public required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
-
+	
 	private func setUpUI() {
 		var constraints: [NSLayoutConstraint] = []
 		defer {
 			NSLayoutConstraint.activate(constraints)
 		}
-
+		
 		view.backgroundColor = .black
-
+		
 		view.addSubview(scrollView)
 		constraints += [
 			scrollView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -81,35 +81,35 @@ public class CircleImageEditorViewController: UIViewController {
 			scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
 		]
 		scrollView.translatesAutoresizingMaskIntoConstraints = false
-
+		
 		scrollView.addSubview(imageView)
 		constraints += imageView.constraintsMatchingEdges(of: scrollView.contentLayoutGuide)
 		imageView.translatesAutoresizingMaskIntoConstraints = false
 		imageView.contentMode = .scaleAspectFit
 		imageView.image = image
-
+		
 		scrollView.bouncesZoom = true
 		scrollView.delegate = self
 		scrollView.contentInsetAdjustmentBehavior = .never
 		scrollView.showsHorizontalScrollIndicator = false
 		scrollView.showsVerticalScrollIndicator = false
-
+		
 		view.addSubview(overlayView)
 		constraints += overlayView.constraintsMatchingEdges(of: scrollView)
 		overlayView.translatesAutoresizingMaskIntoConstraints = false
 		overlayView.backgroundColor = UIColor(white: 0, alpha: 0.5)
-
+		
 		view.addLayoutGuide(circleViewLayoutGuide)
 		constraints += circleViewLayoutGuide.constraintsMatchingCenter(of: scrollView.layoutMarginsGuide)
 		constraints += circleViewLayoutGuide.constraintsMatchingSize(of: scrollView.layoutMarginsGuide)
-            .with(priority: .defaultLow)
+			.with(priority: .defaultLow)
 		constraints += circleViewLayoutGuide.constraintsMatchingSize(
-            of: scrollView.layoutMarginsGuide,
-            relation: .lessThanOrEqual
-        )
+			of: scrollView.layoutMarginsGuide,
+			relation: .lessThanOrEqual
+		)
 		constraints.append(circleViewLayoutGuide.aspectRatioConstraint())
 		overlayView.mask = circleView
-
+		
 		view.addSubview(bottomToolbar)
 		constraints += [
 			bottomToolbar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -117,9 +117,9 @@ public class CircleImageEditorViewController: UIViewController {
 			bottomToolbar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
 		]
 		bottomToolbar.translatesAutoresizingMaskIntoConstraints = false
-        bottomToolbar.barStyle = .black
-        bottomToolbar.isTranslucent = true
-
+		bottomToolbar.barStyle = .black
+		bottomToolbar.isTranslucent = true
+		
 		let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
 		cancelButton.accessibilityIdentifier = "cancel"
 		let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
@@ -131,30 +131,30 @@ public class CircleImageEditorViewController: UIViewController {
 			doneButton,
 		]
 	}
-
+	
 	public override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		resetScrollViewZoom()
 	}
-
+	
 	public override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
-
+		
 		// Trigger a scroll view layout update to fix a bug on iOS 12 where scrollView.contentSize is {0, 0}
 		scrollView.setNeedsLayout()
 		scrollView.layoutIfNeeded()
-
+		
 		circleView.frame = view.bounds
 		circleView.circleFrame = circleViewLayoutGuide.layoutFrame
-
+		
 		scrollView.contentInset.left = circleViewLayoutGuide.layoutFrame.minX
 		scrollView.contentInset.right = scrollView.frame.width - circleViewLayoutGuide.layoutFrame.maxX
 		scrollView.contentInset.top = circleViewLayoutGuide.layoutFrame.minY
 		scrollView.contentInset.bottom = scrollView.frame.height - circleViewLayoutGuide.layoutFrame.maxY
-
+		
 		updateZoomScaleRange()
 	}
-
+	
 	private func resetScrollViewZoom() {
 		view.setNeedsLayout()
 		view.layoutIfNeeded()
@@ -162,25 +162,25 @@ public class CircleImageEditorViewController: UIViewController {
 		// Make sure crop rect is centered
 		if scrollView.contentSize.width > scrollView.contentSize.height {
 			scrollView.contentOffset.x = (scrollView.contentSize.width - circleViewLayoutGuide.layoutFrame.width) / 2
-            - scrollView.contentInset.left
+			- scrollView.contentInset.left
 		} else {
 			scrollView.contentOffset.y = (scrollView.contentSize.height - circleViewLayoutGuide.layoutFrame.height) / 2
-            - scrollView.contentInset.top
+			- scrollView.contentInset.top
 		}
 	}
-
+	
 	private func updateZoomScaleRange() {
 		let currentZoomScale = scrollView.zoomScale == 0 ? 1 : scrollView.zoomScale
 		if scrollView.contentSize.width > scrollView.contentSize.height {
 			scrollView.minimumZoomScale = (circleViewLayoutGuide.layoutFrame.height) /
-            (scrollView.contentSize.height / currentZoomScale)
+			(scrollView.contentSize.height / currentZoomScale)
 		} else {
 			scrollView.minimumZoomScale = (circleViewLayoutGuide.layoutFrame.width) /
-            (scrollView.contentSize.width / currentZoomScale)
+			(scrollView.contentSize.width / currentZoomScale)
 		}
 		scrollView.maximumZoomScale = 4 * scrollView.minimumZoomScale
 	}
-
+	
 	private func croppedImage() -> UIImage? {
 		let cutoutSize = circleViewLayoutGuide.layoutFrame.size
 		let xFraction = (scrollView.contentOffset.x + scrollView.contentInset.left) / scrollView.contentSize.width
@@ -193,7 +193,7 @@ public class CircleImageEditorViewController: UIViewController {
 		cropRect = fitRect(cropRect, to: image.size)
 		return image.cropped(to: cropRect)
 	}
-
+	
 	@objc
 	private func done() {
 		if let image = croppedImage() {
@@ -202,7 +202,7 @@ public class CircleImageEditorViewController: UIViewController {
 			delegate?.circleImageEditorViewControllerDidFail(self)
 		}
 	}
-
+	
 	private func fitRect(_ rect: CGRect, to size: CGSize) -> CGRect {
 		let maximumExtentRect = CGRect(origin: .zero, size: size)
 		var fixedRect = rect
@@ -217,7 +217,7 @@ public class CircleImageEditorViewController: UIViewController {
 			return CGRect(origin: .zero, size: CGSize(allDimensions: floor(maximumExtentRect.smallestSide)))
 		}
 	}
-
+	
 	@objc
 	private func cancel() {
 		delegate?.circleImageEditorViewControllerDidCancel(self)
@@ -225,53 +225,53 @@ public class CircleImageEditorViewController: UIViewController {
 }
 
 extension CircleImageEditorViewController: UIScrollViewDelegate {
-
+	
 	public func viewForZooming(in scrollView: UIScrollView) -> UIView? {
 		return imageView
 	}
 }
 
 extension CircleImageEditorViewController {
-
+	
 	class OverlayView: UIView {
-
+		
 		override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
 			return nil
 		}
 	}
-
+	
 	class CircleMaskView: UIView {
-
+		
 		var circleFrame: CGRect? {
 			didSet {
 				updatePath()
 			}
 		}
-
+		
 		override class var layerClass: AnyClass {
 			CAShapeLayer.self
 		}
-
+		
 		var shapeLayer: CAShapeLayer {
 			layer as! CAShapeLayer // swiftlint:disable:this force_cast
 		}
-
+		
 		init() {
 			super.init(frame: .zero)
 			setUpUI()
 		}
-
+		
 		@available(*, unavailable)
 		required init?(coder: NSCoder) {
 			fatalError("init(coder:) has not been implemented")
 		}
-
+		
 		private func setUpUI() {
 			backgroundColor = .clear
 			shapeLayer.fillColor = UIColor.black.cgColor
 			shapeLayer.fillRule = .evenOdd
 		}
-
+		
 		func updatePath() {
 			if let circleFrame = circleFrame {
 				let path = CGMutablePath()
@@ -282,12 +282,12 @@ extension CircleImageEditorViewController {
 				shapeLayer.path = nil
 			}
 		}
-
+		
 		override func layoutSubviews() {
 			super.layoutSubviews()
 			updatePath()
 		}
-
+		
 		override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
 			return nil
 		}

@@ -32,23 +32,23 @@ import UIKit
 import SwiftUI
 
 extension UIViewController {
-
-    public var liveView: some View {
+	
+	public var liveView: some View {
 		LiveViewController(viewController: self)
 	}
-
-    public struct LiveViewController<VC: UIViewController>: UIViewControllerRepresentable {
-
+	
+	public struct LiveViewController<VC: UIViewController>: UIViewControllerRepresentable {
+		
 		let viewController: VC
-
+		
 		public func makeUIViewController(context: UIViewControllerRepresentableContext<LiveViewController<VC>>) -> VC {
 			return viewController
 		}
-
+		
 		public func updateUIViewController(
-            _ uiViewController: VC,
-            context: UIViewControllerRepresentableContext<UIViewController.LiveViewController<VC>>
-        ) {}
+			_ uiViewController: VC,
+			context: UIViewControllerRepresentableContext<UIViewController.LiveViewController<VC>>
+		) {}
 	}
 }
 

@@ -29,12 +29,12 @@
 import UIKit
 
 extension UIImage {
-
+	
 	public func cropped(to rect: CGRect) -> UIImage? {
 		func rad(_ deg: CGFloat) -> CGFloat {
 			return CGFloat(deg / 180.0 * .pi)
 		}
-
+		
 		var rectTransform: CGAffineTransform
 		switch imageOrientation {
 		case .left:
