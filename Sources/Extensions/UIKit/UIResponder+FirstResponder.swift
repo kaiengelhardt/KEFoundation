@@ -1,6 +1,6 @@
 //
-//  Created by Kai Engelhardt on 22.10.17
-//  Copyright © 2018 Kai Engelhardt. All rights reserved.
+//  Created by Kai Engelhardt on 10.08.21
+//  Copyright © 2021 Kai Engelhardt. All rights reserved.
 //
 //  Distributed under the permissive MIT license
 //  Get the latest version from here:
@@ -26,21 +26,20 @@
 //  SOFTWARE.
 //
 
-#import "UIResponder+FirstResponder.h"
+import UIKit
 
-@implementation UIResponder (FirstResponder)
+extension UIResponder {
 
-__weak static UIResponder *_firstResponder = nil;
+    private static weak var _firstResponder: UIResponder?
 
-+ (UIResponder *)firstResponder {
-    _firstResponder = nil;
-    [[UIApplication sharedApplication] sendAction:@selector(_findFirstResponder)
-                                               to:nil from:nil forEvent:nil];
-	return _firstResponder;
+    public static var firstResponder: UIResponder? {
+        _firstResponder = nil
+        UIApplication.shared.sendAction(#selector(_findFirstResponder), to: nil, from: nil, for: nil)
+        return _firstResponder
+    }
+
+    @objc
+    private func _findFirstResponder() {
+        Self._firstResponder = self
+    }
 }
-
-- (void)_findFirstResponder {
-    _firstResponder = self;
-}
-
-@end

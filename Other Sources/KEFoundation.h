@@ -33,9 +33,3 @@ FOUNDATION_EXPORT double KEFoundationVersionNumber;
 
 //! Project version string for KEFoundation.
 FOUNDATION_EXPORT const unsigned char KEFoundationVersionString[];
-
-#if TARGET_OS_IPHONE
-#import "UIResponder+FirstResponder.h"
-#elif TARGET_OS_TV
-#import "UIResponder+FirstResponder.h"
-#endif
