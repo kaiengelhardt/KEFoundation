@@ -29,7 +29,7 @@
 import UIKit
 
 extension UIBarButtonItem {
-	
+
 	public static var emptyBackButton: UIBarButtonItem {
 		return UIBarButtonItem(title: nil, style: .plain, target: nil, action: nil)
 	}

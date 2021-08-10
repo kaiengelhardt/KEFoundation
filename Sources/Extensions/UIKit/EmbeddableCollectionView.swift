@@ -29,19 +29,19 @@
 import UIKit
 
 open class EmbeddableCollectionView: UICollectionView {
-	
+
 	public override var contentSize: CGSize {
 		didSet {
 			invalidateIntrinsicContentSize()
 		}
 	}
-	
+
 	public override var contentInset: UIEdgeInsets {
 		didSet {
 			invalidateIntrinsicContentSize()
 		}
 	}
-	
+
 	public override var intrinsicContentSize: CGSize {
 		let contentSize = collectionViewLayout.collectionViewContentSize
 		return CGSize(
@@ -49,18 +49,18 @@ open class EmbeddableCollectionView: UICollectionView {
 			height: contentSize.height + contentInset.top + contentInset.bottom
 		)
 	}
-	
+
 	public override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
 		super.init(frame: frame, collectionViewLayout: layout)
 		setUp()
 	}
-	
+
 	@available(*, unavailable)
 	public required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		setUp()
 	}
-	
+
 	private func setUp() {
 		isScrollEnabled = false
 	}

@@ -29,11 +29,11 @@
 import Foundation
 
 extension String {
-	
+
 	public var isValidEmailAddress: Bool {
 		Self.emailPredicate.evaluate(with: self)
 	}
-	
+
 	private static let emailPredicate: NSPredicate = {
 		let regex = "^[a-zA-Z0-9äÄöÖüÜß._%+-]+@[a-zA-Z0-9äÄöÖüÜß._-]+\\.[a-zA-Z]{2,24}$"
 		let predicate = NSPredicate(format: "SELF MATCHES %@", regex)

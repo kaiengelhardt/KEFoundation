@@ -32,21 +32,21 @@ import UIKit
 import SwiftUI
 
 extension UIView {
-	
+
 	@available(iOS 13.0, *)
 	public var liveView: some View {
 		LiveView(view: self)
 	}
-	
+
 	public struct LiveView<V: UIView>: UIViewRepresentable {
-		
+
 		let view: V
-		
+
 		@available(iOS 13.0, *)
 		public func makeUIView(context: UIViewRepresentableContext<LiveView<V>>) -> V {
 			return view
 		}
-		
+
 		@available(iOS 13.0, *)
 		public func updateUIView(_ uiView: V, context: UIViewRepresentableContext<LiveView<V>>) {
 			uiView.setContentHuggingPriority(.required, for: .horizontal)

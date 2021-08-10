@@ -30,7 +30,7 @@ import UIKit
 
 @propertyWrapper
 public struct ActiveConstraint<Constraint: ConstraintActivatable> where Constraint: Equatable {
-	
+
 	public var wrappedValue: Constraint {
 		didSet {
 			guard wrappedValue != oldValue else {
@@ -40,7 +40,7 @@ public struct ActiveConstraint<Constraint: ConstraintActivatable> where Constrai
 			wrappedValue.activate()
 		}
 	}
-	
+
 	public init(wrappedValue: Constraint) {
 		self.wrappedValue = wrappedValue
 		wrappedValue.activate()
@@ -48,60 +48,60 @@ public struct ActiveConstraint<Constraint: ConstraintActivatable> where Constrai
 }
 
 extension ActiveConstraint where Constraint: DefaultValueProviding {
-	
+
 	public init() {
 		wrappedValue = Constraint.defaultValue
 	}
 }
 
 public protocol ConstraintActivatable {
-	
+
 	func activate()
 	func deactivate()
 }
 
 extension NSLayoutConstraint: ConstraintActivatable {
-	
+
 	public func activate() {
 		isActive = true
 	}
-	
+
 	public func deactivate() {
 		isActive = false
 	}
 }
 
 extension Optional: ConstraintActivatable where Wrapped: ConstraintActivatable {
-	
+
 	public func activate() {
 		self?.activate()
 	}
-	
+
 	public func deactivate() {
 		self?.deactivate()
 	}
 }
 
 extension Optional: DefaultValueProviding where Wrapped: NSLayoutConstraint {
-	
+
 	public static var defaultValue: Wrapped? {
 		nil
 	}
 }
 
 extension Array: ConstraintActivatable where Element: NSLayoutConstraint {
-	
+
 	public func activate() {
 		NSLayoutConstraint.activate(self)
 	}
-	
+
 	public func deactivate() {
 		NSLayoutConstraint.deactivate(self)
 	}
 }
 
 extension Array: DefaultValueProviding where Element: NSLayoutConstraint {
-	
+
 	public static var defaultValue: [Element] {
 		[]
 	}

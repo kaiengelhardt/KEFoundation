@@ -29,15 +29,15 @@
 import Foundation
 
 extension URLSession {
-	
+
 	public enum TaskError: Error {
-		
+
 		case generic(Error, URLResponse?)
 	}
-	
+
 	public typealias DataTaskResult = Result<(Data, URLResponse), TaskError>
 	public typealias DataTaskCompletionHandler = (DataTaskResult) -> Void
-	
+
 	/// Based on this [blog post](https://oleb.net/blog/2018/03/making-illegal-states-unrepresentable/) by Ole Begemann.
 	public func dataTask(with url: URL, completionHandler: @escaping DataTaskCompletionHandler) -> URLSessionDataTask {
 		let task = dataTask(with: url) { data, response, error in
@@ -51,10 +51,10 @@ extension URLSession {
 		}
 		return task
 	}
-	
+
 	public typealias DownloadTaskResult = Result<(URL, URLResponse), TaskError>
 	public typealias DownloadTaskCompletionHandler = (DownloadTaskResult) -> Void
-	
+
 	/// Based on this [blog post](https://oleb.net/blog/2018/03/making-illegal-states-unrepresentable/) by Ole Begemann.
 	public func downloadTask(
 		with url: URL,

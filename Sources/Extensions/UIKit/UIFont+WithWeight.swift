@@ -29,7 +29,7 @@
 import UIKit
 
 extension UIFont {
-	
+
 	public func withWeight(_ weight: UIFont.Weight) -> UIFont {
 		let traits: [UIFontDescriptor.TraitKey: Any] = [.weight: weight]
 		let fontDescriptor = UIFontDescriptor(fontAttributes: [

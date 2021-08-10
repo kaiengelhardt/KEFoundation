@@ -29,7 +29,7 @@
 import Foundation
 
 extension Array {
-	
+
 	/// Taken from this [StackOverFlow answer](https://stackoverflow.com/a/26679191/980386).
 	public func insertionIndex(of element: Element, isOrderedBefore: (Element, Element) -> Bool) -> Int {
 		var low = 0

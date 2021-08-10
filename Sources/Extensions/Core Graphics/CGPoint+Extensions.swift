@@ -29,7 +29,7 @@
 import CoreGraphics
 
 extension CGPoint {
-	
+
 	public init(size: CGSize) {
 		self.init(x: size.width, y: size.height)
 	}

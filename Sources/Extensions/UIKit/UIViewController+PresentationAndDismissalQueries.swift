@@ -29,7 +29,7 @@
 import UIKit
 
 extension UIViewController {
-	
+
 	/// A Boolean value indicating wether the view controller *or any of its parent view controllers* are being presented.
 	public var isBeingPresentedRegardlessOfParentViewController: Bool {
 		var isBeingPresented = false
@@ -40,7 +40,7 @@ extension UIViewController {
 		}
 		return isBeingPresented
 	}
-	
+
 	/// A Boolean value indicating wether the view controller *or any of its parent view controllers* are being dismissed.
 	public var isBeingDismissedRegardlessOfParentViewController: Bool {
 		var isBeingDismissed = false

@@ -30,14 +30,14 @@ import UIKit
 
 /// Taken from this [StackOverFlow question](https://stackoverflow.com/questions/36198299/uitextview-disable-selection-allow-links).
 public class UnselectableTappableTextView: UITextView {
-	
+
 	public override var selectedTextRange: UITextRange? {
 		get {
 			nil
 		}
 		set {} // swiftlint:disable:this unused_setter_value
 	}
-	
+
 	public override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
 		if gestureRecognizer is UIPanGestureRecognizer {
 			// required for compatibility with isScrollEnabled
@@ -52,7 +52,7 @@ public class UnselectableTappableTextView: UITextView {
 		}
 		// allowing smallDelayRecognizer for links
 		// https://stackoverflow.com/questions/46143868/xcode-9-uitextview-links-no-longer-clickable
-		
+
 		// comparison value is used to distinguish between 0.12 (smallDelayRecognizer)
 		// and 0.5 (textSelectionForce and textLoupe)
 		if

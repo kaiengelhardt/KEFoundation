@@ -29,9 +29,9 @@
 import UIKit
 
 open class ContainerViewController: UIViewController {
-	
+
 	private var _embeddedViewController: UIViewController?
-	
+
 	public var embeddedViewController: UIViewController? {
 		get {
 			_embeddedViewController
@@ -57,16 +57,16 @@ open class ContainerViewController: UIViewController {
 					of: embeddedViewControllerPositioningLayoutSurface
 				)
 			}
-#if os(iOS)
+#if os(iOS) // swiftlint:disable:next indentation_width
 			setNeedsStatusBarAppearanceUpdate()
 			setNeedsUpdateOfHomeIndicatorAutoHidden()
 			setNeedsUpdateOfScreenEdgesDeferringSystemGestures()
-#endif
+#endif // swiftlint:disable:next indentation_width
 		}
 	}
-	
+
 	private var _embeddedViewControllerPositioningLayoutSurface: LayoutSurface?
-	
+
 	public var embeddedViewControllerPositioningLayoutSurface: LayoutSurface? {
 		get {
 			_embeddedViewControllerPositioningLayoutSurface ?? view
@@ -78,48 +78,48 @@ open class ContainerViewController: UIViewController {
 			) ?? []
 		}
 	}
-	
+
 	private var embeddedViewControllerConstraints: [NSLayoutConstraint] = [] {
 		didSet {
 			NSLayoutConstraint.deactivate(oldValue)
 			NSLayoutConstraint.activate(embeddedViewControllerConstraints)
 		}
 	}
-	
+
 	public convenience init() {
 		self.init(nibName: nil, bundle: nil)
 	}
-	
+
 	public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
 		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
 		view.preservesSuperviewLayoutMargins = true
 	}
-	
+
 	@available(*, unavailable)
 	public required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
-	
+
 #if os(iOS)
-	
+
 	open override var childForStatusBarStyle: UIViewController? {
 		embeddedViewController
 	}
-	
+
 	open override var childForStatusBarHidden: UIViewController? {
 		embeddedViewController
 	}
-	
+
 	open override var childForHomeIndicatorAutoHidden: UIViewController? {
 		embeddedViewController
 	}
-	
+
 	open override var childForScreenEdgesDeferringSystemGestures: UIViewController? {
 		embeddedViewController
 	}
-	
+
 #endif
-	
+
 	public func animate(to viewController: UIViewController) {
 		UIView.transition(
 			with: view,

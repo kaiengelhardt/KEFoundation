@@ -31,13 +31,13 @@ import Foundation
 #if os(macOS)
 
 extension NSEdgeInsets {
-	
+
 	public static let zero: NSEdgeInsets = NSEdgeInsetsZero
-	
+
 	public static prefix func - (insets: NSEdgeInsets) -> NSEdgeInsets {
 		return NSEdgeInsets(top: -insets.top, left: -insets.left, bottom: -insets.bottom, right: -insets.right)
 	}
-	
+
 	public static func + (lhs: NSEdgeInsets, rhs: NSEdgeInsets) -> NSEdgeInsets {
 		return UIEdgeInsets(
 			top: lhs.top + rhs.top,
@@ -46,7 +46,7 @@ extension NSEdgeInsets {
 			right: lhs.right + rhs.right
 		)
 	}
-	
+
 	public static func - (lhs: NSEdgeInsets, rhs: NSEdgeInsets) -> NSEdgeInsets {
 		return UIEdgeInsets(
 			top: lhs.top - rhs.top,

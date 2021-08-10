@@ -29,7 +29,7 @@
 import UIKit
 
 extension UIView {
-	
+
 	public func makePillShaped() {
 		layer.makePillShaped()
 	}

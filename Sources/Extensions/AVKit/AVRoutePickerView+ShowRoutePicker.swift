@@ -30,15 +30,15 @@ import UIKit
 import AVKit
 
 extension AVRoutePickerView {
-	
+
 	private static let routePickerView = AVRoutePickerView()
-	
+
 	public static func showRoutePicker() {
 		if let button = button(inRoutePickerView: routePickerView) {
 			button.sendActions(for: .touchUpInside)
 		}
 	}
-	
+
 	private static func button(inRoutePickerView routePickerView: AVRoutePickerView) -> UIButton? {
 		return routePickerView.subviews.first(where: {
 			$0 is UIButton

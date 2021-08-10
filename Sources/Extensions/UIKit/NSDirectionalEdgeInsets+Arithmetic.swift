@@ -29,7 +29,7 @@
 import UIKit
 
 extension NSDirectionalEdgeInsets {
-	
+
 	public static prefix func - (insets: NSDirectionalEdgeInsets) -> NSDirectionalEdgeInsets {
 		return NSDirectionalEdgeInsets(
 			top: -insets.top,
@@ -38,7 +38,7 @@ extension NSDirectionalEdgeInsets {
 			trailing: -insets.trailing
 		)
 	}
-	
+
 	public static func + (lhs: NSDirectionalEdgeInsets, rhs: NSDirectionalEdgeInsets) -> NSDirectionalEdgeInsets {
 		return NSDirectionalEdgeInsets(
 			top: lhs.top + rhs.top,
@@ -47,7 +47,7 @@ extension NSDirectionalEdgeInsets {
 			trailing: lhs.trailing + rhs.trailing
 		)
 	}
-	
+
 	public static func - (lhs: NSDirectionalEdgeInsets, rhs: NSDirectionalEdgeInsets) -> NSDirectionalEdgeInsets {
 		return NSDirectionalEdgeInsets(
 			top: lhs.top - rhs.top,

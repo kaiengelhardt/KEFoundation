@@ -29,28 +29,28 @@
 import UIKit
 
 public class SeparatorView: UIView {
-	
+
 	private let contentView = UIView()
-	
+
 	public var axis: NSLayoutConstraint.Axis = .horizontal {
 		didSet {
 			updateInsets()
 			invalidateIntrinsicContentSize()
 		}
 	}
-	
+
 	public var thickness: CGFloat = 1 {
 		didSet {
 			invalidateIntrinsicContentSize()
 		}
 	}
-	
+
 	public var isRounded = false {
 		didSet {
 			updateCornerRadius()
 		}
 	}
-	
+
 	public var separatorColor: UIColor? {
 		get {
 			contentView.backgroundColor
@@ -59,13 +59,13 @@ public class SeparatorView: UIView {
 			contentView.backgroundColor = newValue
 		}
 	}
-	
+
 	public var edgeInsets: NSDirectionalEdgeInsets = .zero {
 		didSet {
 			updateInsets()
 		}
 	}
-	
+
 	public override var intrinsicContentSize: CGSize {
 		switch axis {
 		case .horizontal:
@@ -76,31 +76,31 @@ public class SeparatorView: UIView {
 			return CGSize(width: UIView.noIntrinsicMetric, height: UIView.noIntrinsicMetric)
 		}
 	}
-	
+
 	public override init(frame: CGRect = .zero) {
 		super.init(frame: frame)
 		setUpUI()
 	}
-	
+
 	@available(*, unavailable)
 	public required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
-	
+
 	private func setUpUI() {
 		var constraints: [NSLayoutConstraint] = []
 		defer {
 			NSLayoutConstraint.activate(constraints)
 		}
-		
+
 		preservesSuperviewLayoutMargins = false
-		
+
 		contentView.translatesAutoresizingMaskIntoConstraints = false
 		addSubview(contentView)
 		constraints += contentView.constraintsMatchingEdges(of: layoutMarginsGuide)
 		contentView.backgroundColor = .separator
 	}
-	
+
 	private func updateInsets() {
 		switch axis {
 		case .horizontal:
@@ -121,7 +121,7 @@ public class SeparatorView: UIView {
 			break
 		}
 	}
-	
+
 	private func updateCornerRadius() {
 		if isRounded {
 			contentView.makePillShaped()
@@ -129,7 +129,7 @@ public class SeparatorView: UIView {
 			contentView.layer.cornerRadius = 0
 		}
 	}
-	
+
 	public override func layoutSubviews() {
 		super.layoutSubviews()
 		updateCornerRadius()

@@ -51,7 +51,7 @@ public class ClosureValueTransformer<Source: AnyObject, Destination: AnyObject>:
 		let vt = ClosureValueTransformer(transform: transform, reverseTransform: reverseTransform)
 		Foundation.ValueTransformer.setValueTransformer(vt, forName: NSValueTransformerName(rawValue: name))
 	}
-	
+
 	public override class func transformedValueClass() -> AnyClass {
 		return Destination.self
 	}

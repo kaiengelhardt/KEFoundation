@@ -29,7 +29,7 @@
 import Foundation
 
 extension String {
-	
+
 	public func convertingHTMLString() -> NSAttributedString? {
 		guard let data = data(using: .utf8) else {
 			return nil

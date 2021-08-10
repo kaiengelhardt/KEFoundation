@@ -29,7 +29,7 @@
 import UIKit
 
 public class ContainerView: UIView {
-	
+
 	public var embeddedView: UIView? {
 		didSet {
 			guard oldValue != embeddedView else {
@@ -47,7 +47,7 @@ public class ContainerView: UIView {
 			}
 		}
 	}
-	
+
 	public var embeddedViewInsets: NSDirectionalEdgeInsets = .zero {
 		didSet {
 			if let view = embeddedView {
@@ -55,7 +55,7 @@ public class ContainerView: UIView {
 			}
 		}
 	}
-	
+
 	private var embeddedViewConstraints: [NSLayoutConstraint] = [] {
 		didSet {
 			guard oldValue != embeddedViewConstraints else {
@@ -65,7 +65,7 @@ public class ContainerView: UIView {
 			NSLayoutConstraint.activate(embeddedViewConstraints)
 		}
 	}
-	
+
 	private func embeddedViewConstraints(for view: UIView, insets: NSDirectionalEdgeInsets) -> [NSLayoutConstraint] {
 		return view.constraintsMatchingEdgesOfSuperview(insetBy: UIEdgeInsets(insets: insets))
 	}

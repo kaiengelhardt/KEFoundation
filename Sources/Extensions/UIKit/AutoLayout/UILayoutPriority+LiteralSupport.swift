@@ -29,14 +29,14 @@
 import UIKit
 
 extension UILayoutPriority: ExpressibleByIntegerLiteral {
-	
+
 	public init(integerLiteral value: Int) {
 		self.init(rawValue: Float(value))
 	}
 }
 
 extension UILayoutPriority: ExpressibleByFloatLiteral {
-	
+
 	public init(floatLiteral value: Float) {
 		self.init(rawValue: value)
 	}

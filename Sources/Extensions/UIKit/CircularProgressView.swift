@@ -29,35 +29,35 @@
 import UIKit
 
 public class CircularProgressView: UIView {
-	
+
 	public var progressColor: UIColor? {
 		didSet {
 			updateColors()
 		}
 	}
-	
+
 	public var borderColor: UIColor? {
 		didSet {
 			updateColors()
 		}
 	}
-	
+
 	public override var tintColor: UIColor! { // swiftlint:disable:this implicitly_unwrapped_optional
 		didSet {
 			updateColors()
 		}
 	}
-	
+
 	public override class var layerClass: AnyClass {
 		CAShapeLayer.self
 	}
-	
+
 	private var borderLayer: CAShapeLayer {
 		layer as! CAShapeLayer // swiftlint:disable:this force_cast
 	}
-	
+
 	private let progressLayer = CAShapeLayer()
-	
+
 	private var _progress: Double = 0
 	public var progress: Double {
 		get {
@@ -68,52 +68,52 @@ public class CircularProgressView: UIView {
 			update()
 		}
 	}
-	
+
 	public var lineWidth: CGFloat = 4 {
 		didSet {
 			borderLayer.lineWidth = lineWidth
 			progressLayer.lineWidth = lineWidth
 		}
 	}
-	
+
 	public init() {
 		super.init(frame: .zero)
 		setUpUI()
 		update()
 	}
-	
+
 	@available(*, unavailable)
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
-	
+
 	private func setUpUI() {
 		borderLayer.removeAllAnimations()
 		borderLayer.fillColor = nil
 		borderLayer.lineWidth = lineWidth
-		
+
 		borderLayer.addSublayer(progressLayer)
 		progressLayer.fillColor = nil
 		progressLayer.lineWidth = lineWidth
-		
+
 		updateColors()
 	}
-	
+
 	public func setProgress(_ progress: Double, animated: Bool) {
 		UIView.animate(withDuration: 0.25) {
 			self.progress = progress
 		}
 	}
-	
+
 	private func update() {
 		progressLayer.strokeEnd = CGFloat(progress)
 	}
-	
+
 	private func updateColors() {
 		borderLayer.strokeColor = borderColor?.cgColor ?? tintColor.cgColor
 		progressLayer.strokeColor = progressColor?.cgColor ?? tintColor.cgColor
 	}
-	
+
 	public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
 		super.traitCollectionDidChange(previousTraitCollection)
 		if #available(iOS 13, *) {
@@ -122,14 +122,14 @@ public class CircularProgressView: UIView {
 			}
 		}
 	}
-	
+
 	public override func layoutSubviews() {
 		super.layoutSubviews()
 		borderLayer.path = circularPath(for: borderLayer)
 		progressLayer.frame = borderLayer.bounds
 		progressLayer.path = circularPath(for: progressLayer)
 	}
-	
+
 	private func circularPath(for layer: CAShapeLayer) -> CGPath {
 		let bezierPath = UIBezierPath(
 			arcCenter: bounds.center,

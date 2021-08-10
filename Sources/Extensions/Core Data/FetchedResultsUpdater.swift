@@ -29,28 +29,28 @@
 import CoreData
 
 public class FetchedResultsUpdater: NSObject {
-	
+
 	public enum SectionUpdate {
 		case insert(Int)
 		case delete(Int)
 	}
-	
+
 	public enum RowUpdate {
 		case insert(IndexPath)
 		case delete(IndexPath)
 		case update(IndexPath)
 		case move(IndexPath, IndexPath)
 	}
-	
+
 	public var indexPathOffset = IndexPath(row: 0, section: 0)
-	
+
 	public weak var delegate: FetchedResultsUpdaterDelegate?
-	
+
 	private var sectionUpdates: [SectionUpdate] = []
 	private var rowUpdates: [RowUpdate] = []
-	
+
 	private var updatesEnabled = true
-	
+
 	public func performWithoutUpdatesEnabled(_ closure: () -> Void) {
 		updatesEnabled = false
 		closure()
@@ -59,12 +59,12 @@ public class FetchedResultsUpdater: NSObject {
 }
 
 extension FetchedResultsUpdater: NSFetchedResultsControllerDelegate {
-	
+
 	public func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
 		sectionUpdates = []
 		rowUpdates = []
 	}
-	
+
 	public func controller(
 		_ controller: NSFetchedResultsController<NSFetchRequestResult>,
 		didChange sectionInfo: NSFetchedResultsSectionInfo,
@@ -81,7 +81,7 @@ extension FetchedResultsUpdater: NSFetchedResultsControllerDelegate {
 			break
 		}
 	}
-	
+
 	public func controller(
 		_ controller: NSFetchedResultsController<NSFetchRequestResult>,
 		didChange anObject: Any,
@@ -107,7 +107,7 @@ extension FetchedResultsUpdater: NSFetchedResultsControllerDelegate {
 		} else {
 			newIndexPath = nil
 		}
-		
+
 		switch type {
 		case .insert:
 			rowUpdates.append(.insert(newIndexPath!))
@@ -121,7 +121,7 @@ extension FetchedResultsUpdater: NSFetchedResultsControllerDelegate {
 			break
 		}
 	}
-	
+
 	public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
 		guard updatesEnabled else {
 			return
@@ -131,7 +131,7 @@ extension FetchedResultsUpdater: NSFetchedResultsControllerDelegate {
 }
 
 public protocol FetchedResultsUpdaterDelegate: AnyObject {
-	
+
 	func updater(
 		_ updater: FetchedResultsUpdater,
 		didUpdateWithSectionUpdates sectionUpdates: [FetchedResultsUpdater.SectionUpdate],
