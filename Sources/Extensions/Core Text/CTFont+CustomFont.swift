@@ -26,6 +26,7 @@
 //  SOFTWARE.
 //
 
+import Foundation
 import CoreText
 
 extension CTFont {
