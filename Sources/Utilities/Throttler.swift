@@ -30,21 +30,21 @@ import Foundation
 
 /// Based on this [tweet](https://twitter.com/_inside/status/984827954432798723) by Guilherme Rambo.
 public final class Throttler<Event> {
-	
+
 	public typealias Handler = (Event) -> Void
-	
+
 	public let interval: TimeInterval
 	public let queue: DispatchQueue
 	public var handler: Handler?
-	
+
 	private var workItem: DispatchWorkItem?
-	
+
 	public init(interval: TimeInterval = 0.333, queue: DispatchQueue = .main, handler: Handler? = nil) {
 		self.interval = interval
 		self.queue = queue
 		self.handler = handler
 	}
-	
+
 	public func send(event: Event) {
 		invalidatePendingEvents()
 		workItem = DispatchWorkItem { [weak self] in
@@ -54,7 +54,7 @@ public final class Throttler<Event> {
 			queue.asyncAfter(deadline: .now() + interval, execute: workItem)
 		}
 	}
-	
+
 	public func invalidatePendingEvents() {
 		workItem?.cancel()
 	}

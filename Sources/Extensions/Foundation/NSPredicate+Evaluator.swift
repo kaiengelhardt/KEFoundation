@@ -1,6 +1,6 @@
 //
-//  Created by Kai Engelhardt on 05.12.19.
-//  Copyright © 2019 Kai Engelhardt. All rights reserved.
+//  Created by Kai Engelhardt on 16.10.17
+//  Copyright © 2018 Kai Engelhardt. All rights reserved.
 //
 //  Distributed under the permissive MIT license
 //  Get the latest version from here:
@@ -26,41 +26,13 @@
 //  SOFTWARE.
 //
 
-import QuartzCore
-import UIKit
+import Foundation
 
-public struct Shadow {
+extension NSPredicate {
 
-	public var color: CGColor?
-	public var opacity: Float
-	public var offset: CGSize
-	public var radius: CGFloat
-	public var path: CGPath?
+    public typealias Evaluator = (AnyObject?) -> Bool
 
-	public static let noShadow = Shadow(color: nil, opacity: 0, offset: .zero, radius: 0)
-	public static let `default` = Shadow(color: UIColor.black.cgColor, opacity: 0.2, offset: .zero, radius: 16)
-
-	public init(color: CGColor?, opacity: Float, offset: CGSize, radius: CGFloat, path: CGPath? = nil) {
-		self.color = color
-		self.opacity = opacity
-		self.offset = offset
-		self.radius = radius
-		self.path = path
-	}
-}
-
-extension CALayer {
-
-    public var shadow: Shadow {
-		get {
-			Shadow(color: shadowColor, opacity: shadowOpacity, offset: shadowOffset, radius: shadowRadius, path: shadowPath)
-		}
-		set {
-			shadowColor = newValue.color
-			shadowOpacity = newValue.opacity
-			shadowOffset = newValue.offset
-			shadowRadius = newValue.radius
-			shadowPath = newValue.path
-		}
+    public var evaluator: Evaluator {
+		return evaluate(with:)
 	}
 }

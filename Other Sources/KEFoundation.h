@@ -1,7 +1,4 @@
 //
-//  KEFoundation.h
-//  KEFoundation
-//
 //  Created by Kai Engelhardt on 08.08.21.
 //  Copyright © 2021 Kai Engelhardt. All rights reserved.
 //

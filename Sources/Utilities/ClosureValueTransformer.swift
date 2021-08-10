@@ -30,36 +30,40 @@ import Foundation
 
 /// Based on [ValueTransformer](https://github.com/objcio/core-data/blob/master/SharedCode/ValueTransformer.swift) by Florian Kugler.
 public class ClosureValueTransformer<Source: AnyObject, Destination: AnyObject>: ValueTransformer {
-	
+
 	public typealias Transform = (Source?) -> Destination?
 	public typealias ReverseTransform = (Destination?) -> Source?
-	
+
 	fileprivate let transform: Transform
 	fileprivate let reverseTransform: ReverseTransform
-	
+
 	public init(transform: @escaping Transform, reverseTransform: @escaping ReverseTransform) {
 		self.transform = transform
 		self.reverseTransform = reverseTransform
 		super.init()
 	}
-	
-	public static func registerTransformer(withName name: String, transform: @escaping Transform, reverseTransform: @escaping ReverseTransform) {
+
+	public static func registerTransformer(
+        withName name: String,
+        transform: @escaping Transform,
+        reverseTransform: @escaping ReverseTransform
+    ) {
 		let vt = ClosureValueTransformer(transform: transform, reverseTransform: reverseTransform)
 		Foundation.ValueTransformer.setValueTransformer(vt, forName: NSValueTransformerName(rawValue: name))
 	}
-	
+
 	public override class func transformedValueClass() -> AnyClass {
 		return Destination.self
 	}
-	
+
 	public override class func allowsReverseTransformation() -> Bool {
 		return true
 	}
-	
+
 	public override func transformedValue(_ value: Any?) -> Any? {
 		return transform(value as? Source)
 	}
-	
+
 	public override func reverseTransformedValue(_ value: Any?) -> Any? {
 		return reverseTransform(value as? Destination)
 	}

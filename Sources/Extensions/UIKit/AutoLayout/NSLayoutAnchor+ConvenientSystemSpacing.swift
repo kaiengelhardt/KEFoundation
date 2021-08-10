@@ -1,3 +1,4 @@
+// swiftlint:disable:this file_name
 //
 //  Created by Kai Engelhardt on 23.01.18
 //  Copyright © 2018 Kai Engelhardt. All rights reserved.
@@ -28,32 +29,32 @@
 
 import UIKit
 
-public extension NSLayoutXAxisAnchor {
-	
-	func constraint(equalToSystemSpacingAfter anchor: NSLayoutXAxisAnchor) -> NSLayoutConstraint {
+extension NSLayoutXAxisAnchor {
+
+    public func constraint(equalToSystemSpacingAfter anchor: NSLayoutXAxisAnchor) -> NSLayoutConstraint {
 		return constraint(equalToSystemSpacingAfter: anchor, multiplier: 1)
 	}
-	
-	func constraint(greaterThanOrEqualToSystemSpacingAfter anchor: NSLayoutXAxisAnchor) -> NSLayoutConstraint {
+
+    public func constraint(greaterThanOrEqualToSystemSpacingAfter anchor: NSLayoutXAxisAnchor) -> NSLayoutConstraint {
 		return constraint(greaterThanOrEqualToSystemSpacingAfter: anchor, multiplier: 1)
 	}
-	
-	func constraint(lessThanOrEqualToSystemSpacingAfter anchor: NSLayoutXAxisAnchor) -> NSLayoutConstraint {
+
+    public func constraint(lessThanOrEqualToSystemSpacingAfter anchor: NSLayoutXAxisAnchor) -> NSLayoutConstraint {
 		return constraint(lessThanOrEqualToSystemSpacingAfter: anchor, multiplier: 1)
 	}
 }
 
-public extension NSLayoutYAxisAnchor {
-	
-	func constraint(equalToSystemSpacingBelow anchor: NSLayoutYAxisAnchor) -> NSLayoutConstraint {
+extension NSLayoutYAxisAnchor {
+
+    public func constraint(equalToSystemSpacingBelow anchor: NSLayoutYAxisAnchor) -> NSLayoutConstraint {
 		return constraint(equalToSystemSpacingBelow: anchor, multiplier: 1)
 	}
-	
-	func constraint(greaterThanOrEqualToSystemSpacingBelow anchor: NSLayoutYAxisAnchor) -> NSLayoutConstraint {
+
+    public func constraint(greaterThanOrEqualToSystemSpacingBelow anchor: NSLayoutYAxisAnchor) -> NSLayoutConstraint {
 		return constraint(greaterThanOrEqualToSystemSpacingBelow: anchor, multiplier: 1)
 	}
-	
-	func constraint(lessThanOrEqualToSystemSpacingBelow anchor: NSLayoutYAxisAnchor) -> NSLayoutConstraint {
+
+    public func constraint(lessThanOrEqualToSystemSpacingBelow anchor: NSLayoutYAxisAnchor) -> NSLayoutConstraint {
 		return constraint(lessThanOrEqualToSystemSpacingBelow: anchor, multiplier: 1)
 	}
 }

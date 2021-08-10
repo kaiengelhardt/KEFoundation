@@ -29,16 +29,16 @@
 import UIKit
 
 public class StackViewController: UIViewController {
-		
+
 	public private(set) var arrangedChildViewControllers: [UIViewController]
-	
+
 	public let scrollView: UIScrollView
 	public let stackView: UIStackView
 	private let widthConstraint: NSLayoutConstraint
 	private let heightConstraint: NSLayoutConstraint
-	
+
 	private let allowsScrolling: Bool
-	
+
 	public var axis: NSLayoutConstraint.Axis {
 		get {
 			stackView.axis
@@ -48,7 +48,7 @@ public class StackViewController: UIViewController {
 			updateViewConstraints()
 		}
 	}
-	
+
 	public var alignment: UIStackView.Alignment {
 		get {
 			stackView.alignment
@@ -57,7 +57,7 @@ public class StackViewController: UIViewController {
 			stackView.alignment = newValue
 		}
 	}
-	
+
 	public var distribution: UIStackView.Distribution {
 		get {
 			stackView.distribution
@@ -66,7 +66,7 @@ public class StackViewController: UIViewController {
 			stackView.distribution = newValue
 		}
 	}
-	
+
 	public var isBaselineRelativeArrangement: Bool {
 		get {
 			stackView.isBaselineRelativeArrangement
@@ -75,7 +75,7 @@ public class StackViewController: UIViewController {
 			stackView.isBaselineRelativeArrangement = newValue
 		}
 	}
-	
+
 	public var isLayoutMarginsRelativeArrangement: Bool {
 		get {
 			stackView.isBaselineRelativeArrangement
@@ -84,7 +84,7 @@ public class StackViewController: UIViewController {
 			stackView.isBaselineRelativeArrangement = newValue
 		}
 	}
-	
+
 	public var spacing: CGFloat {
 		get {
 			stackView.spacing
@@ -93,9 +93,9 @@ public class StackViewController: UIViewController {
 			stackView.spacing = newValue
 		}
 	}
-	
+
 	// MARK: - Init
-	
+
 	public init(allowsScrolling: Bool = true, scrollView: UIScrollView? = nil) {
 		self.allowsScrolling = allowsScrolling
 		arrangedChildViewControllers = []
@@ -103,20 +103,20 @@ public class StackViewController: UIViewController {
 		self.scrollView = scrollView
 		let stackView = UIStackView()
 		self.stackView = stackView
-		
+
 		widthConstraint = stackView.widthAnchor.constraint(equalTo: scrollView.layoutMarginsGuide.widthAnchor)
 		heightConstraint = stackView.heightAnchor.constraint(equalTo: scrollView.layoutMarginsGuide.heightAnchor)
-		
+
 		super.init(nibName: nil, bundle: nil)
-		
+
 		setUpUI()
 	}
-	
+
 	@available(*, unavailable)
 	public required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
-	
+
 	private func setUpUI() {
 		if allowsScrolling {
 			view = scrollView
@@ -129,9 +129,9 @@ public class StackViewController: UIViewController {
 		}
 		stackView.preservesSuperviewLayoutMargins = true
 	}
-	
+
 	// MARK: - UIViewController
-	
+
 	public override func updateViewConstraints() {
 		super.updateViewConstraints()
 		if allowsScrolling {
@@ -147,18 +147,18 @@ public class StackViewController: UIViewController {
 			}
 		}
 	}
-	
+
 	// MARK: - Public Methods
-	
+
 	public func addArrangedChildViewController(_ viewController: UIViewController) {
 		insertArrangedChildViewController(viewController, at: arrangedChildViewControllers.count)
 	}
-	
+
 	public func insertArrangedChildViewController(_ viewController: UIViewController, at index: Int) {
 		guard !arrangedChildViewControllers.contains(viewController) else {
 			return
 		}
-		
+
 		arrangedChildViewControllers.insert(viewController, at: index)
 		addChild(viewController)
         view.addSubview(viewController.view)
@@ -166,23 +166,23 @@ public class StackViewController: UIViewController {
         stackView.insertArrangedSubview(viewController.view, at: index)
 		viewController.didMove(toParent: self)
 	}
-	
+
 	public func removeArrangedChildViewController(_ viewController: UIViewController) {
 		guard let index = arrangedChildViewControllers.firstIndex(of: viewController) else {
 			return
 		}
-		
+
 		viewController.willMove(toParent: nil)
 		stackView.removeArrangedSubview(viewController.view)
 		viewController.view.removeFromSuperview()
 		viewController.removeFromParent()
 		arrangedChildViewControllers.remove(at: index)
 	}
-	
+
 	public func customSpacing(after viewController: UIViewController) -> CGFloat {
 		return stackView.customSpacing(after: viewController.view)
 	}
-	
+
 	public func setCustomSpacing(_ spacing: CGFloat, after viewController: UIViewController) {
 		stackView.setCustomSpacing(spacing, after: viewController.view)
 	}

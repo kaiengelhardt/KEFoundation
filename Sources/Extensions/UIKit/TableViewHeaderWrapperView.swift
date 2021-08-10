@@ -29,20 +29,20 @@
 import UIKit
 
 public class TableViewHeaderWrapperView: UIView {
-	
+
 	public weak var tableView: UITableView?
-	
+
 	public init(tableView: UITableView) {
 		self.tableView = tableView
 		super.init(frame: .zero)
 		setUpUI()
 	}
-	
+
 	@available(*, unavailable)
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
-	
+
 	private func setUpUI() {
 		guard let tableView = tableView else {
 			return
@@ -51,9 +51,9 @@ public class TableViewHeaderWrapperView: UIView {
 		tableView.tableHeaderView = self
 		NSLayoutConstraint.activate([
             widthAnchor.constraint(equalTo: tableView.widthAnchor),
-        ])
+		])
 	}
-	
+
 	public override func layoutSubviews() {
 		super.layoutSubviews()
 		tableView?.tableHeaderView = self

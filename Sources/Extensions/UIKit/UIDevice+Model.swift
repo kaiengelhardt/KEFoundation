@@ -32,7 +32,7 @@
 import UIKit
 
 extension UIDevice {
-	
+
 	/// Taken from this stack overflow [answer](https://stackoverflow.com/a/26962452/980386)
 	public var modelIdentifier: String {
 		var systemInfo = utsname()
@@ -49,7 +49,7 @@ extension UIDevice {
 		}
 		return identifier
 	}
-	
+
 	/// Taken from this stack overflow [answer](https://stackoverflow.com/a/26962452/980386)
 	public static func modelName(forModelIdentifier identifier: String) -> String {
 		#if os(iOS)
@@ -115,5 +115,4 @@ extension UIDevice {
 		}
 		#endif
 	}
-	
 }

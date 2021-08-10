@@ -28,34 +28,32 @@
 
 import UIKit
 
-public extension UITableView {
-	
-	struct StaticSection: Equatable {
+extension UITableView {
+
+    public struct StaticSection: Equatable {
 		public var identifier = UUID()
 		public var headerTitle: String?
 		public var footerTitle: String?
 		public var cells: [UITableViewCell]
-		
+
 		public init(cells: [UITableViewCell], headerTitle: String? = nil, footerTitle: String? = nil) {
 			self.cells = cells
 			self.headerTitle = headerTitle
 			self.footerTitle = footerTitle
 		}
 	}
-	
 }
 
-public extension Array where Element == UITableView.StaticSection {
-	
-	subscript(indexPath: IndexPath) -> UITableViewCell {
+extension Array where Element == UITableView.StaticSection {
+
+    public subscript(indexPath: IndexPath) -> UITableViewCell {
 		return self[indexPath.section].cells[indexPath.row]
 	}
-	
 }
 
-public extension UITableView {
-	
-	func deselectCurrentlySelectRow(with transitionCoordinator: UIViewControllerTransitionCoordinator?) {
+extension UITableView {
+
+    public func deselectCurrentlySelectRow(with transitionCoordinator: UIViewControllerTransitionCoordinator?) {
 		let indexPath = indexPathForSelectedRow
 		if let indexPath = indexPath {
 			deselectRow(at: indexPath, animated: true)
@@ -66,5 +64,4 @@ public extension UITableView {
 			}
 		}
 	}
-	
 }

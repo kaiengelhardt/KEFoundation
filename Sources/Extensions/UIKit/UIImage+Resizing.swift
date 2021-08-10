@@ -28,30 +28,29 @@
 
 import UIKit
 
-public extension UIImage {
-	
-	func resized(to targetSize: CGSize) -> UIImage? {
+extension UIImage {
+
+    public func resized(to targetSize: CGSize) -> UIImage? {
 		guard let jpegData = jpegData(compressionQuality: 0.9) else {
 			return nil
 		}
-		
+
 		let cfData = jpegData as CFData
-		
+
 		let resizingOptions = [
 			kCGImageSourceCreateThumbnailFromImageAlways: true,
 			kCGImageSourceShouldCacheImmediately: true,
 			kCGImageSourceCreateThumbnailWithTransform: true,
 			kCGImageSourceThumbnailMaxPixelSize: max(targetSize.width, targetSize.height),
 		] as CFDictionary
-		
+
 		guard
 			let cgImageSource = CGImageSourceCreateWithData(cfData, nil),
 			let resizedImage = CGImageSourceCreateThumbnailAtIndex(cgImageSource, 0, resizingOptions)
 		else {
 			return nil
 		}
-		
+
 		return UIImage(cgImage: resizedImage)
 	}
-	
 }

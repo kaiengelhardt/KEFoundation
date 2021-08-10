@@ -1,6 +1,11 @@
-//
-//  Created by Kai Engelhardt on 05.12.19.
-//  Copyright © 2019 Kai Engelhardt. All rights reserved.
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>FILEHEADER</key>
+	<string>
+//  Created by ___FULLUSERNAME___ on ___DATE___
+//  ___COPYRIGHT___
 //
 //  Distributed under the permissive MIT license
 //  Get the latest version from here:
@@ -24,43 +29,6 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
-//
-
-import QuartzCore
-import UIKit
-
-public struct Shadow {
-
-	public var color: CGColor?
-	public var opacity: Float
-	public var offset: CGSize
-	public var radius: CGFloat
-	public var path: CGPath?
-
-	public static let noShadow = Shadow(color: nil, opacity: 0, offset: .zero, radius: 0)
-	public static let `default` = Shadow(color: UIColor.black.cgColor, opacity: 0.2, offset: .zero, radius: 16)
-
-	public init(color: CGColor?, opacity: Float, offset: CGSize, radius: CGFloat, path: CGPath? = nil) {
-		self.color = color
-		self.opacity = opacity
-		self.offset = offset
-		self.radius = radius
-		self.path = path
-	}
-}
-
-extension CALayer {
-
-    public var shadow: Shadow {
-		get {
-			Shadow(color: shadowColor, opacity: shadowOpacity, offset: shadowOffset, radius: shadowRadius, path: shadowPath)
-		}
-		set {
-			shadowColor = newValue.color
-			shadowOpacity = newValue.opacity
-			shadowOffset = newValue.offset
-			shadowRadius = newValue.radius
-			shadowPath = newValue.path
-		}
-	}
-}
+//</string>
+</dict>
+</plist>

@@ -28,22 +28,22 @@
 
 import UIKit
 
-public extension CGRect {
-	
-	var center: CGPoint {
+extension CGRect {
+
+    public var center: CGPoint {
 		CGPoint(x: midX, y: midY)
 	}
-	
-	var smallestSide: CGFloat {
+
+    public var smallestSide: CGFloat {
 		size.smallestDimension
 	}
-	
-	var largestSide: CGFloat {
+
+    public var largestSide: CGFloat {
 		size.largestDimension
 	}
-	
+
 	#if os(iOS) || os(tvOS) || os(watchOS)
-	func insetBy(insets: UIEdgeInsets) -> CGRect {
+    public func insetBy(insets: UIEdgeInsets) -> CGRect {
 		return CGRect(
             x: origin.x + insets.left,
             y: origin.y + insets.top,

@@ -26,7 +26,6 @@
 //  SOFTWARE.
 //
 
-
 import UIKit
 
 extension UILayoutPriority: ExpressibleByIntegerLiteral {

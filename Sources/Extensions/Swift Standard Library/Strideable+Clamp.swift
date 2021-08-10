@@ -1,6 +1,6 @@
 //
-//  Created by Kai Engelhardt on 16.10.17
-//  Copyright © 2018 Kai Engelhardt. All rights reserved.
+//  Created by Kai Engelhardt on 09.08.19
+//  Copyright © 2019 Kai Engelhardt. All rights reserved.
 //
 //  Distributed under the permissive MIT license
 //  Get the latest version from here:
@@ -28,11 +28,21 @@
 
 import Foundation
 
-extension NSPredicate {
-	
-    public typealias Evaluator = (AnyObject?) -> Bool
-	
-    public var evaluator: Evaluator {
-		return evaluate(with:)
-	}
+extension Strideable where Stride: SignedInteger {
+
+    public func clamped(to range: CountableClosedRange<Self>) -> Self {
+        return min(max(self, range.lowerBound), range.upperBound)
+    }
+
+    public mutating func clamp(to range: CountableClosedRange<Self>) {
+        self = min(max(self, range.lowerBound), range.upperBound)
+    }
+
+    public func clamped(to range: CountablePartialRangeFrom<Self>) -> Self {
+        return max(self, range.lowerBound)
+    }
+
+    public mutating func clamp(to range: CountablePartialRangeFrom<Self>) {
+        self = max(self, range.lowerBound)
+    }
 }

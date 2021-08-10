@@ -29,9 +29,9 @@
 import Foundation
 
 extension DispatchQueue {
-	
+
 	private static var onceTokens: Set<String> = []
-	
+
 	/**
 	Executes a block of code, associated with a unique token, only once.  The code is thread safe and will
 	only execute the code once even in the presence of multithreaded calls.
@@ -45,15 +45,15 @@ extension DispatchQueue {
 		defer {
 			objc_sync_exit(self)
 		}
-		
+
 		guard !onceTokens.contains(token) else {
 			return
 		}
-		
+
 		onceTokens.insert(token)
 		closure()
 	}
-	
+
 	/**
 	Executes a block of code, associated with a unique token, only once.  The code is thread safe and will
 	only execute the code once even in the presence of multithreaded calls.

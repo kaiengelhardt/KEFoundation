@@ -29,20 +29,20 @@
 import Foundation
 
 extension Dictionary {
-	
+
 	public mutating func extend(with dictionary: [Key: Value]) {
 		merge(dictionary, uniquingKeysWith: { lhs, rhs in
 			rhs
 		})
 	}
-	
+
 	public func extending(with dictionary: [Key: Value]) -> [Key: Value] {
 		return merging(dictionary, uniquingKeysWith: { lhs, rhs in
 			rhs
 		})
 	}
-	
-	public static func +=(lhs: inout [Key: Value], rhs: [Key: Value]) {
+
+	public static func += (lhs: inout [Key: Value], rhs: [Key: Value]) {
 		lhs.extend(with: rhs)
 	}
 }

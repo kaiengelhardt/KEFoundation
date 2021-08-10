@@ -29,7 +29,7 @@
 import UIKit
 
 extension UIStackView {
-	
+
 	public func removeCustomSpacing() {
 		let views = arrangedSubviews
 		for view in views {
@@ -39,7 +39,7 @@ extension UIStackView {
 			addArrangedSubview(view)
 		}
 	}
-	
+
 	public func removeCustomSpacing(after view: UIView) {
 		guard let index = arrangedSubviews.firstIndex(of: view) else {
 			return
@@ -47,5 +47,4 @@ extension UIStackView {
 		removeArrangedSubview(view)
 		insertArrangedSubview(view, at: index)
 	}
-	
 }

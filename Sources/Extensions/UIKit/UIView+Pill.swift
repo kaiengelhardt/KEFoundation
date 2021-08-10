@@ -28,10 +28,9 @@
 
 import UIKit
 
-public extension UIView {
-	
-	func makePillShaped() {
+extension UIView {
+
+    public func makePillShaped() {
 		layer.makePillShaped()
 	}
-	
 }

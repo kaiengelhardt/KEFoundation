@@ -29,7 +29,7 @@
 import Foundation
 
 extension Array {
-	
+
 	/**
 	Shuffles the collection in place. The item at `index` will be first in the array.
 		
@@ -38,7 +38,7 @@ extension Array {
     public mutating func shuffleBeginningWithItem(at index: Int) {
 		self = shuffledBeginningWithItem(at: index)
 	}
-	
+
 	/**
 	Returns the elements of the sequence, shuffled. The item at `index` will be first in the returned array.
 	

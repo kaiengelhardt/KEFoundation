@@ -28,29 +28,32 @@
 
 import UIKit
 
-public prefix func -(insets: NSDirectionalEdgeInsets) -> NSDirectionalEdgeInsets {
-	return NSDirectionalEdgeInsets(
-        top: -insets.top,
-        leading: -insets.leading,
-        bottom: -insets.bottom,
-        trailing: -insets.trailing
-    )
-}
+extension NSDirectionalEdgeInsets {
 
-public func +(lhs: NSDirectionalEdgeInsets, rhs: NSDirectionalEdgeInsets) -> NSDirectionalEdgeInsets {
-	return NSDirectionalEdgeInsets(
-        top: lhs.top + rhs.top,
-        leading: lhs.leading + rhs.leading,
-        bottom: lhs.bottom + rhs.bottom,
-        trailing: lhs.trailing + rhs.trailing
-    )
-}
+    public static prefix func - (insets: NSDirectionalEdgeInsets) -> NSDirectionalEdgeInsets {
+        return NSDirectionalEdgeInsets(
+            top: -insets.top,
+            leading: -insets.leading,
+            bottom: -insets.bottom,
+            trailing: -insets.trailing
+        )
+    }
 
-public func -(lhs: NSDirectionalEdgeInsets, rhs: NSDirectionalEdgeInsets) -> NSDirectionalEdgeInsets {
-	return NSDirectionalEdgeInsets(
-        top: lhs.top - rhs.top,
-        leading: lhs.leading - rhs.leading,
-        bottom: lhs.bottom - rhs.bottom,
-        trailing: lhs.trailing - rhs.trailing
-    )
+    public static func + (lhs: NSDirectionalEdgeInsets, rhs: NSDirectionalEdgeInsets) -> NSDirectionalEdgeInsets {
+        return NSDirectionalEdgeInsets(
+            top: lhs.top + rhs.top,
+            leading: lhs.leading + rhs.leading,
+            bottom: lhs.bottom + rhs.bottom,
+            trailing: lhs.trailing + rhs.trailing
+        )
+    }
+
+    public static func - (lhs: NSDirectionalEdgeInsets, rhs: NSDirectionalEdgeInsets) -> NSDirectionalEdgeInsets {
+        return NSDirectionalEdgeInsets(
+            top: lhs.top - rhs.top,
+            leading: lhs.leading - rhs.leading,
+            bottom: lhs.bottom - rhs.bottom,
+            trailing: lhs.trailing - rhs.trailing
+        )
+    }
 }

@@ -1,5 +1,5 @@
 //
-//  Created by Kai Engelhardt on 08.08.21.
+//  Created by Kai Engelhardt on 09.08.19
 //  Copyright © 2019 Kai Engelhardt. All rights reserved.
 //
 //  Distributed under the permissive MIT license
@@ -52,24 +52,5 @@ extension Comparable {
 
     public mutating func clamp(to range: PartialRangeThrough<Self>) {
         self = min(self, range.upperBound)
-    }
-}
-
-extension Strideable where Stride: SignedInteger {
-
-    public func clamped(to range: CountableClosedRange<Self>) -> Self {
-        return min(max(self, range.lowerBound), range.upperBound)
-    }
-
-    public mutating func clamp(to range: CountableClosedRange<Self>) {
-        self = min(max(self, range.lowerBound), range.upperBound)
-    }
-
-    public func clamped(to range: CountablePartialRangeFrom<Self>) -> Self {
-        return max(self, range.lowerBound)
-    }
-
-    public mutating func clamp(to range: CountablePartialRangeFrom<Self>) {
-        self = max(self, range.lowerBound)
     }
 }
