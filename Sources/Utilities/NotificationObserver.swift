@@ -53,7 +53,7 @@ public class NotificationObserver {
 	/// - Parameters:
 	///   - name: The notification name.
 	///   - handler: The block to be executed when the notification is received.
-	public func when(_ name: Notification.Name, object: Any? = nil, perform handler: @escaping (Notification) -> Void) {
+	public func when(_ name: Notification.Name?, object: Any? = nil, perform handler: @escaping (Notification) -> Void) {
 		let observer = notificationCenter.addObserver(forName: name, object: object, queue: queue, using: handler)
 		observers.append(observer)
 	}
