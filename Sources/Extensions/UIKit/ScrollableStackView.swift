@@ -86,10 +86,10 @@ public class ScrollableStackView: UIView {
 
 	public var isLayoutMarginsRelativeArrangement: Bool {
 		get {
-			stackView.isBaselineRelativeArrangement
+			stackView.isLayoutMarginsRelativeArrangement
 		}
 		set {
-			stackView.isBaselineRelativeArrangement = newValue
+			stackView.isLayoutMarginsRelativeArrangement = newValue
 		}
 	}
 
