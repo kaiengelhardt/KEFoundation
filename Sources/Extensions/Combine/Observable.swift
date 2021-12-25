@@ -29,6 +29,12 @@
 import Foundation
 import Combine
 
+/// A property wrapper similar to `@Published` from the `Combine` framework.
+///
+/// `@Observable` has 2 major differences from `@Published`.
+/// 1. The publisher is triggered on `didSet` rather than `willSet`.
+/// 2. `@Observable` does not work automatically with `ObservableObject`.
+/// This can only work once Apple implements referencing the enclosing instance in property wrappers.
 @propertyWrapper
 public class Observable<Value> {
 
