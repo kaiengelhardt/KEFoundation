@@ -72,7 +72,7 @@ class ObservableTests: XCTestCase {
 			.sink { newValue in
 				XCTAssertEqual(newValue, "Test 2")
 			}
-		.store(in: &cancellables)
+			.store(in: &cancellables)
 
 		object.$publishedValue
 			.sink { newValue in

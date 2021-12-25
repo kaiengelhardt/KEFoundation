@@ -10,6 +10,8 @@
 		5E1E246726C049ED00DC80B1 /* KEFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E1E245D26C049ED00DC80B1 /* KEFoundation.framework */; };
 		5E1E246C26C049ED00DC80B1 /* KEFoundationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1E246B26C049ED00DC80B1 /* KEFoundationTests.swift */; };
 		5E1E246E26C049ED00DC80B1 /* KEFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E1E246026C049ED00DC80B1 /* KEFoundation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5E60A7422777B4BF004CBFB7 /* Publisher+WithPrevious.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E60A7412777B4BF004CBFB7 /* Publisher+WithPrevious.swift */; };
+		5E60A7452777B5BC004CBFB7 /* Publisher+WithPreviousTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E60A7432777B532004CBFB7 /* Publisher+WithPreviousTests.swift */; };
 		5E87511926C16A72007FA2FD /* CGPoint+Artihmetic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E87511826C16A72007FA2FD /* CGPoint+Artihmetic.swift */; };
 		5E87511B26C16B02007FA2FD /* CGSize+Arithmetic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E87511A26C16B02007FA2FD /* CGSize+Arithmetic.swift */; };
 		5E87511D26C17424007FA2FD /* DefaultValueProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E87511C26C17424007FA2FD /* DefaultValueProviding.swift */; };
@@ -122,6 +124,8 @@
 		5E1E248726C04B6100DC80B1 /* Project-Shared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Project-Shared.xcconfig"; sourceTree = "<group>"; };
 		5E1E248826C04B6100DC80B1 /* Project-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Project-Debug.xcconfig"; sourceTree = "<group>"; };
 		5E1E248926C04E8500DC80B1 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		5E60A7412777B4BF004CBFB7 /* Publisher+WithPrevious.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+WithPrevious.swift"; sourceTree = "<group>"; };
+		5E60A7432777B532004CBFB7 /* Publisher+WithPreviousTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+WithPreviousTests.swift"; sourceTree = "<group>"; };
 		5E87511826C16A72007FA2FD /* CGPoint+Artihmetic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Artihmetic.swift"; sourceTree = "<group>"; };
 		5E87511A26C16B02007FA2FD /* CGSize+Arithmetic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize+Arithmetic.swift"; sourceTree = "<group>"; };
 		5E87511C26C17424007FA2FD /* DefaultValueProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultValueProviding.swift; sourceTree = "<group>"; };
@@ -263,6 +267,7 @@
 			children = (
 				5E1E246B26C049ED00DC80B1 /* KEFoundationTests.swift */,
 				5ECAAA502746A56A00CD569C /* ObservableTests.swift */,
+				5E60A7432777B532004CBFB7 /* Publisher+WithPreviousTests.swift */,
 			);
 			path = "Unit Tests";
 			sourceTree = "<group>";
@@ -509,6 +514,7 @@
 			isa = PBXGroup;
 			children = (
 				5ECAAA532746A58200CD569C /* Observable.swift */,
+				5E60A7412777B4BF004CBFB7 /* Publisher+WithPrevious.swift */,
 			);
 			path = Combine;
 			sourceTree = "<group>";
@@ -732,6 +738,7 @@
 				5E98AF8626C05897001811C5 /* URLSession+Result.swift in Sources */,
 				5ECAAA542746A58200CD569C /* Observable.swift in Sources */,
 				5E98AF9526C05C26001811C5 /* CGPoint+Extensions.swift in Sources */,
+				5E60A7422777B4BF004CBFB7 /* Publisher+WithPrevious.swift in Sources */,
 				5E98AF8926C05897001811C5 /* FloatingPoint+AngleUnits.swift in Sources */,
 				5E98AFDC26C06AED001811C5 /* EmbeddableCollectionView.swift in Sources */,
 				5E98AF7E26C05897001811C5 /* ClosureValueTransformer.swift in Sources */,
@@ -754,6 +761,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E1E246C26C049ED00DC80B1 /* KEFoundationTests.swift in Sources */,
+				5E60A7452777B5BC004CBFB7 /* Publisher+WithPreviousTests.swift in Sources */,
 				5ECAAA512746A56A00CD569C /* ObservableTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
