@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		5E1E246726C049ED00DC80B1 /* KEFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E1E245D26C049ED00DC80B1 /* KEFoundation.framework */; };
-		5E1E246C26C049ED00DC80B1 /* KEFoundationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1E246B26C049ED00DC80B1 /* KEFoundationTests.swift */; };
 		5E1E246E26C049ED00DC80B1 /* KEFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E1E246026C049ED00DC80B1 /* KEFoundation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5E60A7422777B4BF004CBFB7 /* Publisher+WithPrevious.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E60A7412777B4BF004CBFB7 /* Publisher+WithPrevious.swift */; };
 		5E60A7452777B5BC004CBFB7 /* Publisher+WithPreviousTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E60A7432777B532004CBFB7 /* Publisher+WithPreviousTests.swift */; };
@@ -112,7 +111,6 @@
 		5E1E246026C049ED00DC80B1 /* KEFoundation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KEFoundation.h; sourceTree = "<group>"; };
 		5E1E246126C049ED00DC80B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5E1E246626C049ED00DC80B1 /* KEFoundation Unit Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "KEFoundation Unit Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5E1E246B26C049ED00DC80B1 /* KEFoundationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEFoundationTests.swift; sourceTree = "<group>"; };
 		5E1E246D26C049ED00DC80B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5E1E247E26C04B6100DC80B1 /* KEFoundation-Shared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "KEFoundation-Shared.xcconfig"; sourceTree = "<group>"; };
 		5E1E247F26C04B6100DC80B1 /* KEFoundation-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "KEFoundation-Release.xcconfig"; sourceTree = "<group>"; };
@@ -265,7 +263,6 @@
 		5E1E246A26C049ED00DC80B1 /* Unit Tests */ = {
 			isa = PBXGroup;
 			children = (
-				5E1E246B26C049ED00DC80B1 /* KEFoundationTests.swift */,
 				5ECAAA502746A56A00CD569C /* ObservableTests.swift */,
 				5E60A7432777B532004CBFB7 /* Publisher+WithPreviousTests.swift */,
 			);
@@ -760,7 +757,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E1E246C26C049ED00DC80B1 /* KEFoundationTests.swift in Sources */,
 				5E60A7452777B5BC004CBFB7 /* Publisher+WithPreviousTests.swift in Sources */,
 				5ECAAA512746A56A00CD569C /* ObservableTests.swift in Sources */,
 			);
