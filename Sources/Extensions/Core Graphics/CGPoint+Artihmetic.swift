@@ -57,4 +57,12 @@ extension CGPoint {
 	public static func / (lhs: CGPoint, rhs: CGFloat) -> CGPoint {
 		return CGPoint(x: lhs.x / rhs, y: lhs.y / rhs)
 	}
+
+	public static func += (left: inout CGPoint, right: CGPoint) {
+		left = left + right // swiftlint:disable:this shorthand_operator
+	}
+
+	public static func -= (left: inout CGPoint, right: CGPoint) {
+		left = left - right // swiftlint:disable:this shorthand_operator
+	}
 }
