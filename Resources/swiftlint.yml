@@ -156,7 +156,6 @@ opt_in_rules:
     - single_test_class
     - sorted_first_last
     - statement_position
-    - static_operator
     - strong_iboutlet
     - superfluous_disable_command
     - switch_case_alignment
@@ -226,6 +225,7 @@ disabled_rules:
     - required_deinit
     - required_enum_case
     - sorted_imports
+    - static_operator
     - strict_fileprivate
     - todo
     - trailing_closure
