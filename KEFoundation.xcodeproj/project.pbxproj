@@ -773,16 +773,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5E1E248026C04B6100DC80B1 /* KEFoundation-Debug.xcconfig */;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				DEFINES_MODULE = YES;
-				INFOPLIST_FILE = "KEFoundation/Supporting Files/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -790,15 +780,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5E1E247F26C04B6100DC80B1 /* KEFoundation-Release.xcconfig */;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				DEFINES_MODULE = YES;
-				INFOPLIST_FILE = "KEFoundation/Supporting Files/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -806,7 +787,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5E1E248326C04B6100DC80B1 /* KEFoundation-Unit-Tests-Debug.xcconfig */;
 			buildSettings = {
-				INFOPLIST_FILE = "KEFoundation Unit Tests/Supporting Files/Info.plist";
 			};
 			name = Debug;
 		};
@@ -814,7 +794,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5E1E248226C04B6100DC80B1 /* KEFoundation-Unit-Tests-Release.xcconfig */;
 			buildSettings = {
-				INFOPLIST_FILE = "KEFoundation Unit Tests/Supporting Files/Info.plist";
 			};
 			name = Release;
 		};
