@@ -131,7 +131,6 @@
 		5E87511A26C16B02007FA2FD /* CGSize+Arithmetic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize+Arithmetic.swift"; sourceTree = "<group>"; };
 		5E87511C26C17424007FA2FD /* DefaultValueProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultValueProviding.swift; sourceTree = "<group>"; };
 		5E87511E26C174B2007FA2FD /* UILayoutPriority+LiteralSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILayoutPriority+LiteralSupport.swift"; sourceTree = "<group>"; };
-		5E87512426C1BFC4007FA2FD /* swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftlint.yml; sourceTree = "<group>"; };
 		5E87512926C2995B007FA2FD /* Strideable+Clamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strideable+Clamp.swift"; sourceTree = "<group>"; };
 		5E87512B26C29973007FA2FD /* Comparable+Clamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Comparable+Clamp.swift"; sourceTree = "<group>"; };
 		5E87512D26C2BE46007FA2FD /* UIResponder+FirstResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder+FirstResponder.swift"; sourceTree = "<group>"; };
@@ -240,7 +239,6 @@
 			children = (
 				5E1623C828EA288C002A8D9E /* Configuration */,
 				5E1E246126C049ED00DC80B1 /* Info.plist */,
-				5E87512426C1BFC4007FA2FD /* swiftlint.yml */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -557,8 +555,6 @@
 			buildConfigurationList = 5E1E247126C049ED00DC80B1 /* Build configuration list for PBXNativeTarget "KEFoundation" */;
 			buildPhases = (
 				5E1E245826C049ED00DC80B1 /* Headers */,
-				5E87512526C1C00D007FA2FD /* SwiftLint Autocorrect */,
-				5E87512626C1C00F007FA2FD /* SwiftLint */,
 				5E1E245926C049ED00DC80B1 /* Sources */,
 				5E1E245A26C049ED00DC80B1 /* Frameworks */,
 				5E1E245B26C049ED00DC80B1 /* Resources */,
@@ -644,45 +640,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		5E87512526C1C00D007FA2FD /* SwiftLint Autocorrect */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "SwiftLint Autocorrect";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if test -d \"/opt/homebrew/bin/\"; then\n  PATH=\"/opt/homebrew/bin/:${PATH}\"\nfi\n\nexport PATH\n\nif which swiftlint >/dev/null; then\n    swiftlint --fix --config \"KEFoundation/Supporting Files/swiftlint.yml\"\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
-		5E87512626C1C00F007FA2FD /* SwiftLint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = SwiftLint;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if test -d \"/opt/homebrew/bin/\"; then\n  PATH=\"/opt/homebrew/bin/:${PATH}\"\nfi\n\nexport PATH\n\nif which swiftlint >/dev/null; then\n    swiftlint --config \"KEFoundation/Supporting Files/swiftlint.yml\"\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5E1E245926C049ED00DC80B1 /* Sources */ = {
