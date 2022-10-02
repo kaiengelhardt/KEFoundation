@@ -29,7 +29,7 @@
 import Foundation
 
 /// Based on this [tweet](https://twitter.com/_inside/status/984827954432798723) by Guilherme Rambo.
-public final class Throttler<Event> {
+public final class Debouncer<Event> {
 
 	public typealias Handler = (Event) -> Void
 

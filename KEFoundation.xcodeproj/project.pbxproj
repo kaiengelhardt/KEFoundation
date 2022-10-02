@@ -23,7 +23,7 @@
 		5E98AF7E26C05897001811C5 /* ClosureValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E98AF7026C05896001811C5 /* ClosureValueTransformer.swift */; };
 		5E98AF7F26C05897001811C5 /* FileManager+Directories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E98AF7126C05896001811C5 /* FileManager+Directories.swift */; };
 		5E98AF8026C05897001811C5 /* NSKeyValueObservation+ObservationBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E98AF7226C05896001811C5 /* NSKeyValueObservation+ObservationBag.swift */; };
-		5E98AF8126C05897001811C5 /* Throttler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E98AF7326C05896001811C5 /* Throttler.swift */; };
+		5E98AF8126C05897001811C5 /* Debouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E98AF7326C05896001811C5 /* Debouncer.swift */; };
 		5E98AF8226C05897001811C5 /* DispatchQueue+Once.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E98AF7426C05896001811C5 /* DispatchQueue+Once.swift */; };
 		5E98AF8326C05897001811C5 /* NSEdgeInsets+Arithmetic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E98AF7526C05896001811C5 /* NSEdgeInsets+Arithmetic.swift */; };
 		5E98AF8426C05897001811C5 /* NSRange+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E98AF7626C05896001811C5 /* NSRange+Range.swift */; };
@@ -139,7 +139,7 @@
 		5E98AF7026C05896001811C5 /* ClosureValueTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosureValueTransformer.swift; sourceTree = "<group>"; };
 		5E98AF7126C05896001811C5 /* FileManager+Directories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FileManager+Directories.swift"; sourceTree = "<group>"; };
 		5E98AF7226C05896001811C5 /* NSKeyValueObservation+ObservationBag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSKeyValueObservation+ObservationBag.swift"; sourceTree = "<group>"; };
-		5E98AF7326C05896001811C5 /* Throttler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Throttler.swift; sourceTree = "<group>"; };
+		5E98AF7326C05896001811C5 /* Debouncer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debouncer.swift; sourceTree = "<group>"; };
 		5E98AF7426C05896001811C5 /* DispatchQueue+Once.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+Once.swift"; sourceTree = "<group>"; };
 		5E98AF7526C05896001811C5 /* NSEdgeInsets+Arithmetic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSEdgeInsets+Arithmetic.swift"; sourceTree = "<group>"; };
 		5E98AF7626C05896001811C5 /* NSRange+Range.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSRange+Range.swift"; sourceTree = "<group>"; };
@@ -372,7 +372,7 @@
 				5E98AFBB26C0660F001811C5 /* AutoInvalidatingObject.swift */,
 				5E98AF7026C05896001811C5 /* ClosureValueTransformer.swift */,
 				5E98AF6F26C05896001811C5 /* NotificationObserver.swift */,
-				5E98AF7326C05896001811C5 /* Throttler.swift */,
+				5E98AF7326C05896001811C5 /* Debouncer.swift */,
 				5E87511C26C17424007FA2FD /* DefaultValueProviding.swift */,
 			);
 			path = Utilities;
@@ -691,7 +691,7 @@
 				5E98AFD626C06AAA001811C5 /* ContainerView.swift in Sources */,
 				5E98AFE526C06B00001811C5 /* UIImage+Preloading.swift in Sources */,
 				5E98AFB926C06579001811C5 /* NSLayoutAnchor+ConvenientSystemSpacing.swift in Sources */,
-				5E98AF8126C05897001811C5 /* Throttler.swift in Sources */,
+				5E98AF8126C05897001811C5 /* Debouncer.swift in Sources */,
 				5E98AFBE26C067AB001811C5 /* Array+Unique.swift in Sources */,
 				5E98AF9726C05C4C001811C5 /* CGRect+Extensions.swift in Sources */,
 				5EDA7C93284378AA00F8D4BC /* ForwardComposition.swift in Sources */,
