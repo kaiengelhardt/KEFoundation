@@ -6,7 +6,7 @@ let package = Package(
     name: "KEFoundation",
     platforms: [
         .iOS(.v14),
-        .macCatalyst(.v14)
+        .macCatalyst(.v14),
     ],
     products: [
         .library(
