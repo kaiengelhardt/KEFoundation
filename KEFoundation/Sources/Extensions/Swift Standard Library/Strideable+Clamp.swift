@@ -29,7 +29,6 @@
 import Foundation
 
 extension Strideable where Stride: SignedInteger {
-
 	public func clamped(to range: CountableClosedRange<Self>) -> Self {
 		return min(max(self, range.lowerBound), range.upperBound)
 	}

@@ -31,7 +31,6 @@ import QuartzCore
 
 @propertyWrapper
 public struct AutoInvalidatingObject<Object: Invalidatable> {
-
 	public var wrappedValue: Object? {
 		didSet {
 			guard oldValue !== wrappedValue else {
@@ -47,10 +46,13 @@ public struct AutoInvalidatingObject<Object: Invalidatable> {
 }
 
 public protocol Invalidatable: AnyObject {
-
 	func invalidate()
 }
 
+// MARK: - Timer + Invalidatable
+
 extension Timer: Invalidatable {}
+
+// MARK: - CADisplayLink + Invalidatable
 
 extension CADisplayLink: Invalidatable {}

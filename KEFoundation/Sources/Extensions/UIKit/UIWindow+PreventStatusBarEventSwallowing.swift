@@ -29,7 +29,6 @@
 import UIKit
 
 extension UIWindow {
-
 	/// Sets the window frame to be almost fullscreen, but not entirely fullscreen.
 	/// This prevents a bug where the status bar properties and some other UIKit
 	/// mechanics don't work properly within the app window.

@@ -26,16 +26,15 @@
 //  SOFTWARE.
 //
 
-import UIKit
 import CoreImage
+import UIKit
 
 extension UIImage {
-
 	/// Returns a version of this image with a gaussian blur applied to it.
 	/// Based on this StackOverFlow [question](https://stackoverflow.com/questions/41156542/how-to-blur-an-existing-image-in-a-uiimageview-with-swift/41157042#41157042).
 	/// - Parameter blurRadius: Specifies how blurred the image should be.
 	/// The larger the blur radius, the more blurred the resulting image becomes.
-	public func blurredImage(blurRadius: CGFloat = 10) -> UIImage? {
+	public func blurredImage(blurRadius: Double = 10) -> UIImage? {
 		guard
 			let currentFilter = CIFilter(name: "CIGaussianBlur"),
 			let inputImage = CIImage(image: self)

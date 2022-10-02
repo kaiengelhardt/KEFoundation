@@ -29,11 +29,10 @@
 import Foundation
 
 extension Array {
-
 	/// Taken from this [StackOverFlow answer](https://stackoverflow.com/a/26679191/980386).
 	public func insertionIndex(of element: Element, isOrderedBefore: (Element, Element) -> Bool) -> Int {
 		var low = 0
-		var high = self.count - 1
+		var high = count - 1
 		while low <= high {
 			let mid = (low + high) / 2
 			if isOrderedBefore(self[mid], element) {

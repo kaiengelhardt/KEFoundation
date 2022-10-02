@@ -29,7 +29,6 @@
 import Foundation
 
 extension Dictionary {
-
 	public mutating func extend(with dictionary: [Key: Value]) {
 		merge(dictionary, uniquingKeysWith: { lhs, rhs in
 			rhs

@@ -29,7 +29,6 @@
 import UIKit
 
 extension UIImage {
-
 	public func resized(to targetSize: CGSize) -> UIImage? {
 		guard let jpegData = jpegData(compressionQuality: 0.9) else {
 			return nil

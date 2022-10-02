@@ -29,7 +29,6 @@
 import UIKit
 
 extension UIResponder {
-
 	private static weak var _firstResponder: UIResponder?
 
 	@available(iOSApplicationExtension, unavailable)

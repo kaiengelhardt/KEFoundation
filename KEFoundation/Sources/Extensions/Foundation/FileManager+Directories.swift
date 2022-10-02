@@ -29,7 +29,6 @@
 import Foundation
 
 extension FileManager {
-
 	public class var documentDirectoryURL: URL {
 		return self.default.urls(for: .documentDirectory, in: .userDomainMask).first!
 	}

@@ -30,7 +30,6 @@
 import UIKit
 
 extension NSLayoutXAxisAnchor {
-
 	public func constraint(equalToSystemSpacingAfter anchor: NSLayoutXAxisAnchor) -> NSLayoutConstraint {
 		return constraint(equalToSystemSpacingAfter: anchor, multiplier: 1)
 	}
@@ -45,7 +44,6 @@ extension NSLayoutXAxisAnchor {
 }
 
 extension NSLayoutYAxisAnchor {
-
 	public func constraint(equalToSystemSpacingBelow anchor: NSLayoutYAxisAnchor) -> NSLayoutConstraint {
 		return constraint(equalToSystemSpacingBelow: anchor, multiplier: 1)
 	}

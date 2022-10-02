@@ -28,18 +28,16 @@
 
 #if DEBUG
 
-import UIKit
 import SwiftUI
+import UIKit
 
 extension UIView {
-
 	@available(iOS 13.0, *)
 	public var liveView: some View {
 		LiveView(view: self)
 	}
 
 	public struct LiveView<V: UIView>: UIViewRepresentable {
-
 		let view: V
 
 		@available(iOS 13.0, *)

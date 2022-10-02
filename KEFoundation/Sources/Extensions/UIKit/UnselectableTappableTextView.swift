@@ -30,7 +30,6 @@ import UIKit
 
 /// Taken from this [StackOverFlow question](https://stackoverflow.com/questions/36198299/uitextview-disable-selection-allow-links).
 public class UnselectableTappableTextView: UITextView {
-
 	public override var selectedTextRange: UITextRange? {
 		get {
 			nil

@@ -29,7 +29,6 @@
 import UIKit
 
 extension UIWindow {
-
 	public var topViewController: UIViewController? {
 		var currentViewController = rootViewController
 		while currentViewController?.presentedViewController != nil {
@@ -42,7 +41,7 @@ extension UIWindow {
 		var currentViewController = rootViewController
 		while
 			currentViewController?.presentedViewController != nil
-				&& !(currentViewController?.presentedViewController?.isBeingDismissed ?? false)
+			&& !(currentViewController?.presentedViewController?.isBeingDismissed ?? false)
 		{
 			currentViewController = currentViewController?.presentedViewController
 		}

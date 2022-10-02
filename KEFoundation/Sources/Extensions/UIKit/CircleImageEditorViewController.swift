@@ -29,14 +29,12 @@
 import UIKit
 
 public protocol CircleImageEditorViewControllerDelegate: AnyObject {
-
 	func circleImageEditorViewController(_ viewController: CircleImageEditorViewController, didFinishWith image: UIImage)
 	func circleImageEditorViewControllerDidCancel(_ viewController: CircleImageEditorViewController)
 	func circleImageEditorViewControllerDidFail(_ viewController: CircleImageEditorViewController)
 }
 
 public class CircleImageEditorViewController: UIViewController {
-
 	public weak var delegate: CircleImageEditorViewControllerDelegate?
 
 	private let imageView = UIImageView()
@@ -162,10 +160,10 @@ public class CircleImageEditorViewController: UIViewController {
 		// Make sure crop rect is centered
 		if scrollView.contentSize.width > scrollView.contentSize.height {
 			scrollView.contentOffset.x = (scrollView.contentSize.width - circleViewLayoutGuide.layoutFrame.width) / 2
-			- scrollView.contentInset.left
+				- scrollView.contentInset.left
 		} else {
 			scrollView.contentOffset.y = (scrollView.contentSize.height - circleViewLayoutGuide.layoutFrame.height) / 2
-			- scrollView.contentInset.top
+				- scrollView.contentInset.top
 		}
 	}
 
@@ -173,10 +171,10 @@ public class CircleImageEditorViewController: UIViewController {
 		let currentZoomScale = scrollView.zoomScale == 0 ? 1 : scrollView.zoomScale
 		if scrollView.contentSize.width > scrollView.contentSize.height {
 			scrollView.minimumZoomScale = (circleViewLayoutGuide.layoutFrame.height) /
-			(scrollView.contentSize.height / currentZoomScale)
+				(scrollView.contentSize.height / currentZoomScale)
 		} else {
 			scrollView.minimumZoomScale = (circleViewLayoutGuide.layoutFrame.width) /
-			(scrollView.contentSize.width / currentZoomScale)
+				(scrollView.contentSize.width / currentZoomScale)
 		}
 		scrollView.maximumZoomScale = 4 * scrollView.minimumZoomScale
 	}
@@ -224,24 +222,22 @@ public class CircleImageEditorViewController: UIViewController {
 	}
 }
 
-extension CircleImageEditorViewController: UIScrollViewDelegate {
+// MARK: UIScrollViewDelegate
 
+extension CircleImageEditorViewController: UIScrollViewDelegate {
 	public func viewForZooming(in scrollView: UIScrollView) -> UIView? {
 		return imageView
 	}
 }
 
 extension CircleImageEditorViewController {
-
 	class OverlayView: UIView {
-
 		override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
 			return nil
 		}
 	}
 
 	class CircleMaskView: UIView {
-
 		var circleFrame: CGRect? {
 			didSet {
 				updatePath()
@@ -273,7 +269,7 @@ extension CircleImageEditorViewController {
 		}
 
 		func updatePath() {
-			if let circleFrame = circleFrame {
+			if let circleFrame {
 				let path = CGMutablePath()
 				path.addPath(UIBezierPath(rect: bounds).cgPath)
 				path.addPath(UIBezierPath(roundedRect: circleFrame, cornerRadius: circleFrame.largestSide).cgPath)

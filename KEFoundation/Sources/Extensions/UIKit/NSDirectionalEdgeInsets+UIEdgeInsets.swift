@@ -29,7 +29,6 @@
 import UIKit
 
 extension NSDirectionalEdgeInsets {
-
 	public init(insets: UIEdgeInsets) {
 		self.init(top: insets.top, leading: insets.left, bottom: insets.bottom, trailing: insets.right)
 	}

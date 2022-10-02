@@ -30,7 +30,6 @@ import Foundation
 import MediaPlayer
 
 extension MPVolumeView {
-
 	/// Based on this [StackOverFlow question](https://stackoverflow.com/questions/33168497/ios-9-how-to-change-volume-programmatically-without-showing-system-sound-bar-po/50740234).
 	public var volume: Float {
 		return volumeSlider?.value ?? 0

@@ -29,7 +29,6 @@
 import UIKit
 
 public class ScrollableStackView: UIView {
-
 	public var arrangedSubviews: [UIView] {
 		stackView.arrangedSubviews
 	}
@@ -93,7 +92,7 @@ public class ScrollableStackView: UIView {
 		}
 	}
 
-	public var spacing: CGFloat {
+	public var spacing: Double {
 		get {
 			stackView.spacing
 		}
@@ -175,11 +174,11 @@ public class ScrollableStackView: UIView {
 		stackView.insertArrangedSubview(view, at: stackIndex)
 	}
 
-	public func customSpacing(after arrangedSubview: UIView) -> CGFloat {
+	public func customSpacing(after arrangedSubview: UIView) -> Double {
 		return stackView.customSpacing(after: arrangedSubview)
 	}
 
-	public func setCustomSpacing(_ spacing: CGFloat, after arrangedSubview: UIView) {
+	public func setCustomSpacing(_ spacing: Double, after arrangedSubview: UIView) {
 		stackView.setCustomSpacing(spacing, after: arrangedSubview)
 	}
 }

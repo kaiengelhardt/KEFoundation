@@ -28,8 +28,9 @@
 
 import UIKit
 
-extension UITableView {
+// MARK: - UITableView.StaticSection
 
+extension UITableView {
 	public struct StaticSection: Equatable {
 		public var identifier = UUID()
 		public var headerTitle: String?
@@ -44,18 +45,16 @@ extension UITableView {
 	}
 }
 
-extension Array where Element == UITableView.StaticSection {
-
+extension [UITableView.StaticSection] {
 	public subscript(indexPath: IndexPath) -> UITableViewCell {
 		return self[indexPath.section].cells[indexPath.row]
 	}
 }
 
 extension UITableView {
-
 	public func deselectCurrentlySelectRow(with transitionCoordinator: UIViewControllerTransitionCoordinator?) {
 		let indexPath = indexPathForSelectedRow
-		if let indexPath = indexPath {
+		if let indexPath {
 			deselectRow(at: indexPath, animated: true)
 			transitionCoordinator?.notifyWhenInteractionChanges { [weak self] context in
 				if context.isCancelled {

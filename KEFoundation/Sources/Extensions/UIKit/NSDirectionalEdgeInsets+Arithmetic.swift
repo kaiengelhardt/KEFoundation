@@ -29,7 +29,6 @@
 import UIKit
 
 extension NSDirectionalEdgeInsets {
-
 	public static prefix func - (insets: NSDirectionalEdgeInsets) -> NSDirectionalEdgeInsets {
 		return NSDirectionalEdgeInsets(
 			top: -insets.top,

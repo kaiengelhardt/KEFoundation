@@ -29,7 +29,6 @@
 import UIKit
 
 open class EmbeddableCollectionView: UICollectionView {
-
 	public override var contentSize: CGSize {
 		didSet {
 			invalidateIntrinsicContentSize()

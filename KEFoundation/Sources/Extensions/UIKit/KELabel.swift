@@ -29,7 +29,6 @@
 import UIKit
 
 open class KELabel: UILabel {
-
 	public var textInsets: UIEdgeInsets = .zero {
 		didSet {
 			invalidateIntrinsicContentSize()

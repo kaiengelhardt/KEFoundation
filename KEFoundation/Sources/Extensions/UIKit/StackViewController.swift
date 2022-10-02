@@ -29,7 +29,6 @@
 import UIKit
 
 public class StackViewController: UIViewController {
-
 	public private(set) var arrangedChildViewControllers: [UIViewController]
 
 	public let scrollView: UIScrollView
@@ -85,7 +84,7 @@ public class StackViewController: UIViewController {
 		}
 	}
 
-	public var spacing: CGFloat {
+	public var spacing: Double {
 		get {
 			stackView.spacing
 		}
@@ -179,11 +178,11 @@ public class StackViewController: UIViewController {
 		arrangedChildViewControllers.remove(at: index)
 	}
 
-	public func customSpacing(after viewController: UIViewController) -> CGFloat {
+	public func customSpacing(after viewController: UIViewController) -> Double {
 		return stackView.customSpacing(after: viewController.view)
 	}
 
-	public func setCustomSpacing(_ spacing: CGFloat, after viewController: UIViewController) {
+	public func setCustomSpacing(_ spacing: Double, after viewController: UIViewController) {
 		stackView.setCustomSpacing(spacing, after: viewController.view)
 	}
 }

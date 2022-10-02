@@ -26,8 +26,8 @@
 //  SOFTWARE.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 /// A property wrapper similar to `@Published` from the `Combine` framework.
 ///
@@ -37,7 +37,6 @@ import Combine
 /// This can only work once Apple implements referencing the enclosing instance in property wrappers.
 @propertyWrapper
 public class Observable<Value> {
-
 	public init(wrappedValue: Value) {
 		projectedValue = CurrentValueSubject(wrappedValue)
 	}

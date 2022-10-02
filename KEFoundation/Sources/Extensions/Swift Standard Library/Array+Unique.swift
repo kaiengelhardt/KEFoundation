@@ -29,7 +29,6 @@
 import Foundation
 
 extension Array where Element: Hashable {
-
 	/// Returns an array containing the unique elements from the current array.
 	/// The ordering of elements is preserved, i.e. if an element has multiple occurrences,
 	/// the first element is kept and the remaining elements are discarded.

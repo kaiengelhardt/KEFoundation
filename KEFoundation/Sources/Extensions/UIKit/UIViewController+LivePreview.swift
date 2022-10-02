@@ -28,17 +28,15 @@
 
 #if DEBUG
 
-import UIKit
 import SwiftUI
+import UIKit
 
 extension UIViewController {
-
 	public var liveView: some View {
 		LiveViewController(viewController: self)
 	}
 
 	public struct LiveViewController<VC: UIViewController>: UIViewControllerRepresentable {
-
 		let viewController: VC
 
 		public func makeUIViewController(context: UIViewControllerRepresentableContext<LiveViewController<VC>>) -> VC {

@@ -29,7 +29,6 @@
 import Foundation
 
 extension Array {
-
 	/// Shuffles the collection in place. The item at `index` will be first in the array.
 	///
 	/// - Parameter index: The position of the item which should be first in the resulting array.

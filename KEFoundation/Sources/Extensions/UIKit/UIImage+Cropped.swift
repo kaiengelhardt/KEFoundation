@@ -29,10 +29,9 @@
 import UIKit
 
 extension UIImage {
-
 	public func cropped(to rect: CGRect) -> UIImage? {
-		func rad(_ deg: CGFloat) -> CGFloat {
-			return CGFloat(deg / 180.0 * .pi)
+		func rad(_ deg: Double) -> Double {
+			return Double(deg / 180.0 * .pi)
 		}
 
 		var rectTransform: CGAffineTransform
@@ -55,7 +54,7 @@ extension UIImage {
 		transformedRect.origin.y = max(floor(transformedRect.origin.y), 0)
 		transformedRect.size = CGSize(allDimensions: floor(transformedRect.size.smallestDimension))
 		let imageRef = cgImage?.cropping(to: transformedRect)
-		if let imageRef = imageRef {
+		if let imageRef {
 			let result = UIImage(cgImage: imageRef, scale: scale, orientation: imageOrientation)
 			return result
 		} else {

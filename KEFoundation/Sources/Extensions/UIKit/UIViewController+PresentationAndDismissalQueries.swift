@@ -29,7 +29,6 @@
 import UIKit
 
 extension UIViewController {
-
 	/// A Boolean value indicating wether the view controller *or any of its parent view controllers* are being presented.
 	public var isBeingPresentedRegardlessOfParentViewController: Bool {
 		var isBeingPresented = false

@@ -26,11 +26,10 @@
 //  SOFTWARE.
 //
 
-import UIKit
 import CoreGraphics
+import UIKit
 
 extension UIImage {
-
 	public var preloaded: UIImage {
 		guard let image = cgImage else {
 			return self
@@ -52,7 +51,7 @@ extension UIImage {
 		imageContext?.draw(image, in: CGRect(x: 0, y: 0, width: width, height: height))
 		let outputImage = imageContext?.makeImage()
 
-		if let outputImage = outputImage {
+		if let outputImage {
 			return UIImage(cgImage: outputImage)
 		}
 

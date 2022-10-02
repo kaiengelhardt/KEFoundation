@@ -31,7 +31,6 @@ import Foundation
 #if os(macOS)
 
 extension NSEdgeInsets {
-
 	public static let zero: NSEdgeInsets = NSEdgeInsetsZero
 
 	public static prefix func - (insets: NSEdgeInsets) -> NSEdgeInsets {

@@ -29,7 +29,6 @@
 import UIKit
 
 public class TableViewHeaderWrapperView: UIView {
-
 	public weak var tableView: UITableView?
 
 	public init(tableView: UITableView) {
@@ -44,7 +43,7 @@ public class TableViewHeaderWrapperView: UIView {
 	}
 
 	private func setUpUI() {
-		guard let tableView = tableView else {
+		guard let tableView else {
 			return
 		}
 		translatesAutoresizingMaskIntoConstraints = false

@@ -29,7 +29,6 @@
 import Foundation
 
 extension URL {
-
 	public var resourceExists: Bool {
 		do {
 			return try checkResourceIsReachable()

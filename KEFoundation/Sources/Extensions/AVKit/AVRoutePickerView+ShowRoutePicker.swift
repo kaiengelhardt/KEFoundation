@@ -26,11 +26,10 @@
 //  SOFTWARE.
 //
 
-import UIKit
 import AVKit
+import UIKit
 
 extension AVRoutePickerView {
-
 	private static let routePickerView = AVRoutePickerView()
 
 	public static func showRoutePicker() {

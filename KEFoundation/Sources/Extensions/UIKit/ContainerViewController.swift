@@ -29,7 +29,6 @@
 import UIKit
 
 open class ContainerViewController: UIViewController {
-
 	private var _embeddedViewController: UIViewController?
 
 	public var embeddedViewController: UIViewController? {
@@ -57,11 +56,11 @@ open class ContainerViewController: UIViewController {
 					of: embeddedViewControllerPositioningLayoutSurface
 				)
 			}
-#if os(iOS) // swiftlint:disable:next indentation_width
+			#if os(iOS) // swiftlint:disable:next indentation_width
 			setNeedsStatusBarAppearanceUpdate()
 			setNeedsUpdateOfHomeIndicatorAutoHidden()
 			setNeedsUpdateOfScreenEdgesDeferringSystemGestures()
-#endif // swiftlint:disable:next indentation_width
+			#endif // swiftlint:disable:next indentation_width
 		}
 	}
 
@@ -100,7 +99,7 @@ open class ContainerViewController: UIViewController {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-#if os(iOS)
+	#if os(iOS)
 
 	open override var childForStatusBarStyle: UIViewController? {
 		embeddedViewController
@@ -118,7 +117,7 @@ open class ContainerViewController: UIViewController {
 		embeddedViewController
 	}
 
-#endif
+	#endif
 
 	public func animate(to viewController: UIViewController) {
 		UIView.transition(

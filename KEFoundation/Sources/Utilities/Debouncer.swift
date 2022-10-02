@@ -30,7 +30,6 @@ import Foundation
 
 /// Based on this [tweet](https://twitter.com/_inside/status/984827954432798723) by Guilherme Rambo.
 public final class Debouncer<Event> {
-
 	public typealias Handler = (Event) -> Void
 
 	public let interval: TimeInterval
@@ -50,7 +49,7 @@ public final class Debouncer<Event> {
 		workItem = DispatchWorkItem { [weak self] in
 			self?.handler?(event)
 		}
-		if let workItem = workItem {
+		if let workItem {
 			queue.asyncAfter(deadline: .now() + interval, execute: workItem)
 		}
 	}

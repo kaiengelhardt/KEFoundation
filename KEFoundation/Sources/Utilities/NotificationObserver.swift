@@ -30,7 +30,6 @@ import Foundation
 
 /// Based on this [tweet](https://twitter.com/jaredsinclair/status/951536021459619840) by Jared Sinclair.
 public class NotificationObserver {
-
 	private var observers: [NSObjectProtocol] = []
 	private let notificationCenter: NotificationCenter
 	private let queue: OperationQueue

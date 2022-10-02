@@ -29,7 +29,6 @@
 import Foundation
 
 extension String {
-
 	public var isValidEmailAddress: Bool {
 		Self.emailPredicate.evaluate(with: self)
 	}

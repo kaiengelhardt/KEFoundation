@@ -110,6 +110,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5E1623CF28EA32AB002A8D9E /* .swiftformat */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftformat; sourceTree = SOURCE_ROOT; };
+		5E1623D028EA32AB002A8D9E /* .swift-version */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ".swift-version"; sourceTree = SOURCE_ROOT; };
+		5E1623D428EA32DB002A8D9E /* git-format-staged */ = {isa = PBXFileReference; lastKnownFileType = text; path = "git-format-staged"; sourceTree = "<group>"; };
 		5E1E245D26C049ED00DC80B1 /* KEFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KEFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E1E246026C049ED00DC80B1 /* KEFoundation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KEFoundation.h; sourceTree = "<group>"; };
 		5E1E246126C049ED00DC80B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -292,11 +295,38 @@
 			path = Configuration;
 			sourceTree = "<group>";
 		};
+		5E1623CC28EA3267002A8D9E /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				5E1E248726C04B6100DC80B1 /* Project-Shared.xcconfig */,
+				5E1E248826C04B6100DC80B1 /* Project-Debug.xcconfig */,
+				5E1E248626C04B6100DC80B1 /* Project-Release.xcconfig */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		5E1623CE28EA3296002A8D9E /* SwiftFormat */ = {
+			isa = PBXGroup;
+			children = (
+				5E1623D028EA32AB002A8D9E /* .swift-version */,
+				5E1623CF28EA32AB002A8D9E /* .swiftformat */,
+			);
+			path = SwiftFormat;
+			sourceTree = "<group>";
+		};
+		5E1623D328EA32DB002A8D9E /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				5E1623D428EA32DB002A8D9E /* git-format-staged */,
+			);
+			path = Scripts;
+			sourceTree = SOURCE_ROOT;
+		};
 		5E1E245326C049ED00DC80B1 = {
 			isa = PBXGroup;
 			children = (
 				5E1E248926C04E8500DC80B1 /* README.md */,
-				5E1E247A26C04A3600DC80B1 /* Contfiguration */,
+				5E1E247A26C04A3600DC80B1 /* Common */,
 				5E1623C628EA282A002A8D9E /* KEFoundation */,
 				5E1623C728EA282F002A8D9E /* KEFoundation Unit Tests */,
 				5E1E245E26C049ED00DC80B1 /* Products */,
@@ -340,14 +370,14 @@
 			path = "Other Sources";
 			sourceTree = "<group>";
 		};
-		5E1E247A26C04A3600DC80B1 /* Contfiguration */ = {
+		5E1E247A26C04A3600DC80B1 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				5E1E248726C04B6100DC80B1 /* Project-Shared.xcconfig */,
-				5E1E248826C04B6100DC80B1 /* Project-Debug.xcconfig */,
-				5E1E248626C04B6100DC80B1 /* Project-Release.xcconfig */,
+				5E1623CE28EA3296002A8D9E /* SwiftFormat */,
+				5E1623CC28EA3267002A8D9E /* Configuration */,
+				5E1623D328EA32DB002A8D9E /* Scripts */,
 			);
-			path = Contfiguration;
+			path = Common;
 			sourceTree = "<group>";
 		};
 		5E98AF8B26C05901001811C5 /* Extensions */ = {

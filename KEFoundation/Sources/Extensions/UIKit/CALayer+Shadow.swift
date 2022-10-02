@@ -30,17 +30,16 @@ import QuartzCore
 import UIKit
 
 public struct Shadow {
-
 	public var color: CGColor?
 	public var opacity: Float
 	public var offset: CGSize
-	public var radius: CGFloat
+	public var radius: Double
 	public var path: CGPath?
 
 	public static let noShadow = Shadow(color: nil, opacity: 0, offset: .zero, radius: 0)
 	public static let `default` = Shadow(color: UIColor.black.cgColor, opacity: 0.2, offset: .zero, radius: 16)
 
-	public init(color: CGColor?, opacity: Float, offset: CGSize, radius: CGFloat, path: CGPath? = nil) {
+	public init(color: CGColor?, opacity: Float, offset: CGSize, radius: Double, path: CGPath? = nil) {
 		self.color = color
 		self.opacity = opacity
 		self.offset = offset
@@ -50,7 +49,6 @@ public struct Shadow {
 }
 
 extension CALayer {
-
 	public var shadow: Shadow {
 		get {
 			Shadow(color: shadowColor, opacity: shadowOpacity, offset: shadowOffset, radius: shadowRadius, path: shadowPath)

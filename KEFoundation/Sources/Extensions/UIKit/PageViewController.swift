@@ -29,7 +29,6 @@
 import UIKit
 
 public class PageViewController: UIViewController {
-
 	public var embeddedViewControllers: [UIViewController] = [] {
 		didSet {
 			remove(oldViewControllers: oldValue)
@@ -123,7 +122,7 @@ public class PageViewController: UIViewController {
 
 	private func fixContentOffset() {
 		let width = scrollView.bounds.width
-		scrollView.contentOffset.x = CGFloat(currentPage) * width
+		scrollView.contentOffset.x = Double(currentPage) * width
 	}
 
 	public override func viewDidLayoutSubviews() {
@@ -132,10 +131,9 @@ public class PageViewController: UIViewController {
 	}
 }
 
-// MARK: - UIScrollViewDelegate
+// MARK: UIScrollViewDelegate
 
 extension PageViewController: UIScrollViewDelegate {
-
 	public func scrollViewDidScroll(_ scrollView: UIScrollView) {
 		pageControl.currentPage = currentPage
 	}

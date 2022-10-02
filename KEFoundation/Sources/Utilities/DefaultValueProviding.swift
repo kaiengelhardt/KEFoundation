@@ -29,6 +29,5 @@
 import Foundation
 
 public protocol DefaultValueProviding {
-
 	static var defaultValue: Self { get }
 }

@@ -29,7 +29,6 @@
 import Foundation
 
 extension NSSortDescriptor {
-
 	public typealias Order = (AnyObject, AnyObject) -> Bool
 
 	public var order: Order {
@@ -40,7 +39,6 @@ extension NSSortDescriptor {
 }
 
 extension Array where Element: NSSortDescriptor {
-
 	public typealias Order = (AnyObject, AnyObject) -> Bool
 
 	public var order: Order {

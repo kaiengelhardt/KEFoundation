@@ -29,21 +29,20 @@
 import UIKit
 
 extension UILayoutPriority {
-
 	public static func + (lhs: UILayoutPriority, rhs: Float) -> UILayoutPriority {
-		return UILayoutPriority((lhs.rawValue + rhs).clamped(to: 0...1_000))
+		return UILayoutPriority((lhs.rawValue + rhs).clamped(to: 0 ... 1_000))
 	}
 
 	public static func - (lhs: UILayoutPriority, rhs: Float) -> UILayoutPriority {
-		return UILayoutPriority((lhs.rawValue - rhs).clamped(to: 0...1_000))
+		return UILayoutPriority((lhs.rawValue - rhs).clamped(to: 0 ... 1_000))
 	}
 
 	public static func + (lhs: Float, rhs: UILayoutPriority) -> UILayoutPriority {
-		return UILayoutPriority((lhs + rhs.rawValue).clamped(to: 0...1_000))
+		return UILayoutPriority((lhs + rhs.rawValue).clamped(to: 0 ... 1_000))
 	}
 
 	public static func - (lhs: Float, rhs: UILayoutPriority) -> UILayoutPriority {
-		return UILayoutPriority((lhs - rhs.rawValue).clamped(to: 0...1_000))
+		return UILayoutPriority((lhs - rhs.rawValue).clamped(to: 0 ... 1_000))
 	}
 
 	public static func + (lhs: UILayoutPriority, rhs: Int) -> UILayoutPriority {
@@ -63,10 +62,10 @@ extension UILayoutPriority {
 	}
 
 	public static func + (lhs: UILayoutPriority, rhs: UILayoutPriority) -> UILayoutPriority {
-		return UILayoutPriority((lhs.rawValue + rhs.rawValue).clamped(to: 0...1_000))
+		return UILayoutPriority((lhs.rawValue + rhs.rawValue).clamped(to: 0 ... 1_000))
 	}
 
 	public static func - (lhs: UILayoutPriority, rhs: UILayoutPriority) -> UILayoutPriority {
-		return UILayoutPriority((lhs.rawValue - rhs.rawValue).clamped(to: 0...1_000))
+		return UILayoutPriority((lhs.rawValue - rhs.rawValue).clamped(to: 0 ... 1_000))
 	}
 }

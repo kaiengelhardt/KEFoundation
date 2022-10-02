@@ -29,12 +29,11 @@
 import UIKit
 
 open class TouchesCancellingScrollView: UIScrollView {
-
 	public var classesForNotCancellingTouches: [UIView.Type] = []
 
 	open override func touchesShouldCancel(in view: UIView) -> Bool {
-		return !classesForNotCancellingTouches.contains { aClass in
+		return !classesForNotCancellingTouches.contains(where: { aClass in
 			type(of: view).isSubclass(of: aClass)
-		}
+		})
 	}
 }

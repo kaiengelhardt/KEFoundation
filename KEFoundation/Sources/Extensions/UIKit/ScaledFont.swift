@@ -69,9 +69,8 @@ import SwiftUI
 /// in the dictionary it will fallback to the system preferred
 /// font.
 public final class ScaledFont {
-
 	private struct FontDescription: Decodable {
-		let fontSize: CGFloat
+		let fontSize: Double
 		let fontName: String
 	}
 
@@ -108,10 +107,10 @@ public final class ScaledFont {
 	public func font(forTextStyle textStyle: UIFont.TextStyle) -> UIFont {
 		guard
 			let fontDescription = styleDictionary?[textStyle.rawValue],
-			let font = UIFont(name: fontDescription.fontName, size: fontDescription.fontSize) else
-			{
-				return UIFont.preferredFont(forTextStyle: textStyle)
-			}
+			let font = UIFont(name: fontDescription.fontName, size: fontDescription.fontSize)
+		else {
+			return UIFont.preferredFont(forTextStyle: textStyle)
+		}
 
 		let fontMetrics = UIFontMetrics(forTextStyle: textStyle)
 		let scaledFont = fontMetrics.scaledFont(for: font)
@@ -121,10 +120,10 @@ public final class ScaledFont {
 	public func unscaledFont(forTextStyle textStyle: UIFont.TextStyle) -> UIFont {
 		guard
 			let fontDescription = styleDictionary?[textStyle.rawValue],
-			let font = UIFont(name: fontDescription.fontName, size: fontDescription.fontSize) else
-			{
-				return UIFont.preferredFont(forTextStyle: textStyle)
-			}
+			let font = UIFont(name: fontDescription.fontName, size: fontDescription.fontSize)
+		else {
+			return UIFont.preferredFont(forTextStyle: textStyle)
+		}
 
 		return font
 	}
@@ -156,7 +155,6 @@ public final class ScaledFont {
 }
 
 extension UIFont.TextStyle {
-
 	@available(iOS 13, *)
 	var swiftUITextStyle: Font.TextStyle {
 		if #available(iOS 14, *) {
@@ -219,7 +217,6 @@ extension UIFont.TextStyle {
 
 @available(iOS 13, *)
 extension Font.TextStyle {
-
 	public var uiKitTextStyle: UIFont.TextStyle {
 		switch self {
 		case .largeTitle:
@@ -252,7 +249,6 @@ extension Font.TextStyle {
 
 @available(iOS 13, *)
 extension Font {
-
 	public static func preferredFont(forTextStyle textStyle: TextStyle) -> Font {
 		switch textStyle {
 		case .largeTitle:

@@ -28,15 +28,17 @@
 
 import UIKit
 
-extension UILayoutPriority: ExpressibleByIntegerLiteral {
+// MARK: - UILayoutPriority + ExpressibleByIntegerLiteral
 
+extension UILayoutPriority: ExpressibleByIntegerLiteral {
 	public init(integerLiteral value: Int) {
 		self.init(rawValue: Float(value))
 	}
 }
 
-extension UILayoutPriority: ExpressibleByFloatLiteral {
+// MARK: - UILayoutPriority + ExpressibleByFloatLiteral
 
+extension UILayoutPriority: ExpressibleByFloatLiteral {
 	public init(floatLiteral value: Float) {
 		self.init(rawValue: value)
 	}

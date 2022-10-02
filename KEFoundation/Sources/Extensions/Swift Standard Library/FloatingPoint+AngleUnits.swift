@@ -29,7 +29,6 @@
 import Foundation
 
 extension FloatingPoint {
-
 	public var radians: Self {
 		return self / 180 * .pi
 	}

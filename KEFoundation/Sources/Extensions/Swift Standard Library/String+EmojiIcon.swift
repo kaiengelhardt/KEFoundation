@@ -29,7 +29,6 @@
 import UIKit
 
 extension String {
-
 	public func image(ofSize size: CGSize) -> UIImage? {
 		UIGraphicsBeginImageContextWithOptions(size, false, 0)
 		UIColor.clear.set()

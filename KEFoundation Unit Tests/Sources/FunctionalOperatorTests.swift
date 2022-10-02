@@ -26,11 +26,10 @@
 //  SOFTWARE.
 //
 
-import XCTest
 @testable import KEFoundation
+import XCTest
 
 class FunctionalOperatorTests: XCTestCase {
-
 	func testForwardApplication() {
 		let result = 10 |> increment |> square
 		XCTAssertEqual(result, 121)

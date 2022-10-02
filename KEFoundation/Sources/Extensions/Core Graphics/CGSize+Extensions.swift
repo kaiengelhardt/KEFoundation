@@ -29,20 +29,19 @@
 import CoreGraphics
 
 extension CGSize {
-
 	public init(point: CGPoint) {
 		self.init(width: point.x, height: point.y)
 	}
 
-	public init(allDimensions axisLength: CGFloat) {
+	public init(allDimensions axisLength: Double) {
 		self.init(width: axisLength, height: axisLength)
 	}
 
-	public var smallestDimension: CGFloat {
+	public var smallestDimension: Double {
 		min(width, height)
 	}
 
-	public var largestDimension: CGFloat {
+	public var largestDimension: Double {
 		max(width, height)
 	}
 }

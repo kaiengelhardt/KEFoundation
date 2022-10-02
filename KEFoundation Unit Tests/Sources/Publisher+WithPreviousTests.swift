@@ -27,12 +27,11 @@
 //  SOFTWARE.
 //
 
-import XCTest
 import Combine
 @testable import KEFoundation
+import XCTest
 
 class Publisher_WithPreviousTests: XCTestCase {
-
 	private var cancellables: Set<AnyCancellable> = []
 
 	override func setUpWithError() throws {

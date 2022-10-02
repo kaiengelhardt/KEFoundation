@@ -30,7 +30,6 @@ import UIKit
 
 @propertyWrapper
 public struct ActiveConstraint<Constraint: ConstraintActivatable> where Constraint: Equatable {
-
 	public var wrappedValue: Constraint {
 		didSet {
 			guard wrappedValue != oldValue else {
@@ -48,20 +47,19 @@ public struct ActiveConstraint<Constraint: ConstraintActivatable> where Constrai
 }
 
 extension ActiveConstraint where Constraint: DefaultValueProviding {
-
 	public init() {
 		wrappedValue = Constraint.defaultValue
 	}
 }
 
 public protocol ConstraintActivatable {
-
 	func activate()
 	func deactivate()
 }
 
-extension NSLayoutConstraint: ConstraintActivatable {
+// MARK: - NSLayoutConstraint + ConstraintActivatable
 
+extension NSLayoutConstraint: ConstraintActivatable {
 	public func activate() {
 		isActive = true
 	}
@@ -71,8 +69,9 @@ extension NSLayoutConstraint: ConstraintActivatable {
 	}
 }
 
-extension Optional: ConstraintActivatable where Wrapped: ConstraintActivatable {
+// MARK: - Optional + ConstraintActivatable
 
+extension Optional: ConstraintActivatable where Wrapped: ConstraintActivatable {
 	public func activate() {
 		self?.activate()
 	}
@@ -82,15 +81,17 @@ extension Optional: ConstraintActivatable where Wrapped: ConstraintActivatable {
 	}
 }
 
-extension Optional: DefaultValueProviding where Wrapped: NSLayoutConstraint {
+// MARK: - Optional + DefaultValueProviding
 
+extension Optional: DefaultValueProviding where Wrapped: NSLayoutConstraint {
 	public static var defaultValue: Wrapped? {
 		nil
 	}
 }
 
-extension Array: ConstraintActivatable where Element: NSLayoutConstraint {
+// MARK: - Array + ConstraintActivatable
 
+extension Array: ConstraintActivatable where Element: NSLayoutConstraint {
 	public func activate() {
 		NSLayoutConstraint.activate(self)
 	}
@@ -100,8 +101,9 @@ extension Array: ConstraintActivatable where Element: NSLayoutConstraint {
 	}
 }
 
-extension Array: DefaultValueProviding where Element: NSLayoutConstraint {
+// MARK: - Array + DefaultValueProviding
 
+extension Array: DefaultValueProviding where Element: NSLayoutConstraint {
 	public static var defaultValue: [Element] {
 		[]
 	}

@@ -30,7 +30,6 @@ import Foundation
 
 /// Based on [ValueTransformer](https://github.com/objcio/core-data/blob/master/SharedCode/ValueTransformer.swift) by Florian Kugler.
 public class ClosureValueTransformer<Source: AnyObject, Destination: AnyObject>: ValueTransformer {
-
 	public typealias Transform = (Source?) -> Destination?
 	public typealias ReverseTransform = (Destination?) -> Source?
 

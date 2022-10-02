@@ -29,7 +29,6 @@
 import UIKit
 
 extension UIEdgeInsets {
-
 	public static prefix func - (insets: UIEdgeInsets) -> UIEdgeInsets {
 		return UIEdgeInsets(
 			top: -insets.top,

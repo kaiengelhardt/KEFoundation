@@ -29,7 +29,6 @@
 import UIKit
 
 public class CircularProgressView: UIView {
-
 	public var progressColor: UIColor? {
 		didSet {
 			updateColors()
@@ -64,12 +63,12 @@ public class CircularProgressView: UIView {
 			_progress
 		}
 		set {
-			_progress = newValue.clamped(to: 0...1)
+			_progress = newValue.clamped(to: 0 ... 1)
 			update()
 		}
 	}
 
-	public var lineWidth: CGFloat = 4 {
+	public var lineWidth: Double = 4 {
 		didSet {
 			borderLayer.lineWidth = lineWidth
 			progressLayer.lineWidth = lineWidth
@@ -106,7 +105,7 @@ public class CircularProgressView: UIView {
 	}
 
 	private func update() {
-		progressLayer.strokeEnd = CGFloat(progress)
+		progressLayer.strokeEnd = Double(progress)
 	}
 
 	private func updateColors() {

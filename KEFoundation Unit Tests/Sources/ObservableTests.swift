@@ -28,12 +28,11 @@
 
 // swiftlint:disable implicitly_unwrapped_optional
 
-import XCTest
 import Combine
 @testable import KEFoundation
+import XCTest
 
 class ObservableTests: XCTestCase {
-
 	private var object: MockObject!
 	private var cancellables: Set<AnyCancellable> = []
 
@@ -118,12 +117,11 @@ class ObservableTests: XCTestCase {
 }
 
 private class MockObject {
-
 	@Observable var observableValue: String
 	@Published var publishedValue: String
 
 	init(value: String) {
-		self.observableValue = value
-		self.publishedValue = value
+		observableValue = value
+		publishedValue = value
 	}
 }

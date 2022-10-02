@@ -1,0 +1,250 @@
+# SwiftFormat version: 0.50.0
+
+# Rules
+--rules \
+anyObjectProtocol, \
+assertionFailures, \
+blankLineAfterImports, \
+blankLinesAroundMark, \
+blankLinesAtEndOfScope, \
+blankLinesAtStartOfScope, \
+blankLinesBetweenImports, \
+blankLinesBetweenScopes, \
+braces, \
+consecutiveBlankLines, \
+consecutiveSpaces, \
+duplicateImports, \
+elseOnSameLine, \
+emptyBraces, \
+enumNamespaces, \
+extensionAccessControl, \
+genericExtensions, \
+hoistPatternLet, \
+indent, \
+initCoderUnavailable, \
+isEmpty, \
+leadingDelimiters, \
+linebreakAtEndOfFile, \
+linebreaks, \
+markTypes, \
+modifierOrder, \
+numberFormatting, \
+opaqueGenericParameters, \
+preferDouble, \
+preferKeyPath, \
+redundantBackticks, \
+redundantBreak, \
+redundantClosure, \
+redundantExtensionACL, \
+redundantFileprivate, \
+redundantGet, \
+redundantInit, \
+redundantLet, \
+redundantLetError, \
+redundantNilInit, \
+redundantObjc, \
+redundantOptionalBinding, \
+redundantParens, \
+redundantPattern, \
+redundantSelf, \
+redundantType, \
+redundantVoidReturnType, \
+semicolons, \
+sortDeclarations, \
+sortedImports, \
+spaceAroundBraces, \
+spaceAroundBrackets, \
+spaceAroundComments, \
+spaceAroundGenerics, \
+spaceAroundOperators, \
+spaceAroundParens, \
+spaceInsideBraces, \
+spaceInsideBrackets, \
+spaceInsideComments, \
+spaceInsideGenerics, \
+spaceInsideParens, \
+strongOutlets, \
+strongifiedSelf, \
+todos, \
+trailingClosures, \
+trailingCommas, \
+trailingSpace, \
+typeSugar, \
+void, \
+wrap, \
+wrapArguments, \
+wrapAttributes, \
+wrapConditionalBodies, \
+wrapEnumCases, \
+wrapMultilineStatementBraces, \
+wrapSwitchCases, \
+yodaConditions
+
+--disable \
+# --------------------
+acronyms, \
+andOperator, \
+blockComments, \
+fileHeader, \
+# Disabling this rule, because it changes the code too much. It sorts all declarations by visibility.
+organizeDeclarations, \
+# Raw values should not be removed, as they might be stored persistently and that could be problematic when refactoring.
+redundantRawValues, \
+# This removes return statements in properties, which is not cool.
+redundantReturn, \
+# Often it makes sense for cases to have a specific logical order, instead of the alphabetic one.
+# Example: UIGestureRecognizer.state
+sortedSwitchCases, \
+# It's good to have parameter names, even if you don't use the parameter. It helps with documentation.
+unusedArguments, \
+# This rule incorrectly breaks doc comments.
+wrapSingleLineComments
+
+# Rule Options
+
+# acronyms options
+--acronyms ID,URL,UUID, UDID, GID, HTTP, HTTPS, ASCII
+
+# blankLinesAtStartOfScope options
+--typeblanklines remove
+
+# blankLinesAroundMark options
+--lineaftermarks true
+
+# braces options
+--allman false
+
+# elseOnSameLine options
+--elseposition same-line
+--guardelse auto
+
+# emptyBraces options
+--emptybraces no-space
+
+# enumNamespaces options
+--enumnamespaces always
+
+# extensionAccessControl options
+--extensionacl on-declarations
+
+# fileHeader options
+--header ignore
+
+# genericExtensions options
+--generictypes
+
+# hoistPatternLet options
+--patternlet hoist
+
+# indent options
+--indent tab
+--indentcase false
+--indentstrings false
+--tabwidth unspecified
+--xcodeindentation disabled
+--smarttabs enabled
+--ifdef no-indent
+
+# linebreaks options
+--linebreaks lf
+
+# markTypes options
+--marktypes never
+--typemark "MARK: - %t"
+--markextensions always
+--extensionmark "MARK: - %t + %c"
+--groupedextension "MARK: %c"
+
+# modifierOrder options
+--modifierorder public,internal,private,final,override,convenience,static,class,weak,lazy
+
+# numberFormatting options
+--decimalgrouping 3,0
+--binarygrouping 4,0
+--octalgrouping 4,0
+--hexgrouping 4,0
+--fractiongrouping disabled
+--exponentgrouping disabled
+--hexliteralcase uppercase
+--exponentcase lowercase
+
+# opaqueGenericParameters options
+--someAny true
+
+# organizeDeclarations options
+--categorymark "MARK: %c"
+--markcategories true
+--beforemarks
+--lifecycle
+--organizetypes actor,class,enum,struct
+--structthreshold 0
+--classthreshold 0
+--enumthreshold 0
+--extensionlength 0
+
+# redundantSelf options
+--self remove
+--selfrequired
+
+# redundantType options
+--redundanttype inferred
+
+# redundantVoidReturnType options
+--closurevoid remove
+
+# semicolons options
+--semicolons inline
+
+# sortedImports options
+--importgrouping alpha
+
+# spaceAroundOperators options
+--operatorfunc spaced
+--nospaceoperators
+--ranges spaced
+
+# trailingClosures options
+--trailingclosures
+--nevertrailing
+
+# trailingCommas options
+--commas always
+
+# trailingSpace options
+--trimwhitespace always
+
+# typeSugar options
+--shortoptionals always
+
+# unusedArguments options
+--stripunusedargs always
+
+# void options
+--voidtype void
+
+# wrap options
+--maxwidth 120
+--nowrapoperators
+--assetliterals visual-width
+--wrapternary default
+
+# wrapArguments options
+--wraparguments before-first
+--wrapcollections before-first
+--wrapconditions before-first
+--wrapparameters before-first
+--wrapreturntype preserve
+--wraptypealiases before-first
+--closingparen balanced
+
+# wrapAttributes options
+--funcattributes prev-line
+--typeattributes prev-line
+--varattributes preserve
+
+# yodaConditions options
+--yodaswap always
+
+# global options
+--conflictmarkers reject
+--fragment false

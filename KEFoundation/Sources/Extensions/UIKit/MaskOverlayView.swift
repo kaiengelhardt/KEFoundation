@@ -29,7 +29,6 @@
 import UIKit
 
 public class MaskOverlayView: UIView {
-
 	public weak var maskPath: CGPath? {
 		didSet {
 			updatePath()
@@ -79,7 +78,7 @@ public class MaskOverlayView: UIView {
 	}
 
 	private func updatePath() {
-		if let maskPath = maskPath {
+		if let maskPath {
 			let path = CGMutablePath()
 			path.addPath(UIBezierPath(rect: bounds).cgPath)
 			path.addPath(maskPath)

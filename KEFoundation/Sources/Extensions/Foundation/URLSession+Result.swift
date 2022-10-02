@@ -29,9 +29,7 @@
 import Foundation
 
 extension URLSession {
-
 	public enum TaskError: Error {
-
 		case generic(Error, URLResponse?)
 	}
 
@@ -41,9 +39,12 @@ extension URLSession {
 	/// Based on this [blog post](https://oleb.net/blog/2018/03/making-illegal-states-unrepresentable/) by Ole Begemann.
 	public func dataTask(with url: URL, completionHandler: @escaping DataTaskCompletionHandler) -> URLSessionDataTask {
 		let task = dataTask(with: url) { data, response, error in
-			if let data = data, let response = response {
+			if
+				let data,
+				let response
+			{
 				completionHandler(.success((data, response)))
-			} else if let error = error {
+			} else if let error {
 				completionHandler(.failure(.generic(error, response)))
 			} else {
 				fatalError("Unexpected state in data task completion handler!")
@@ -61,9 +62,12 @@ extension URLSession {
 		completionHandler: @escaping DownloadTaskCompletionHandler
 	) -> URLSessionDownloadTask {
 		let task = downloadTask(with: url) { url, response, error in
-			if let url = url, let response = response {
+			if
+				let url,
+				let response
+			{
 				completionHandler(.success((url, response)))
-			} else if let error = error {
+			} else if let error {
 				completionHandler(.failure(.generic(error, response)))
 			} else {
 				fatalError("Unexpected state in download task completion handler!")

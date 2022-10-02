@@ -29,7 +29,6 @@
 import UIKit
 
 extension UIStackView {
-
 	public func removeCustomSpacing() {
 		let views = arrangedSubviews
 		for view in views {

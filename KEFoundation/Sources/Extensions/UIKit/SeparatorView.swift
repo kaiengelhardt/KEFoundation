@@ -29,7 +29,6 @@
 import UIKit
 
 public class SeparatorView: UIView {
-
 	private let contentView = UIView()
 
 	public var axis: NSLayoutConstraint.Axis = .horizontal {
@@ -39,7 +38,7 @@ public class SeparatorView: UIView {
 		}
 	}
 
-	public var thickness: CGFloat = 1 {
+	public var thickness: Double = 1 {
 		didSet {
 			invalidateIntrinsicContentSize()
 		}

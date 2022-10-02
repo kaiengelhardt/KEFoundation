@@ -26,11 +26,10 @@
 //  SOFTWARE.
 //
 
-import Foundation
 import CoreText
+import Foundation
 
 extension CTFont {
-
 	public class func registerCustomFont(withName name: String, ofType type: String, bundle: Bundle) throws {
 		guard let url = bundle.url(forResource: name, withExtension: type) else {
 			throw RegistrationError.fileNotFound
@@ -41,10 +40,10 @@ extension CTFont {
 	}
 }
 
+// MARK: - CTFont.RegistrationError
+
 extension CTFont {
-
 	public enum RegistrationError: Error {
-
 		case fileNotFound
 		case failedToRegister
 	}

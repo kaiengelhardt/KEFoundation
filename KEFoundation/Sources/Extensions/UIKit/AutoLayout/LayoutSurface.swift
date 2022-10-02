@@ -37,7 +37,6 @@ import AppKit
 #endif
 
 public protocol LayoutSurface {
-
 	var leadingAnchor: NSLayoutXAxisAnchor { get }
 	var trailingAnchor: NSLayoutXAxisAnchor { get }
 	var leftAnchor: NSLayoutXAxisAnchor { get }
@@ -51,24 +50,23 @@ public protocol LayoutSurface {
 }
 
 extension LayoutSurface {
-
-#if canImport(UIKit)
+	#if canImport(UIKit)
 
 	public typealias EdgeInsets = UIEdgeInsets
 
-#elseif canImport(AppKit)
+	#elseif canImport(AppKit)
 
 	public typealias EdgeInsets = NSEdgeInsets
 	public typealias NSLayoutRelation = NSLayoutConstraint.Relation
 
-#endif
+	#endif
 
 	public func constraintsMatchingEdges(
 		of surface: LayoutSurface?,
 		insetBy inset: EdgeInsets = .zero,
 		relation: NSLayoutConstraint.Relation = .equal
 	) -> [NSLayoutConstraint] {
-		guard let surface = surface else {
+		guard let surface else {
 			return []
 		}
 
@@ -110,7 +108,7 @@ extension LayoutSurface {
 		offsetBy offset: CGSize = .zero,
 		relation: NSLayoutConstraint.Relation = .equal
 	) -> [NSLayoutConstraint] {
-		guard let surface = surface else {
+		guard let surface else {
 			return []
 		}
 
@@ -143,7 +141,7 @@ extension LayoutSurface {
 		multipliedBy multiplier: CGSize = CGSize(width: 1, height: 1),
 		relation: NSLayoutConstraint.Relation = .equal
 	) -> [NSLayoutConstraint] {
-		guard let surface = surface else {
+		guard let surface else {
 			return []
 		}
 
@@ -214,7 +212,7 @@ extension LayoutSurface {
 		multipliedBy multiplier: CGSize = CGSize(width: 1, height: 1),
 		relation: NSLayoutConstraint.Relation = .equal
 	) -> [NSLayoutConstraint] {
-		guard let surface = surface else {
+		guard let surface else {
 			return []
 		}
 
@@ -274,7 +272,7 @@ extension LayoutSurface {
 		]
 	}
 
-	public func aspectRatioConstraint(ratio: CGFloat = 1) -> NSLayoutConstraint {
+	public func aspectRatioConstraint(ratio: Double = 1) -> NSLayoutConstraint {
 		return widthAnchor.constraint(equalTo: heightAnchor, multiplier: ratio, constant: 0)
 	}
 }
@@ -289,18 +287,19 @@ private typealias View = NSView
 
 #endif
 
-extension View: LayoutSurface {
+// MARK: - View + LayoutSurface
 
-#if canImport(UIKit)
+extension View: LayoutSurface {
+	#if canImport(UIKit)
 
 	public typealias EdgeInsets = UIEdgeInsets
 
-#elseif canImport(AppKit)
+	#elseif canImport(AppKit)
 
 	public typealias EdgeInsets = NSEdgeInsets
 	public typealias NSLayoutRelation = NSLayoutConstraint.Relation
 
-#endif
+	#endif
 
 	public func constraintsMatchingEdgesOfSuperview(
 		insetBy insets: EdgeInsets = .zero,
@@ -343,14 +342,13 @@ extension NSLayoutGuide: LayoutSurface {}
 #endif
 
 extension Array where Element: LayoutSurface {
-
 	public func constraintsMatchingWidth() -> [NSLayoutConstraint] {
 		guard
-			let first = first,
-			count > 1 else
-			{
-				return []
-			}
+			let first,
+			count > 1
+		else {
+			return []
+		}
 		let constraints = dropFirst().map {
 			$0.widthAnchor.constraint(equalTo: first.widthAnchor)
 		}
@@ -359,11 +357,11 @@ extension Array where Element: LayoutSurface {
 
 	public func constraintsMatchingHeight() -> [NSLayoutConstraint] {
 		guard
-			let first = first,
-			count > 1 else
-			{
-				return []
-			}
+			let first,
+			count > 1
+		else {
+			return []
+		}
 		let constraints = dropFirst().map {
 			$0.heightAnchor.constraint(equalTo: first.heightAnchor)
 		}
@@ -372,11 +370,11 @@ extension Array where Element: LayoutSurface {
 
 	public func constraintsMatchingSize() -> [NSLayoutConstraint] {
 		guard
-			let first = first,
-			count > 1 else
-			{
-				return []
-			}
+			let first,
+			count > 1
+		else {
+			return []
+		}
 		let constraints = dropFirst().flatMap {
 			[
 				$0.widthAnchor.constraint(equalTo: first.widthAnchor),

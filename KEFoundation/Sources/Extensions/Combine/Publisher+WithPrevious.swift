@@ -30,7 +30,6 @@ import Combine
 
 /// Taken from this [Stackoverflow answer](https://stackoverflow.com/a/67133582/980386).
 extension Publisher {
-
 	/// Includes the current element as well as the previous element from the upstream publisher in a tuple
 	/// where the previous element is optional.
 	/// The first time the upstream publisher emits an element, the previous element will be `nil`.

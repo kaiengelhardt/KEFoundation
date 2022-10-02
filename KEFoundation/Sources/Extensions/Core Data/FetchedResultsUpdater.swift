@@ -29,7 +29,6 @@
 import CoreData
 
 public class FetchedResultsUpdater: NSObject {
-
 	public enum SectionUpdate {
 		case insert(Int)
 		case delete(Int)
@@ -58,8 +57,9 @@ public class FetchedResultsUpdater: NSObject {
 	}
 }
 
-extension FetchedResultsUpdater: NSFetchedResultsControllerDelegate {
+// MARK: NSFetchedResultsControllerDelegate
 
+extension FetchedResultsUpdater: NSFetchedResultsControllerDelegate {
 	public func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
 		sectionUpdates = []
 		rowUpdates = []
@@ -90,7 +90,7 @@ extension FetchedResultsUpdater: NSFetchedResultsControllerDelegate {
 		newIndexPath _newIndexPath: IndexPath?
 	) {
 		let indexPath: IndexPath?
-		if let _indexPath = _indexPath {
+		if let _indexPath {
 			indexPath = IndexPath(
 				row: _indexPath.row + indexPathOffset.row,
 				section: _indexPath.section + indexPathOffset.section
@@ -99,7 +99,7 @@ extension FetchedResultsUpdater: NSFetchedResultsControllerDelegate {
 			indexPath = nil
 		}
 		let newIndexPath: IndexPath?
-		if let _newIndexPath = _newIndexPath {
+		if let _newIndexPath {
 			newIndexPath = IndexPath(
 				row: _newIndexPath.row + indexPathOffset.row,
 				section: _newIndexPath.section + indexPathOffset.section
@@ -131,7 +131,6 @@ extension FetchedResultsUpdater: NSFetchedResultsControllerDelegate {
 }
 
 public protocol FetchedResultsUpdaterDelegate: AnyObject {
-
 	func updater(
 		_ updater: FetchedResultsUpdater,
 		didUpdateWithSectionUpdates sectionUpdates: [FetchedResultsUpdater.SectionUpdate],

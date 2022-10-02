@@ -29,14 +29,12 @@
 import CoreData
 
 public protocol Managed: NSFetchRequestResult {
-
 	static var entityName: String { get }
 
 	static var defaultSortDescriptors: [NSSortDescriptor] { get }
 }
 
 extension Managed where Self: NSManagedObject {
-
 	public static var entityName: String {
 		return entity().name!
 	}
@@ -46,7 +44,7 @@ extension Managed where Self: NSManagedObject {
 	}
 
 	public static var sortedFetchRequest: NSFetchRequest<Self> {
-		let request = self.fetchRequest() as! NSFetchRequest<Self> // swiftlint:disable:this force_cast
+		let request = fetchRequest() as! NSFetchRequest<Self> // swiftlint:disable:this force_cast
 		request.sortDescriptors = defaultSortDescriptors
 		return request
 	}
