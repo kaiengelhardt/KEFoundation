@@ -26,16 +26,24 @@
 //  SOFTWARE.
 //
 
-precedencegroup Configuration {
-	associativity: left
-}
+import XCTest
+@testable import KEFoundation
 
-infix operator <~: Configuration
+final class InstanceConfigurationTests: XCTestCase {
 
-public func <~<Instance>(
-	instance: Instance,
-	configure: (Instance) -> Void
-) -> Instance  where Instance: AnyObject {
-	configure(instance)
-	return instance
+    func testInstanceConfiguration() throws {
+		let label = UILabel() <~ {
+			$0.textAlignment = .right
+		}
+		XCTAssertEqual(label.textAlignment, .right)
+    }
+
+	func testInstanceConfigurationSequence() throws {
+		let label = UILabel() <~ {
+			$0.textAlignment = .right
+		} <~ {
+			$0.textAlignment = .center
+		}
+		XCTAssertEqual(label.textAlignment, .center)
+	}
 }
