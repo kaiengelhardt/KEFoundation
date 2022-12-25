@@ -336,7 +336,7 @@
 			isa = PBXGroup;
 			children = (
 				5E1E248926C04E8500DC80B1 /* README.md */,
-				5E1E247A26C04A3600DC80B1 /* Common */,
+				5E1E247A26C04A3600DC80B1 /* Common Supporting Files */,
 				5E1623C628EA282A002A8D9E /* KEFoundation */,
 				5E1623C728EA282F002A8D9E /* KEFoundation Unit Tests */,
 				5E1E245E26C049ED00DC80B1 /* Products */,
@@ -380,14 +380,14 @@
 			path = "Other Sources";
 			sourceTree = "<group>";
 		};
-		5E1E247A26C04A3600DC80B1 /* Common */ = {
+		5E1E247A26C04A3600DC80B1 /* Common Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
 				5E1623CE28EA3296002A8D9E /* SwiftFormat */,
 				5E1623CC28EA3267002A8D9E /* Configuration */,
 				5E1623D328EA32DB002A8D9E /* Scripts */,
 			);
-			path = Common;
+			path = "Common Supporting Files";
 			sourceTree = "<group>";
 		};
 		5E98AF8B26C05901001811C5 /* Extensions */ = {
