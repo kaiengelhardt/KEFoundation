@@ -20,12 +20,12 @@ let package = Package(
 		.target(
 			name: "KEFoundation",
 			dependencies: [],
-			path: "Sources"
+			path: "KEFoundation"
 		),
 		.testTarget(
 			name: "KEFoundation Unit Tests",
 			dependencies: ["KEFoundation"],
-			path: "Unit Tests"
+			path: "KEFoundation Unit Tests"
 		),
 	]
 )
