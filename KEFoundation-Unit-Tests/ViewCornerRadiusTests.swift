@@ -26,11 +26,10 @@
 //  SOFTWARE.
 //
 
-import XCTest
 @testable import KEFoundation
+import XCTest
 
 final class ViewCornerRadiusTests: XCTestCase {
-
 	func testApplyFullViewCornerRadiusOnView() {
 		let view = UIView()
 		view.frame = CGRect(x: 20, y: 20, width: 200, height: 100)

@@ -3,18 +3,17 @@
 import UIKit
 
 public enum ViewCornerRadius {
-
 	public static let full: ViewCornerRadius = .fraction(1)
 	public static let zero: ViewCornerRadius = .fraction(0)
 
-	case fraction(CGFloat)
-	case fixed(CGFloat)
+	case fraction(Double)
+	case fixed(Double)
 
 	public func apply(to layer: CALayer) {
 		switch self {
-		case .fraction(let fraction):
+		case let .fraction(fraction):
 			layer.cornerRadius = layer.bounds.smallestSide / 2 * fraction
-		case .fixed(let radius):
+		case let .fixed(radius):
 			layer.cornerRadius = radius
 		}
 	}

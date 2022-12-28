@@ -34,10 +34,10 @@ precedencegroup Configuration {
 
 infix operator <~: Configuration
 
-public func <~<Instance>(
+public func <~ <Instance>(
 	instance: Instance,
 	configure: InstanceConfiguration<Instance>
-) -> Instance  where Instance: AnyObject {
+) -> Instance where Instance: AnyObject {
 	configure(instance)
 	return instance
 }

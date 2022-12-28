@@ -26,17 +26,16 @@
 //  SOFTWARE.
 //
 
-import XCTest
 @testable import KEFoundation
+import XCTest
 
 final class InstanceConfigurationTests: XCTestCase {
-
-    func testInstanceConfiguration() throws {
+	func testInstanceConfiguration() throws {
 		let label = UILabel() <~ {
 			$0.textAlignment = .right
 		}
 		XCTAssertEqual(label.textAlignment, .right)
-    }
+	}
 
 	func testInstanceConfigurationSequence() throws {
 		let label = UILabel() <~ {
