@@ -40,7 +40,8 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
@@ -49,6 +50,16 @@
                BlueprintIdentifier = "KEFoundation Unit Tests"
                BuildableName = "KEFoundation Unit Tests"
                BlueprintName = "KEFoundation Unit Tests"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "KEFoundation-Unit-Tests"
+               BuildableName = "KEFoundation-Unit-Tests"
+               BlueprintName = "KEFoundation-Unit-Tests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>
