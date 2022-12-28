@@ -23,9 +23,9 @@ let package = Package(
 			path: "KEFoundation"
 		),
 		.testTarget(
-			name: "KEFoundation Unit Tests",
+			name: "KEFoundation-Unit-Tests",
 			dependencies: ["KEFoundation"],
-			path: "KEFoundation Unit Tests"
+			path: "KEFoundation-Unit-Tests"
 		),
 	]
 )
