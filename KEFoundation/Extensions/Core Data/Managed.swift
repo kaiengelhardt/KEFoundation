@@ -65,18 +65,20 @@ extension Managed where Self: NSManagedObject {
 	) -> [Self] {
 		let request = NSFetchRequest<Self>(entityName: Self.entityName)
 		configuration(request)
-		return try! context.fetch(request) // swiftlint:disable:this force_try
+		let results = try! context.fetch(request) // swiftlint:disable:this force_try
+		return results
 	}
 
 	public static func findOrFetch(in context: NSManagedObjectContext, matching predicate: NSPredicate) -> Self? {
 		if let object = materializedObject(in: context, matching: predicate) {
 			return object
 		} else {
-			return fetch(in: context) { request in
+			let result = fetch(in: context) { request in
 				request.predicate = predicate
 				request.returnsObjectsAsFaults = false
 				request.fetchLimit = 1
 			}.first
+			return result
 		}
 	}
 
