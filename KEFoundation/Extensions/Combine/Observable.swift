@@ -31,24 +31,58 @@ import Foundation
 
 /// A property wrapper similar to `@Published` from the `Combine` framework.
 ///
-/// `@Observable` has 2 major differences from `@Published`.
-/// 1. The publisher is triggered on `didSet` rather than `willSet`.
-/// 2. `@Observable` does not work automatically with `ObservableObject`.
-/// This can only work once Apple implements referencing the enclosing instance in property wrappers.
+/// `@Observable` has a major difference from `@Published`:
+/// Whereas`projectedValue` in `@Published` is a publisher that triggers on `willSet`,
+/// `projectedValue` here provides two publishers: One for `willSet` and one for `didSet`.
+///
+/// - Warning: This relies on a non-public feature of Swift:
+/// Accessing the enclosed instance from inside a property wrapper.
 @propertyWrapper
-public class Observable<Value> {
-	public init(wrappedValue: Value) {
-		projectedValue = CurrentValueSubject(wrappedValue)
-	}
-
+public struct Observable<Value> {
+	@available(*, unavailable, message: "@Published can only be applied to classes")
 	public var wrappedValue: Value {
 		get {
-			projectedValue.value
+			preconditionFailure()
 		}
 		set {
-			projectedValue.value = newValue
+			preconditionFailure()
 		}
 	}
 
-	public var projectedValue: CurrentValueSubject<Value, Never>
+	private var storage: Value
+
+	public init(wrappedValue: Value) {
+		storage = wrappedValue
+		projectedValue = WillSetDidSetPublisher(wrappedValue: wrappedValue)
+	}
+
+	public static subscript<T: ObservableObject>(
+		_enclosingInstance instance: T,
+		wrapped wrappedKeyPath: ReferenceWritableKeyPath<T, Value>,
+		storage storageKeyPath: ReferenceWritableKeyPath<T, Self>
+	) -> Value {
+		get {
+			instance[keyPath: storageKeyPath].storage
+		}
+		set {
+			if let publisher = instance.objectWillChange as? ObservableObjectPublisher {
+				publisher.send()
+			}
+			instance[keyPath: storageKeyPath].projectedValue.willSet.send(newValue)
+			instance[keyPath: storageKeyPath].storage = newValue
+			instance[keyPath: storageKeyPath].projectedValue.didSet.send(newValue)
+		}
+	}
+
+	public private(set) var projectedValue: WillSetDidSetPublisher
+
+	public class WillSetDidSetPublisher {
+		public private(set) var willSet: CurrentValueSubject<Value, Never>
+		public private(set) var didSet: CurrentValueSubject<Value, Never>
+
+		fileprivate init(wrappedValue: Value) {
+			willSet = CurrentValueSubject(wrappedValue)
+			didSet = CurrentValueSubject(wrappedValue)
+		}
+	}
 }

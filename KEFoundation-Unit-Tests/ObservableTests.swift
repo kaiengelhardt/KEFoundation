@@ -43,12 +43,11 @@ class ObservableTests: XCTestCase {
 	}
 
 	func testSingleElement() {
-		@Observable var variable = "Test"
-		XCTAssertEqual(variable, "Test")
+		XCTAssertEqual(object.observableValue, "Test")
 	}
 
 	func testInitialValueObserved() {
-		object.$observableValue
+		object.$observableValue.didSet
 			.sink { newValue in
 				XCTAssertEqual(newValue, "Test")
 				XCTAssertEqual(newValue, self.object.observableValue)
@@ -67,7 +66,7 @@ class ObservableTests: XCTestCase {
 		object.observableValue = "Test 2"
 		object.publishedValue = "Test 2"
 
-		object.$observableValue
+		object.$observableValue.didSet
 			.sink { newValue in
 				XCTAssertEqual(newValue, "Test 2")
 			}
@@ -81,7 +80,7 @@ class ObservableTests: XCTestCase {
 	}
 
 	func testObservableValueIsAlreadyUpToDateWhenSinkIsCalled() {
-		object.$observableValue
+		object.$observableValue.didSet
 			.dropFirst()
 			.sink { newValue in
 				XCTAssertEqual(newValue, "Wurst")
@@ -104,7 +103,7 @@ class ObservableTests: XCTestCase {
 
 	func testMultipleValuesAreObservedProperly() {
 		var values: [String] = []
-		object.$observableValue
+		object.$observableValue.didSet
 			.sink { value in
 				values.append(value)
 			}
@@ -114,9 +113,25 @@ class ObservableTests: XCTestCase {
 		object.observableValue = "3"
 		XCTAssertEqual(values, ["Test", "1", "2", "3"])
 	}
+
+	func testMockObjectObjectWillChangeIsSent() {
+		var objectWillChangeCalled = false
+		object.objectWillChange
+			.sink {
+				objectWillChangeCalled = true
+			}
+			.store(in: &cancellables)
+
+		XCTAssertFalse(objectWillChangeCalled)
+		object.publishedValue = "1"
+		XCTAssertTrue(objectWillChangeCalled)
+		objectWillChangeCalled = false
+		object.observableValue = "1"
+		XCTAssertTrue(objectWillChangeCalled)
+	}
 }
 
-private class MockObject {
+private class MockObject: ObservableObject {
 	@Observable var observableValue: String
 	@Published var publishedValue: String
 

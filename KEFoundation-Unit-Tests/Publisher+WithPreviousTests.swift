@@ -40,37 +40,45 @@ class Publisher_WithPreviousTests: XCTestCase {
 	}
 
 	func testNilInitialPreviousValue() {
-		@Observable var number = 1
-		$number
+		let box = Box(number: 1)
+		box.$number.didSet
 			.withPrevious()
 			.sink { previousNumber, number in
 				XCTAssertNil(previousNumber)
-				XCTAssertEqual(number, 1)
+				XCTAssertEqual(box.number, 1)
 			}
 			.store(in: &cancellables)
 	}
 
 	func testExplicitInitialPreviousValue() {
-		@Observable var number = 1
-		$number
+		let box = Box(number: 1)
+		box.$number.didSet
 			.withPrevious(0)
 			.sink { previousNumber, number in
 				XCTAssertEqual(previousNumber, 0)
-				XCTAssertEqual(number, 1)
+				XCTAssertEqual(box.number, 1)
 			}
 			.store(in: &cancellables)
 	}
 
 	func testSubsequentPreviousValue() {
-		@Observable var number = 1
-		$number
+		let box = Box(number: 1)
+		box.$number.didSet
 			.withPrevious()
 			.dropFirst()
 			.sink { previousNumber, number in
 				XCTAssertEqual(previousNumber, 1)
-				XCTAssertEqual(number, 2)
+				XCTAssertEqual(box.number, 2)
 			}
 			.store(in: &cancellables)
-		number = 2
+		box.number = 2
+	}
+}
+
+private class Box: ObservableObject {
+	@Observable var number: Int
+
+	init(number: Int) {
+		self.number = number
 	}
 }
