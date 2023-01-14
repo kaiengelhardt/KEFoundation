@@ -33,7 +33,7 @@ import XCTest
 private let testDefaults = UserDefaults()
 
 private let firstNameKey = "name"
-private let defaultName = "Kai"
+private let defaultFirstName = "Kai"
 
 private let ageKey = "age"
 private let defaultAge = 29
@@ -56,7 +56,7 @@ final class TestPreferences: Preferences {
 		self.userDefaults = userDefaults
 	}
 
-	@UserDefault(firstNameKey) var firstName = defaultName
+	@UserDefault(firstNameKey) var firstName = defaultFirstName
 	@UserDefault(ageKey) var age = defaultAge
 	@UserDefault(middleNameKey) var middleName: String?
 	@UserDefault(jobTitleKey) var jobTitle: String? = defaultJobTitle
@@ -82,7 +82,7 @@ class PreferencesTests: XCTestCase {
 
 	func testDefaultValue() {
 		let object = Object()
-		XCTAssertEqual(object.firstName, defaultName)
+		XCTAssertEqual(object.firstName, defaultFirstName)
 	}
 
 	func testPreferenceIsSavedInUserDefaults() {
@@ -96,8 +96,8 @@ class PreferencesTests: XCTestCase {
 		let object1 = Object()
 		let object2 = Object()
 
-		XCTAssertEqual(object1.firstName, defaultName)
-		XCTAssertEqual(object2.firstName, defaultName)
+		XCTAssertEqual(object1.firstName, defaultFirstName)
+		XCTAssertEqual(object2.firstName, defaultFirstName)
 
 		let newName = "Sarah"
 		object1.firstName = newName
@@ -136,6 +136,30 @@ class PreferencesTests: XCTestCase {
 
 		object.jobTitle = nil
 		XCTAssertEqual(object.jobTitle, defaultJobTitle)
+	}
+
+	func testPublisherPublishesInitialValue() {
+		var values: [String] = []
+		let object = Object()
+		object.$firstName.publisher.sink { firstName in
+			values.append(firstName)
+		}
+		.store(in: &observations)
+		XCTAssertEqual(values, [defaultFirstName])
+	}
+
+	func testPublisherPublishesSubsequentValues() {
+		var values: [String] = []
+		let object = Object()
+		object.$firstName.publisher.sink { firstName in
+			values.append(firstName)
+		}
+		.store(in: &observations)
+		let secondName = "Ralph"
+		object.firstName = secondName
+		let thirdName = "Lennart"
+		object.firstName = thirdName
+		XCTAssertEqual(values, [defaultFirstName, secondName, thirdName])
 	}
 }
 

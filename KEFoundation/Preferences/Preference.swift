@@ -63,15 +63,49 @@ public struct Preference<Value, PreferenceContainer: Preferences>: DynamicProper
 		preferencesObserver = .init(publisher: publisher)
 	}
 
-	public var projectedValue: Binding<Value> {
-		return Binding(
-			get: {
-				wrappedValue
-			},
-			set: {
-				wrappedValue = $0
+	public var projectedValue: PublisherAndBinding<Value> {
+		return .init(
+			bindingProvider: {
+				return Binding(get: {
+					return wrappedValue
+				}, set: {
+					wrappedValue = $0
+				})
+			}, publisherProvider: {
+				let publisher = preferencesObserver
+					.objectWillChange
+					.map {
+						return wrappedValue
+					}
+				return Publishers.Merge(Just(wrappedValue), publisher)
+					.eraseToAnyPublisher()
 			}
 		)
+	}
+}
+
+// MARK: Preference.PublisherAndBinding
+
+extension Preference {
+	public struct PublisherAndBinding<Value> {
+		public var binding: Binding<Value> {
+			return bindingProvider()
+		}
+
+		public var publisher: AnyPublisher<Value, Never> {
+			return publisherProvider()
+		}
+
+		private let bindingProvider: () -> Binding<Value>
+		private let publisherProvider: () -> AnyPublisher<Value, Never>
+
+		fileprivate init(
+			bindingProvider: @escaping () -> Binding<Value>,
+			publisherProvider: @escaping () -> AnyPublisher<Value, Never>
+		) {
+			self.bindingProvider = bindingProvider
+			self.publisherProvider = publisherProvider
+		}
 	}
 }
 
@@ -79,8 +113,8 @@ private class PublisherObservableObject: ObservableObject {
 	var subscriber: AnyCancellable?
 
 	init(publisher: AnyPublisher<Void, Never>) {
-		subscriber = publisher.sink(receiveValue: { [weak self] _ in
+		subscriber = publisher.sink { [weak self] _ in
 			self?.objectWillChange.send()
-		})
+		}
 	}
 }
