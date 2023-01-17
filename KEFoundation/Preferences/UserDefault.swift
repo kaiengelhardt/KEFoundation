@@ -30,7 +30,7 @@ import Foundation
 
 /// Based on this [blog post](https://www.avanderlee.com/swift/appstorage-explained/).
 @propertyWrapper
-public struct UserDefault<Value, PreferenceContainer: Preferences> {
+public struct UserDefault<Value: UserDefaultValue, PreferenceContainer: Preferences> {
 	public let key: String
 	public let defaultValue: Value
 
@@ -55,27 +55,23 @@ public struct UserDefault<Value, PreferenceContainer: Preferences> {
 		storage storageKeyPath: ReferenceWritableKeyPath<PreferenceContainer, Self>
 	) -> Value {
 		get {
-			let container = instance.userDefaults
 			let key = instance[keyPath: storageKeyPath].key
 			let defaultValue = instance[keyPath: storageKeyPath].defaultValue
-			let value = container.object(forKey: key)
-			if let value = value as? any OptionalType {
-				let optional = value.asOptional
-				return (optional ?? defaultValue) as? Value ?? defaultValue
+			let value = Value.readValue(forKey: key, from: instance.userDefaults)
+			let result: Value
+			if value is any OptionalType && value.flattened == nil {
+				result = defaultValue
 			} else {
-				return (value as? Value) ?? defaultValue
+				result = value ?? defaultValue
 			}
+			return result
 		}
 		set {
-			let container = instance.userDefaults
 			let key = instance[keyPath: storageKeyPath].key
-			if
-				let newValue = newValue as? any OptionalType,
-				newValue.asOptional == nil
-			{
-				container.removeObject(forKey: key)
-			} else {
-				container.set(newValue, forKey: key)
+			do {
+				try newValue.writeValue(forKey: key, to: instance.userDefaults)
+			} catch {
+				print("Failed to write value \(newValue) for key \(key) to UserDefaults!\n\(error).")
 			}
 			instance.preferencesChangedSubject.send(wrappedKeyPath)
 		}

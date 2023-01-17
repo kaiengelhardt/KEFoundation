@@ -43,8 +43,49 @@ private let middleNameKey = "middleName"
 private let jobTitleKey = "jobTitle"
 private let defaultJobTitle = "Janitor"
 
+private let stringKey = "string"
+private let defaultString = "default"
+
+private let boolKey = "bool"
+private let defaultBool = false
+
+private let intKey = "int"
+private let defaultInt = 42
+
+private let floatKey = "float"
+private let defaultFloat: Float = 42.0
+
+private let doubleKey = "double"
+private let defaultDouble = 69.0
+
+private let cgFloatKey = "cgFloat"
+private let defaultCGFloat = 69.0
+
+private let dateKey = "date"
+private let defaultDate = Date(timeIntervalSince1970: 69)
+
+private let urlKey = "url"
+private let defaultURL = URL(string: "https://google.com")!
+
+private let dataKey = "data"
+private let defaultData = "42".data(using: .utf8)!
+
+private let uuidKey = "uuid"
+private let defaultUUID = UUID(uuidString: "E621E1F8-C36C-495A-93FC-0C247A3E6E5F")!
+
+enum RawRepresentableExample: String, RawRepresentable, UserDefaultValue {
+	case one
+	case two
+	case three
+}
+
+private let rawRepresentableStringRawValueKey = "rawRepresentableStringRawValue"
+private let defaultRawRepresentableStringRawValue: RawRepresentableExample = .one
+
+// DON'T FORGET ABOUT TransformableUserDefault
+
 final class TestPreferences: Preferences {
-	typealias UserDefault<Value> = KEFoundation.UserDefault<Value, TestPreferences>
+	typealias UserDefault<Value: UserDefaultValue> = KEFoundation.UserDefault<Value, TestPreferences>
 
 	static let `default` = TestPreferences()
 
@@ -60,6 +101,18 @@ final class TestPreferences: Preferences {
 	@UserDefault(ageKey) var age = defaultAge
 	@UserDefault(middleNameKey) var middleName: String?
 	@UserDefault(jobTitleKey) var jobTitle: String? = defaultJobTitle
+
+	@UserDefault(stringKey) var string = defaultString
+	@UserDefault(boolKey) var bool = defaultBool
+	@UserDefault(intKey) var int = defaultInt
+	@UserDefault(floatKey) var float = defaultFloat
+	@UserDefault(doubleKey) var double = defaultDouble
+	@UserDefault(cgFloatKey) var cgFloat = defaultCGFloat
+	@UserDefault(dateKey) var date = defaultDate
+	@UserDefault(urlKey) var url = defaultURL
+	@UserDefault(uuidKey) var uuid = defaultUUID
+	@UserDefault(rawRepresentableStringRawValueKey)
+	var rawRepresentableStringRawValue = defaultRawRepresentableStringRawValue
 }
 
 typealias Preference<Value> = KEFoundation.Preference<Value, TestPreferences>
@@ -69,6 +122,17 @@ class Object {
 	@Preference(\.age) var age
 	@Preference(\.middleName) var middleName
 	@Preference(\.jobTitle) var jobTitle
+
+	@Preference(\.string) var string
+	@Preference(\.bool) var bool
+	@Preference(\.int) var int
+	@Preference(\.float) var float
+	@Preference(\.double) var double
+	@Preference(\.cgFloat) var cgFloat
+	@Preference(\.date) var date
+	@Preference(\.url) var url
+	@Preference(\.uuid) var uuid
+	@Preference(\.rawRepresentableStringRawValue) var rawRepresentableStringRawValue
 }
 
 class PreferencesTests: XCTestCase {
@@ -160,6 +224,43 @@ class PreferencesTests: XCTestCase {
 		let thirdName = "Lennart"
 		object.firstName = thirdName
 		XCTAssertEqual(values, [defaultFirstName, secondName, thirdName])
+	}
+
+	func testUserDefaultValueTypes() {
+		let object = Object()
+
+		object.string = "new"
+		XCTAssertEqual(object.string, testDefaults.string(forKey: stringKey))
+
+		object.bool = true
+		XCTAssertEqual(object.bool, testDefaults.bool(forKey: boolKey))
+
+		object.int = 19
+		XCTAssertEqual(object.int, testDefaults.integer(forKey: intKey))
+
+		object.float = 420.69
+		XCTAssertEqual(object.float, testDefaults.float(forKey: floatKey))
+
+		object.double = 420.69
+		XCTAssertEqual(object.double, testDefaults.double(forKey: doubleKey))
+
+		object.cgFloat = 420.69
+		XCTAssertEqual(object.cgFloat, testDefaults.double(forKey: cgFloatKey))
+
+		object.date = Date()
+		XCTAssertEqual(object.date, testDefaults.object(forKey: dateKey) as? Date)
+
+		object.url = URL(string: "http://kaiengelhardt.com")!
+		XCTAssertEqual(object.url, testDefaults.url(forKey: urlKey))
+
+		object.uuid = UUID()
+		XCTAssertEqual(object.uuid.uuidString, testDefaults.string(forKey: uuidKey))
+
+		object.rawRepresentableStringRawValue = .two
+		XCTAssertEqual(
+			object.rawRepresentableStringRawValue.rawValue,
+			testDefaults.string(forKey: rawRepresentableStringRawValueKey)
+		)
 	}
 }
 

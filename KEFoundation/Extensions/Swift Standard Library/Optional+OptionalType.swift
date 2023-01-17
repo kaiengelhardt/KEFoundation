@@ -31,15 +31,36 @@ import Foundation
 public protocol OptionalType {
 	associatedtype Wrapped
 
-	var asOptional: Wrapped? { get }
-
 	static var none: Self { get }
+	var flattened: Any? { get }
 }
 
 // MARK: - Optional + OptionalType
 
 extension Optional: OptionalType {
-	public var asOptional: Wrapped? {
-		return self
+	/// Flattens nested optionals down to one level. This is useful to check for `nil` on nested optionals.
+	///
+	/// Based on this [Swift Forums post](https://forums.swift.org/t/challenge-flattening-nested-optionals/24083/4).
+	public var flattened: Any? {
+		_flattened()
+	}
+}
+
+private protocol Flattenable {
+	func _flattened() -> Any?
+}
+
+// MARK: - Optional + Flattenable
+
+extension Optional: Flattenable {
+	fileprivate func _flattened() -> Any? {
+		switch self {
+		case let .some(x as Flattenable):
+			return x._flattened()
+		case let .some(x):
+			return x
+		case .none:
+			return nil
+		}
 	}
 }
