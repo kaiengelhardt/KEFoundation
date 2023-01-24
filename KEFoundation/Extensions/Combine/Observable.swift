@@ -56,7 +56,7 @@ public struct Observable<Value> {
 		projectedValue = WillSetDidSetPublisher(wrappedValue: wrappedValue)
 	}
 
-	public static subscript<T: ObservableObject>(
+	public static subscript<T>(
 		_enclosingInstance instance: T,
 		wrapped wrappedKeyPath: ReferenceWritableKeyPath<T, Value>,
 		storage storageKeyPath: ReferenceWritableKeyPath<T, Self>
@@ -65,8 +65,11 @@ public struct Observable<Value> {
 			instance[keyPath: storageKeyPath].storage
 		}
 		set {
-			if let publisher = instance.objectWillChange as? ObservableObjectPublisher {
-				publisher.send()
+			if let observableObject = instance as? any ObservableObject {
+				let anyPublisher = observableObject.objectWillChange as any Publisher
+				if let publisher = anyPublisher as? ObservableObjectPublisher {
+					publisher.send()
+				}
 			}
 			instance[keyPath: storageKeyPath].projectedValue.willSet.send(newValue)
 			instance[keyPath: storageKeyPath].storage = newValue

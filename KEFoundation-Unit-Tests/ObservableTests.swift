@@ -33,12 +33,12 @@ import Combine
 import XCTest
 
 class ObservableTests: XCTestCase {
-	private var object: MockObject!
+	private var object: ObservableMockObject!
 	private var cancellables: Set<AnyCancellable> = []
 
 	override func setUpWithError() throws {
 		try super.setUpWithError()
-		object = MockObject(value: "Test")
+		object = ObservableMockObject(value: "Test")
 		cancellables = []
 	}
 
@@ -129,14 +129,35 @@ class ObservableTests: XCTestCase {
 		object.observableValue = "1"
 		XCTAssertTrue(objectWillChangeCalled)
 	}
+
+	func testPlainMockObjectPropertiesAreObservable() {
+		let object = PlainMockObject(value: "1")
+		var values: [String] = []
+		object.$value.didSet
+			.sink { value in
+				values.append(value)
+			}
+			.store(in: &cancellables)
+		object.value = "2"
+		object.value = "3"
+		XCTAssertEqual(values, ["1", "2", "3"])
+	}
 }
 
-private class MockObject: ObservableObject {
+private class ObservableMockObject: ObservableObject {
 	@Observable var observableValue: String
 	@Published var publishedValue: String
 
 	init(value: String) {
 		observableValue = value
 		publishedValue = value
+	}
+}
+
+private class PlainMockObject {
+	@Observable var value: String
+
+	init(value: String) {
+		self.value = value
 	}
 }
