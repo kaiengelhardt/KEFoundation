@@ -31,13 +31,13 @@ import Foundation
 extension Dictionary {
 	public mutating func extend(with dictionary: [Key: Value]) {
 		merge(dictionary, uniquingKeysWith: { lhs, rhs in
-			rhs
+			return rhs
 		})
 	}
 
 	public func extending(with dictionary: [Key: Value]) -> [Key: Value] {
 		return merging(dictionary, uniquingKeysWith: { lhs, rhs in
-			rhs
+			return rhs
 		})
 	}
 
