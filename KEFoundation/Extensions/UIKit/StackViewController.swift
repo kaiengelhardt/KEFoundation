@@ -26,6 +26,7 @@
 //  SOFTWARE.
 //
 
+#if !os(watchOS)
 import UIKit
 
 public class StackViewController: UIViewController {
@@ -186,3 +187,4 @@ public class StackViewController: UIViewController {
 		stackView.setCustomSpacing(spacing, after: viewController.view)
 	}
 }
+#endif

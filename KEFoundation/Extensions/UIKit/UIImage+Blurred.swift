@@ -26,6 +26,7 @@
 //  SOFTWARE.
 //
 
+#if !os(watchOS)
 import CoreImage
 import UIKit
 
@@ -64,3 +65,4 @@ extension UIImage {
 		return blurredImage
 	}
 }
+#endif

@@ -26,6 +26,7 @@
 //  SOFTWARE.
 //
 
+#if !os(watchOS)
 import UIKit
 
 open class KELabel: UILabel {
@@ -46,3 +47,4 @@ open class KELabel: UILabel {
 		super.drawText(in: rect.inset(by: textInsets))
 	}
 }
+#endif

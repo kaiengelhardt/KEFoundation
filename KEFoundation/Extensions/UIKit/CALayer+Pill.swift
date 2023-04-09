@@ -26,6 +26,7 @@
 //  SOFTWARE.
 //
 
+#if !os(watchOS)
 import QuartzCore
 
 extension CALayer {
@@ -33,3 +34,4 @@ extension CALayer {
 		cornerRadius = bounds.smallestSide / 2
 	}
 }
+#endif

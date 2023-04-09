@@ -26,6 +26,7 @@
 //  SOFTWARE.
 //
 
+#if !os(watchOS)
 import UIKit
 
 public protocol CircleImageEditorViewControllerDelegate: AnyObject {
@@ -289,3 +290,4 @@ extension CircleImageEditorViewController {
 		}
 	}
 }
+#endif

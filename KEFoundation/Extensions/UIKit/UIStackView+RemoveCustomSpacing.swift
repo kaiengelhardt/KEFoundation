@@ -26,6 +26,7 @@
 //  SOFTWARE.
 //
 
+#if !os(watchOS)
 import UIKit
 
 extension UIStackView {
@@ -47,3 +48,4 @@ extension UIStackView {
 		insertArrangedSubview(view, at: index)
 	}
 }
+#endif

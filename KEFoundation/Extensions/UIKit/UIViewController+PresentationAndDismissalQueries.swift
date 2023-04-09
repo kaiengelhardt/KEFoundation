@@ -26,6 +26,7 @@
 //  SOFTWARE.
 //
 
+#if !os(watchOS)
 import UIKit
 
 extension UIViewController {
@@ -51,3 +52,4 @@ extension UIViewController {
 		return isBeingDismissed
 	}
 }
+#endif

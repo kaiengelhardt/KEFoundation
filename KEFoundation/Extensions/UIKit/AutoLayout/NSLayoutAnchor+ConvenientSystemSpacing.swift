@@ -27,6 +27,7 @@
 //  SOFTWARE.
 //
 
+#if !os(watchOS)
 import UIKit
 
 extension NSLayoutXAxisAnchor {
@@ -56,3 +57,4 @@ extension NSLayoutYAxisAnchor {
 		return constraint(lessThanOrEqualToSystemSpacingBelow: anchor, multiplier: 1)
 	}
 }
+#endif

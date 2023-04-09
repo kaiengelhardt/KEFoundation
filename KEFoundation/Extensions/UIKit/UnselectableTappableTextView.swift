@@ -26,6 +26,7 @@
 //  SOFTWARE.
 //
 
+#if !os(watchOS)
 import UIKit
 
 /// Taken from this [StackOverFlow question](https://stackoverflow.com/questions/36198299/uitextview-disable-selection-allow-links).
@@ -65,3 +66,4 @@ public class UnselectableTappableTextView: UITextView {
 		return false
 	}
 }
+#endif

@@ -26,6 +26,7 @@
 //  SOFTWARE.
 //
 
+#if !os(watchOS)
 import UIKit
 
 open class EmbeddableCollectionView: UICollectionView {
@@ -64,3 +65,4 @@ open class EmbeddableCollectionView: UICollectionView {
 		isScrollEnabled = false
 	}
 }
+#endif

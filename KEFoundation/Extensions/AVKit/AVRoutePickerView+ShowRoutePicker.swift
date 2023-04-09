@@ -26,6 +26,7 @@
 //  SOFTWARE.
 //
 
+#if !os(watchOS)
 import AVKit
 import UIKit
 
@@ -44,3 +45,4 @@ extension AVRoutePickerView {
 		}) as? UIButton
 	}
 }
+#endif

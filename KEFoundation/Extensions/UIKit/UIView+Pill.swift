@@ -26,6 +26,7 @@
 //  SOFTWARE.
 //
 
+#if !os(watchOS)
 import UIKit
 
 extension UIView {
@@ -33,3 +34,4 @@ extension UIView {
 		layer.makePillShaped()
 	}
 }
+#endif

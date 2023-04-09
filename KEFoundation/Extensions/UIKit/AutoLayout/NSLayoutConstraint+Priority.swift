@@ -26,6 +26,7 @@
 //  SOFTWARE.
 //
 
+#if !os(watchOS)
 #if canImport(UIKit)
 
 import UIKit
@@ -71,3 +72,4 @@ extension [NSLayoutConstraint] {
 		return self
 	}
 }
+#endif

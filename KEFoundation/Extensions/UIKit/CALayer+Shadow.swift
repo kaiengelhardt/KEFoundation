@@ -26,6 +26,7 @@
 //  SOFTWARE.
 //
 
+#if !os(watchOS)
 import QuartzCore
 import UIKit
 
@@ -62,3 +63,4 @@ extension CALayer {
 		}
 	}
 }
+#endif

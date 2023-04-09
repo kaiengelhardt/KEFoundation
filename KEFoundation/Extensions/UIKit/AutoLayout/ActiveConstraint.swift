@@ -26,6 +26,7 @@
 //  SOFTWARE.
 //
 
+#if !os(watchOS)
 import UIKit
 
 @propertyWrapper
@@ -108,3 +109,4 @@ extension Array: DefaultValueProviding where Element: NSLayoutConstraint {
 		[]
 	}
 }
+#endif

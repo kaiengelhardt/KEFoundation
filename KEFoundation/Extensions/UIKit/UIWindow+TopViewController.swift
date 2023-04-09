@@ -26,6 +26,7 @@
 //  SOFTWARE.
 //
 
+#if !os(watchOS)
 import UIKit
 
 extension UIWindow {
@@ -48,3 +49,4 @@ extension UIWindow {
 		return currentViewController
 	}
 }
+#endif

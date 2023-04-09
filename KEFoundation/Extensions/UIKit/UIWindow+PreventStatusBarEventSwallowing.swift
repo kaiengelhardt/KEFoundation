@@ -26,6 +26,7 @@
 //  SOFTWARE.
 //
 
+#if !os(watchOS)
 import UIKit
 
 extension UIWindow {
@@ -41,3 +42,4 @@ extension UIWindow {
 		frame = screenBounds
 	}
 }
+#endif

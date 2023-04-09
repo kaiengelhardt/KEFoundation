@@ -26,6 +26,7 @@
 //  SOFTWARE.
 //
 
+#if !os(watchOS)
 import UIKit
 
 open class PassthroughWindow: UIWindow {
@@ -38,3 +39,4 @@ open class PassthroughWindow: UIWindow {
 		}
 	}
 }
+#endif

@@ -26,9 +26,7 @@
 //  SOFTWARE.
 //
 
-// swiftlint:disable cyclomatic_complexity
-// swiftlint:disable switch_case_on_newline
-
+#if !os(watchOS)
 import UIKit
 
 extension UIDevice {
@@ -172,3 +170,4 @@ extension UIDevice {
 		#endif
 	}
 }
+#endif

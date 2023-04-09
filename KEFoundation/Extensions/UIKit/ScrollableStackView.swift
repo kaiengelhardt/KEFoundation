@@ -26,6 +26,7 @@
 //  SOFTWARE.
 //
 
+#if !os(watchOS)
 import UIKit
 
 public class ScrollableStackView: UIView {
@@ -182,3 +183,4 @@ public class ScrollableStackView: UIView {
 		stackView.setCustomSpacing(spacing, after: arrangedSubview)
 	}
 }
+#endif

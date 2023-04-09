@@ -26,6 +26,7 @@
 //  SOFTWARE.
 //
 
+#if !os(watchOS)
 #if canImport(UIKit)
 
 import UIKit
@@ -384,3 +385,4 @@ extension Array where Element: LayoutSurface {
 		return constraints
 	}
 }
+#endif

@@ -26,6 +26,7 @@
 //  SOFTWARE.
 //
 
+#if !os(watchOS)
 import UIKit
 
 public class SeparatorView: UIView {
@@ -134,3 +135,4 @@ public class SeparatorView: UIView {
 		updateCornerRadius()
 	}
 }
+#endif

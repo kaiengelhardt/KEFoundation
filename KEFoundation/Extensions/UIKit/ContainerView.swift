@@ -26,6 +26,7 @@
 //  SOFTWARE.
 //
 
+#if !os(watchOS)
 import UIKit
 
 public class ContainerView: UIView {
@@ -69,3 +70,4 @@ public class ContainerView: UIView {
 		return view.constraintsMatchingEdgesOfSuperview(insetBy: UIEdgeInsets(insets: insets))
 	}
 }
+#endif

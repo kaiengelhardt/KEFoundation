@@ -26,6 +26,7 @@
 //  SOFTWARE.
 //
 
+#if !os(watchOS)
 import UIKit
 
 open class ContainerViewController: UIViewController {
@@ -132,3 +133,4 @@ open class ContainerViewController: UIViewController {
 		)
 	}
 }
+#endif

@@ -26,6 +26,7 @@
 //  SOFTWARE.
 //
 
+#if !os(watchOS)
 import UIKit
 
 public class MaskOverlayView: UIView {
@@ -92,3 +93,4 @@ public class MaskOverlayView: UIView {
 		shapeLayer.fillColor = maskColor?.cgColor
 	}
 }
+#endif

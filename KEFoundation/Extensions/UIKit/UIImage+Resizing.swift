@@ -26,6 +26,7 @@
 //  SOFTWARE.
 //
 
+#if !os(watchOS)
 import UIKit
 
 extension UIImage {
@@ -53,3 +54,4 @@ extension UIImage {
 		return UIImage(cgImage: resizedImage)
 	}
 }
+#endif

@@ -26,6 +26,7 @@
 //  SOFTWARE.
 //
 
+#if !os(watchOS)
 import UIKit
 
 public class PageViewController: UIViewController {
@@ -138,3 +139,4 @@ extension PageViewController: UIScrollViewDelegate {
 		pageControl.currentPage = currentPage
 	}
 }
+#endif

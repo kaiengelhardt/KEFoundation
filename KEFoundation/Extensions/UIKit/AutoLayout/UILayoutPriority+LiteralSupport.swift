@@ -26,6 +26,7 @@
 //  SOFTWARE.
 //
 
+#if !os(watchOS)
 import UIKit
 
 // MARK: - UILayoutPriority + ExpressibleByIntegerLiteral
@@ -43,3 +44,4 @@ extension UILayoutPriority: ExpressibleByFloatLiteral {
 		self.init(rawValue: value)
 	}
 }
+#endif

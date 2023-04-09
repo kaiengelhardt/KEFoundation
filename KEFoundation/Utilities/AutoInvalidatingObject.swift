@@ -26,6 +26,7 @@
 //  SOFTWARE.
 //
 
+#if !os(watchOS)
 import Foundation
 import QuartzCore
 
@@ -56,3 +57,4 @@ extension Timer: Invalidatable {}
 // MARK: - CADisplayLink + Invalidatable
 
 extension CADisplayLink: Invalidatable {}
+#endif

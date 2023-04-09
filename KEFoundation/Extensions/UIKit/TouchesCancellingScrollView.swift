@@ -26,6 +26,7 @@
 //  SOFTWARE.
 //
 
+#if !os(watchOS)
 import UIKit
 
 open class TouchesCancellingScrollView: UIScrollView {
@@ -37,3 +38,4 @@ open class TouchesCancellingScrollView: UIScrollView {
 		})
 	}
 }
+#endif

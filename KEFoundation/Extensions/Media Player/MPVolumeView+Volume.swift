@@ -26,6 +26,7 @@
 //  SOFTWARE.
 //
 
+#if !os(watchOS)
 import Foundation
 import MediaPlayer
 
@@ -46,3 +47,4 @@ extension MPVolumeView {
 		}
 	}
 }
+#endif

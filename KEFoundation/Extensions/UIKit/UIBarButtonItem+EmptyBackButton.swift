@@ -26,6 +26,7 @@
 //  SOFTWARE.
 //
 
+#if !os(watchOS)
 import UIKit
 
 extension UIBarButtonItem {
@@ -33,3 +34,4 @@ extension UIBarButtonItem {
 		return UIBarButtonItem(title: nil, style: .plain, target: nil, action: nil)
 	}
 }
+#endif

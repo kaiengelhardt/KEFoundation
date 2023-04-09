@@ -26,6 +26,7 @@
 //  SOFTWARE.
 //
 
+#if !os(watchOS)
 import UIKit
 
 public class CircularProgressView: UIView {
@@ -140,3 +141,4 @@ public class CircularProgressView: UIView {
 		return bezierPath.cgPath
 	}
 }
+#endif

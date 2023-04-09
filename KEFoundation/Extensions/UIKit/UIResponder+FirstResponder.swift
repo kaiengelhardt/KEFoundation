@@ -26,6 +26,7 @@
 //  SOFTWARE.
 //
 
+#if !os(watchOS)
 import UIKit
 
 extension UIResponder {
@@ -43,3 +44,4 @@ extension UIResponder {
 		Self._firstResponder = self
 	}
 }
+#endif

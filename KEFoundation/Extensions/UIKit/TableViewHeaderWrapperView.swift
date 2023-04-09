@@ -26,6 +26,7 @@
 //  SOFTWARE.
 //
 
+#if !os(watchOS)
 import UIKit
 
 public class TableViewHeaderWrapperView: UIView {
@@ -58,3 +59,4 @@ public class TableViewHeaderWrapperView: UIView {
 		tableView?.tableHeaderView = self
 	}
 }
+#endif

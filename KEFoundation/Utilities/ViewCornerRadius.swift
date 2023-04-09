@@ -1,5 +1,6 @@
 // Created by Kai Engelhardt on 27.09.22.
 
+#if !os(watchOS)
 import UIKit
 
 public enum ViewCornerRadius {
@@ -22,3 +23,4 @@ public enum ViewCornerRadius {
 		apply(to: view.layer)
 	}
 }
+#endif

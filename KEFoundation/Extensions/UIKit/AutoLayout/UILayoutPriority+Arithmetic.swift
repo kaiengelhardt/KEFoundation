@@ -26,6 +26,7 @@
 //  SOFTWARE.
 //
 
+#if !os(watchOS)
 import UIKit
 
 extension UILayoutPriority {
@@ -69,3 +70,4 @@ extension UILayoutPriority {
 		return UILayoutPriority((lhs.rawValue - rhs.rawValue).clamped(to: 0 ... 1_000))
 	}
 }
+#endif
