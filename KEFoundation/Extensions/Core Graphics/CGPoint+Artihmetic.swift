@@ -58,10 +58,10 @@ extension CGPoint {
 	}
 
 	public static func += (left: inout CGPoint, right: CGPoint) {
-		left = left + right // swiftlint:disable:this shorthand_operator
+		left = left + right
 	}
 
 	public static func -= (left: inout CGPoint, right: CGPoint) {
-		left = left - right // swiftlint:disable:this shorthand_operator
+		left = left - right
 	}
 }

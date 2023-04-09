@@ -26,8 +26,6 @@
 //  SOFTWARE.
 //
 
-// swiftlint:disable implicitly_unwrapped_optional
-
 import Combine
 @testable import KEFoundation
 import XCTest

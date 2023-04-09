@@ -26,8 +26,6 @@
 //  SOFTWARE.
 //
 
-// swiftlint:disable identifier_name
-
 import Foundation
 
 precedencegroup ForwardComposition {

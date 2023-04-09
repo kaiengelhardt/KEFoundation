@@ -250,7 +250,7 @@ extension CircleImageEditorViewController {
 		}
 
 		var shapeLayer: CAShapeLayer {
-			layer as! CAShapeLayer // swiftlint:disable:this force_cast
+			layer as! CAShapeLayer
 		}
 
 		init() {

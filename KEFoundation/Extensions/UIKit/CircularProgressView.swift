@@ -42,7 +42,7 @@ public class CircularProgressView: UIView {
 		}
 	}
 
-	public override var tintColor: UIColor! { // swiftlint:disable:this implicitly_unwrapped_optional
+	public override var tintColor: UIColor! {
 		didSet {
 			updateColors()
 		}
@@ -53,7 +53,7 @@ public class CircularProgressView: UIView {
 	}
 
 	private var borderLayer: CAShapeLayer {
-		layer as! CAShapeLayer // swiftlint:disable:this force_cast
+		layer as! CAShapeLayer
 	}
 
 	private let progressLayer = CAShapeLayer()

@@ -57,11 +57,11 @@ open class ContainerViewController: UIViewController {
 					of: embeddedViewControllerPositioningLayoutSurface
 				)
 			}
-			#if os(iOS) // swiftlint:disable:next indentation_width
+			#if os(iOS)
 			setNeedsStatusBarAppearanceUpdate()
 			setNeedsUpdateOfHomeIndicatorAutoHidden()
 			setNeedsUpdateOfScreenEdgesDeferringSystemGestures()
-			#endif // swiftlint:disable:next indentation_width
+			#endif
 		}
 	}
 

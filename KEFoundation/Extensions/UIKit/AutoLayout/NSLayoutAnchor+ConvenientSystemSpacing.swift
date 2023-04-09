@@ -1,4 +1,3 @@
-// swiftlint:disable:this file_name
 //
 //  Created by Kai Engelhardt on 23.01.18
 //  Copyright © 2018 Kai Engelhardt. All rights reserved.

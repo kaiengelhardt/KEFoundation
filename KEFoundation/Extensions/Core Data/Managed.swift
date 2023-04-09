@@ -44,7 +44,7 @@ extension Managed where Self: NSManagedObject {
 	}
 
 	public static var sortedFetchRequest: NSFetchRequest<Self> {
-		let request = fetchRequest() as! NSFetchRequest<Self> // swiftlint:disable:this force_cast
+		let request = fetchRequest() as! NSFetchRequest<Self>
 		request.sortDescriptors = defaultSortDescriptors
 		return request
 	}
@@ -65,7 +65,7 @@ extension Managed where Self: NSManagedObject {
 	) -> [Self] {
 		let request = NSFetchRequest<Self>(entityName: Self.entityName)
 		configuration(request)
-		let results = try! context.fetch(request) // swiftlint:disable:this force_try
+		let results = try! context.fetch(request)
 		return results
 	}
 
@@ -129,7 +129,7 @@ extension Managed where Self: NSManagedObject {
 	}
 
 	public func fetched(in managedObjectContext: NSManagedObjectContext) -> Self {
-		let object = managedObjectContext.object(with: objectID) as! Self // swiftlint:disable:this force_cast
+		let object = managedObjectContext.object(with: objectID) as! Self
 		return object
 	}
 }
