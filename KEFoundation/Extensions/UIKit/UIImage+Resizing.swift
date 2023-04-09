@@ -36,16 +36,16 @@ extension UIImage {
 
 		let cfData = jpegData as CFData
 
-		let resizingOptions = [
+		let resizingOptions: [CFString: Any] = [
 			kCGImageSourceCreateThumbnailFromImageAlways: true,
 			kCGImageSourceShouldCacheImmediately: true,
 			kCGImageSourceCreateThumbnailWithTransform: true,
 			kCGImageSourceThumbnailMaxPixelSize: max(targetSize.width, targetSize.height),
-		] as CFDictionary
+		]
 
 		guard
 			let cgImageSource = CGImageSourceCreateWithData(cfData, nil),
-			let resizedImage = CGImageSourceCreateThumbnailAtIndex(cgImageSource, 0, resizingOptions)
+			let resizedImage = CGImageSourceCreateThumbnailAtIndex(cgImageSource, 0, resizingOptions as CFDictionary)
 		else {
 			return nil
 		}
