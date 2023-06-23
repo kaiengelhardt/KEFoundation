@@ -87,21 +87,21 @@ public struct Preference<Value, PreferenceContainer: Preferences>: DynamicProper
 // MARK: Preference.PublisherAndBinding
 
 extension Preference {
-	public struct PublisherAndBinding<Value> {
-		public var binding: Binding<Value> {
+	public struct PublisherAndBinding<Element> {
+		public var binding: Binding<Element> {
 			return bindingProvider()
 		}
 
-		public var publisher: AnyPublisher<Value, Never> {
+		public var publisher: AnyPublisher<Element, Never> {
 			return publisherProvider()
 		}
 
-		private let bindingProvider: () -> Binding<Value>
-		private let publisherProvider: () -> AnyPublisher<Value, Never>
+		private let bindingProvider: () -> Binding<Element>
+		private let publisherProvider: () -> AnyPublisher<Element, Never>
 
 		fileprivate init(
-			bindingProvider: @escaping () -> Binding<Value>,
-			publisherProvider: @escaping () -> AnyPublisher<Value, Never>
+			bindingProvider: @escaping () -> Binding<Element>,
+			publisherProvider: @escaping () -> AnyPublisher<Element, Never>
 		) {
 			self.bindingProvider = bindingProvider
 			self.publisherProvider = publisherProvider
