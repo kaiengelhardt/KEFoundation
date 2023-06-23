@@ -26,7 +26,7 @@
 //  SOFTWARE.
 //
 
-#if DEBUG && !os(watchOS)
+#if !os(watchOS)
 
 import SwiftUI
 import UIKit
