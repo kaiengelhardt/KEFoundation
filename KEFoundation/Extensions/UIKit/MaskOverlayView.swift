@@ -71,10 +71,8 @@ public class MaskOverlayView: UIView {
 
 	public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
 		super.traitCollectionDidChange(previousTraitCollection)
-		if #available(iOS 13, *) {
-			if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
-				updateColor()
-			}
+		if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+			updateColor()
 		}
 	}
 

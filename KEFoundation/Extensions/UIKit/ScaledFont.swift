@@ -128,7 +128,6 @@ public final class ScaledFont {
 		return font
 	}
 
-	@available(iOS 13, *)
 	public func swiftUIFont(forTextStyle textStyle: Font.TextStyle) -> Font {
 		let uiKitTextStyle = textStyle.uiKitTextStyle
 		guard let fontDescription = styleDictionary?[uiKitTextStyle.rawValue] else {
@@ -142,7 +141,6 @@ public final class ScaledFont {
 		return font
 	}
 
-	@available(iOS 13, *)
 	public func unscaledSwiftUIFont(forTextStyle textStyle: Font.TextStyle) -> Font {
 		let uiKitTextStyle = textStyle.uiKitTextStyle
 		guard let fontDescription = styleDictionary?[uiKitTextStyle.rawValue] else {
@@ -155,67 +153,36 @@ public final class ScaledFont {
 }
 
 extension UIFont.TextStyle {
-	@available(iOS 13, *)
 	var swiftUITextStyle: Font.TextStyle {
-		if #available(iOS 14, *) {
-			switch self {
-			case .largeTitle:
-				return .largeTitle
-			case .title1:
-				return .title
-			case .title2:
-				return .title2
-			case .title3:
-				return .title3
-			case .headline:
-				return .headline
-			case .subheadline:
-				return .subheadline
-			case .body:
-				return .body
-			case .footnote:
-				return .footnote
-			case .callout:
-				return .callout
-			case .caption1:
-				return .caption
-			case .caption2:
-				return .caption2
-			default:
-				return .body
-			}
-		} else {
-			switch self {
-			case .largeTitle:
-				return .largeTitle
-			case .title1:
-				return .title
-			case .title2:
-				return .title
-			case .title3:
-				return .title
-			case .headline:
-				return .headline
-			case .subheadline:
-				return .subheadline
-			case .body:
-				return .body
-			case .footnote:
-				return .footnote
-			case .callout:
-				return .callout
-			case .caption1:
-				return .caption
-			case .caption2:
-				return .caption
-			default:
-				return .body
-			}
+		switch self {
+		case .largeTitle:
+			return .largeTitle
+		case .title1:
+			return .title
+		case .title2:
+			return .title2
+		case .title3:
+			return .title3
+		case .headline:
+			return .headline
+		case .subheadline:
+			return .subheadline
+		case .body:
+			return .body
+		case .footnote:
+			return .footnote
+		case .callout:
+			return .callout
+		case .caption1:
+			return .caption
+		case .caption2:
+			return .caption2
+		default:
+			return .body
 		}
 	}
 }
 
-@available(iOS 13, *)
 extension Font.TextStyle {
 	public var uiKitTextStyle: UIFont.TextStyle {
 		switch self {
@@ -247,7 +214,6 @@ extension Font.TextStyle {
 	}
 }
 
-@available(iOS 13, *)
 extension Font {
 	public static func preferredFont(forTextStyle textStyle: TextStyle) -> Font {
 		switch textStyle {
@@ -256,17 +222,9 @@ extension Font {
 		case .title:
 			return .title
 		case .title2:
-			if #available(iOS 14, *) {
-				return .title2
-			} else {
-				return .title
-			}
+			return .title2
 		case .title3:
-			if #available(iOS 14, *) {
-				return .title3
-			} else {
-				return .title
-			}
+			return .title3
 		case .headline:
 			return .headline
 		case .subheadline:
@@ -280,11 +238,7 @@ extension Font {
 		case .caption:
 			return .caption
 		case .caption2:
-			if #available(iOS 14, *) {
-				return .caption2
-			} else {
-				return .caption
-			}
+			return .caption2
 		@unknown default:
 			return .body
 		}
