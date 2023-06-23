@@ -155,8 +155,10 @@ public final class ScaledFont {
 extension UIFont.TextStyle {
 	var swiftUITextStyle: Font.TextStyle {
 		switch self {
+		#if !os(tvOS)
 		case .largeTitle:
 			return .largeTitle
+		#endif
 		case .title1:
 			return .title
 		case .title2:
@@ -186,8 +188,10 @@ extension UIFont.TextStyle {
 extension Font.TextStyle {
 	public var uiKitTextStyle: UIFont.TextStyle {
 		switch self {
+		#if !os(tvOS)
 		case .largeTitle:
 			return .largeTitle
+		#endif
 		case .title:
 			return .title1
 		case .title2:

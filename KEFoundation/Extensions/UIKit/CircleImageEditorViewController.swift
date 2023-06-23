@@ -29,12 +29,14 @@
 #if !os(watchOS)
 import UIKit
 
+@available(tvOS, unavailable)
 public protocol CircleImageEditorViewControllerDelegate: AnyObject {
 	func circleImageEditorViewController(_ viewController: CircleImageEditorViewController, didFinishWith image: UIImage)
 	func circleImageEditorViewControllerDidCancel(_ viewController: CircleImageEditorViewController)
 	func circleImageEditorViewControllerDidFail(_ viewController: CircleImageEditorViewController)
 }
 
+@available(tvOS, unavailable)
 public class CircleImageEditorViewController: UIViewController {
 	public weak var delegate: CircleImageEditorViewControllerDelegate?
 
@@ -225,12 +227,14 @@ public class CircleImageEditorViewController: UIViewController {
 
 // MARK: UIScrollViewDelegate
 
+@available(tvOS, unavailable)
 extension CircleImageEditorViewController: UIScrollViewDelegate {
 	public func viewForZooming(in scrollView: UIScrollView) -> UIView? {
 		return imageView
 	}
 }
 
+@available(tvOS, unavailable)
 extension CircleImageEditorViewController {
 	class OverlayView: UIView {
 		override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {

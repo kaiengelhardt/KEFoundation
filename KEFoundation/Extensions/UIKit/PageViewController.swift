@@ -79,7 +79,9 @@ public class PageViewController: UIViewController {
 			scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
 		]
 		scrollView.translatesAutoresizingMaskIntoConstraints = false
+		#if !os(tvOS)
 		scrollView.isPagingEnabled = true
+		#endif
 		scrollView.delegate = self
 		scrollView.showsHorizontalScrollIndicator = false
 		pageControl.numberOfPages = 0
