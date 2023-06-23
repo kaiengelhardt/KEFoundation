@@ -188,10 +188,12 @@ extension UIFont.TextStyle {
 extension Font.TextStyle {
 	public var uiKitTextStyle: UIFont.TextStyle {
 		switch self {
-		#if !os(tvOS)
 		case .largeTitle:
+			#if os(tvOS)
+			return .title1
+			#else
 			return .largeTitle
-		#endif
+			#endif
 		case .title:
 			return .title1
 		case .title2:
