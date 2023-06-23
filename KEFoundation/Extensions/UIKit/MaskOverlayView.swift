@@ -62,6 +62,14 @@ public class MaskOverlayView: UIView {
 
 	private func setUpUI() {
 		shapeLayer.fillRule = .evenOdd
+		if
+			#available(iOS 17, *),
+			#available(tvOS 17, *)
+		{
+			registerForTraitChanges([UITraitActiveAppearance.self]) { (self: Self, previousTraitCollection) in
+				self.updateColor()
+			}
+		}
 	}
 
 	public override func layoutSubviews() {
@@ -71,8 +79,13 @@ public class MaskOverlayView: UIView {
 
 	public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
 		super.traitCollectionDidChange(previousTraitCollection)
-		if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
-			updateColor()
+		if
+			#unavailable(iOS 17),
+			#unavailable(tvOS 17)
+		{
+			if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+				updateColor()
+			}
 		}
 	}
 

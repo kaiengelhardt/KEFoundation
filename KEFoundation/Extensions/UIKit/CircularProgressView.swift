@@ -97,6 +97,15 @@ public class CircularProgressView: UIView {
 		progressLayer.lineWidth = lineWidth
 
 		updateColors()
+
+		if
+			#available(iOS 17, *),
+			#available(tvOS 17, *)
+		{
+			registerForTraitChanges([UITraitActiveAppearance.self]) { (self: Self, previousTraitCollection) in
+				self.updateColors()
+			}
+		}
 	}
 
 	public func setProgress(_ progress: Double, animated: Bool) {
@@ -116,8 +125,13 @@ public class CircularProgressView: UIView {
 
 	public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
 		super.traitCollectionDidChange(previousTraitCollection)
-		if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
-			updateColors()
+		if
+			#unavailable(iOS 17),
+			#unavailable(tvOS 17)
+		{
+			if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+				updateColors()
+			}
 		}
 	}
 
