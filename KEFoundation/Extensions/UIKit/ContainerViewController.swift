@@ -58,7 +58,9 @@ open class ContainerViewController: UIViewController {
 				)
 			}
 			#if os(iOS)
+			#if !os(xrOS)
 			setNeedsStatusBarAppearanceUpdate()
+			#endif
 			setNeedsUpdateOfHomeIndicatorAutoHidden()
 			setNeedsUpdateOfScreenEdgesDeferringSystemGestures()
 			#endif

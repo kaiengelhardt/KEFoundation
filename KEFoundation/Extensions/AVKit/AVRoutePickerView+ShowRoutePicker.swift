@@ -30,6 +30,7 @@
 import AVKit
 import UIKit
 
+@available(xrOS, unavailable)
 extension AVRoutePickerView {
 	private static let routePickerView = AVRoutePickerView()
 

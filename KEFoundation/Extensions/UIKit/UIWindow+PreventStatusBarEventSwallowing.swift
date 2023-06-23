@@ -34,6 +34,7 @@ extension UIWindow {
 	/// This prevents a bug where the status bar properties and some other UIKit
 	/// mechanics don't work properly within the app window.
 	/// This is because UIKit chooses the frontmost, fullscreen window to determine the status bar style.
+	@available(xrOS, unavailable)
 	public func setFrameToBeNotEntirelyFullscreenToPreventThisWindowFromSwallowingStatusBarEvents(
 		in screen: UIScreen = .main
 	) {

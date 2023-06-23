@@ -253,6 +253,12 @@ extension Font.TextStyle {
 			return .caption1
 		case .caption2:
 			return .caption2
+		#if os(xrOS)
+		case .extraLargeTitle:
+			return .extraLargeTitle
+		case .extraLargeTitle2:
+			return .extraLargeTitle2
+		#endif
 		@unknown default:
 			return .body
 		}
@@ -284,6 +290,12 @@ extension Font {
 			return .caption
 		case .caption2:
 			return .caption2
+		#if os(xrOS)
+		case .extraLargeTitle:
+			return .extraLargeTitle
+		case .extraLargeTitle2:
+			return .extraLargeTitle2
+		#endif
 		@unknown default:
 			return .body
 		}
