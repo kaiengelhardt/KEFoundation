@@ -154,33 +154,72 @@ public final class ScaledFont {
 
 extension UIFont.TextStyle {
 	var swiftUITextStyle: Font.TextStyle {
-		switch self {
-		#if !os(tvOS)
-		case .largeTitle:
-			return .largeTitle
-		#endif
-		case .title1:
-			return .title
-		case .title2:
-			return .title2
-		case .title3:
-			return .title3
-		case .headline:
-			return .headline
-		case .subheadline:
-			return .subheadline
-		case .body:
-			return .body
-		case .footnote:
-			return .footnote
-		case .callout:
-			return .callout
-		case .caption1:
-			return .caption
-		case .caption2:
-			return .caption2
-		default:
-			return .body
+		if
+			#available(iOS 17, *),
+			#available(watchOS 10, *),
+			#available(tvOS 17, *)
+		{
+			switch self {
+			#if !os(tvOS)
+			case .largeTitle:
+				return .largeTitle
+			#endif
+			case .title1:
+				return .title
+			case .title2:
+				return .title2
+			case .title3:
+				return .title3
+			case .headline:
+				return .headline
+			case .subheadline:
+				return .subheadline
+			case .body:
+				return .body
+			case .footnote:
+				return .footnote
+			case .callout:
+				return .callout
+			case .caption1:
+				return .caption
+			case .caption2:
+				return .caption2
+			case .extraLargeTitle:
+				return .largeTitle
+			case .extraLargeTitle2:
+				return .largeTitle
+			default:
+				return .body
+			}
+		} else {
+			switch self {
+			#if !os(tvOS)
+			case .largeTitle:
+				return .largeTitle
+			#endif
+			case .title1:
+				return .title
+			case .title2:
+				return .title2
+			case .title3:
+				return .title3
+			case .headline:
+				return .headline
+			case .subheadline:
+				return .subheadline
+			case .body:
+				return .body
+			case .footnote:
+				return .footnote
+			case .callout:
+				return .callout
+			case .caption1:
+				return .caption
+			case .caption2:
+				return .caption2
+			default:
+				return .body
+			}
 		}
 	}
 }
