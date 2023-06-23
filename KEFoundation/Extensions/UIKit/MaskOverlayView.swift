@@ -77,6 +77,7 @@ public class MaskOverlayView: UIView {
 		updatePath()
 	}
 
+	#if !os(xrOS)
 	public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
 		super.traitCollectionDidChange(previousTraitCollection)
 		if
@@ -88,6 +89,7 @@ public class MaskOverlayView: UIView {
 			}
 		}
 	}
+	#endif
 
 	private func updatePath() {
 		if let maskPath {

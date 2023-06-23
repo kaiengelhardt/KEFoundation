@@ -123,6 +123,7 @@ public class CircularProgressView: UIView {
 		progressLayer.strokeColor = progressColor?.cgColor ?? tintColor.cgColor
 	}
 
+	#if !os(xrOS)
 	public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
 		super.traitCollectionDidChange(previousTraitCollection)
 		if
@@ -134,6 +135,7 @@ public class CircularProgressView: UIView {
 			}
 		}
 	}
+	#endif
 
 	public override func layoutSubviews() {
 		super.layoutSubviews()
