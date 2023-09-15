@@ -30,13 +30,13 @@ import Combine
 @testable import KEFoundation
 import XCTest
 
-class ObservableTests: XCTestCase {
-	private var object: ObservableMockObject!
+class ObservablePropertyTests: XCTestCase {
+	private var object: ObservablePropertyMockObject!
 	private var cancellables: Set<AnyCancellable> = []
 
 	override func setUpWithError() throws {
 		try super.setUpWithError()
-		object = ObservableMockObject(value: "Test")
+		object = ObservablePropertyMockObject(value: "Test")
 		cancellables = []
 	}
 
@@ -142,8 +142,8 @@ class ObservableTests: XCTestCase {
 	}
 }
 
-private class ObservableMockObject: ObservableObject {
-	@Observable var observableValue: String
+private class ObservablePropertyMockObject: ObservableObject {
+	@ObservableProperty var observableValue: String
 	@Published var publishedValue: String
 
 	init(value: String) {
@@ -153,7 +153,7 @@ private class ObservableMockObject: ObservableObject {
 }
 
 private class PlainMockObject {
-	@Observable var value: String
+	@ObservableProperty var value: String
 
 	init(value: String) {
 		self.value = value

@@ -75,7 +75,7 @@ class Publisher_WithPreviousTests: XCTestCase {
 }
 
 private class Box: ObservableObject {
-	@Observable var number: Int
+	@ObservableProperty var number: Int
 
 	init(number: Int) {
 		self.number = number
