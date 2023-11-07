@@ -38,7 +38,7 @@ import Foundation
 /// - Warning: This relies on a non-public feature of Swift:
 /// Accessing the enclosed instance from inside a property wrapper.
 @propertyWrapper
-public struct Observable<Value> {
+public struct ObservableProperty<Value> {
 	@available(*, unavailable, message: "@Published can only be applied to classes")
 	public var wrappedValue: Value {
 		get {
