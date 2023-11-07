@@ -253,7 +253,7 @@ extension Font.TextStyle {
 			return .caption1
 		case .caption2:
 			return .caption2
-		#if os(xrOS)
+		#if os(visionOS)
 		case .extraLargeTitle:
 			return .extraLargeTitle
 		case .extraLargeTitle2:
@@ -290,7 +290,7 @@ extension Font {
 			return .caption
 		case .caption2:
 			return .caption2
-		#if os(xrOS)
+		#if os(visionOS)
 		case .extraLargeTitle:
 			return .extraLargeTitle
 		case .extraLargeTitle2:

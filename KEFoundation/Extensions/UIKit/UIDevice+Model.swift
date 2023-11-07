@@ -47,6 +47,7 @@ extension UIDevice {
 		return identifier
 	}
 
+	#if !os(visionOS)
 	/// Taken from this stack overflow [answer](https://stackoverflow.com/a/26962452/980386)
 	public static func mapToDevice(identifier: String) -> String {
 		#if os(iOS)
@@ -169,5 +170,6 @@ extension UIDevice {
 		}
 		#endif
 	}
+	#endif
 }
 #endif

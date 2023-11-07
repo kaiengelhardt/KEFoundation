@@ -41,7 +41,6 @@ extension CGRect {
 		size.largestDimension
 	}
 
-	#if os(iOS) || os(tvOS) || os(watchOS)
 	public func insetBy(insets: UIEdgeInsets) -> CGRect {
 		return CGRect(
 			x: origin.x + insets.left,
@@ -50,5 +49,4 @@ extension CGRect {
 			height: height - (insets.top + insets.bottom)
 		)
 	}
-	#endif
 }

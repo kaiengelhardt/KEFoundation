@@ -26,7 +26,7 @@
 //  SOFTWARE.
 //
 
-#if !os(watchOS)
+#if !os(watchOS) && !os(visionOS) && !os(macOS)
 import AVKit
 import UIKit
 
