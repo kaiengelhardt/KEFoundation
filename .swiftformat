@@ -30,7 +30,7 @@ markTypes, \
 modifierOrder, \
 numberFormatting, \
 opaqueGenericParameters, \
-preferDouble, \
+preferForLoop, \
 preferKeyPath, \
 redundantBackticks, \
 redundantBreak, \
