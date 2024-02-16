@@ -29,6 +29,7 @@
 #if !os(watchOS) && !os(visionOS) && !os(macOS)
 import AVKit
 import UIKit
+import Vision
 
 @available(visionOS, unavailable)
 extension AVRoutePickerView {

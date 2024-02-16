@@ -26,7 +26,9 @@
 //  SOFTWARE.
 //
 
+#if canImport(UIKit) && !os(watchOS)
 @testable import KEFoundation
+import UIKit
 import XCTest
 
 final class InstanceConfigurationTests: XCTestCase {
@@ -46,3 +48,4 @@ final class InstanceConfigurationTests: XCTestCase {
 		XCTAssertEqual(label.textAlignment, .center)
 	}
 }
+#endif

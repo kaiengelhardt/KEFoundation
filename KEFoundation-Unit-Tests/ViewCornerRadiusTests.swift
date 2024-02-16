@@ -26,7 +26,9 @@
 //  SOFTWARE.
 //
 
+#if canImport(UIKit) && !os(watchOS)
 @testable import KEFoundation
+import UIKit
 import XCTest
 
 final class ViewCornerRadiusTests: XCTestCase {
@@ -106,3 +108,4 @@ final class ViewCornerRadiusTests: XCTestCase {
 		XCTAssertEqual(layer.cornerRadius, 0)
 	}
 }
+#endif
