@@ -77,7 +77,7 @@ public class MaskOverlayView: UIView {
 		updatePath()
 	}
 
-	#if !os(xrOS)
+	#if !os(visionOS)
 	public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
 		super.traitCollectionDidChange(previousTraitCollection)
 		if
