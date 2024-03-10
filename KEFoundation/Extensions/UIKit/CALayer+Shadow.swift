@@ -53,7 +53,7 @@ public struct Shadow: Sendable {
 		self.opacity = opacity
 		self.offset = offset
 		self.radius = radius
-		self.path = path?.copy()
+		self.path = path
 	}
 }
 
@@ -69,7 +69,7 @@ private struct PathContainer: @unchecked Sendable {
 		}
 		set {
 			lock.withLock {
-				_path = newValue
+				_path = newValue?.copy()
 			}
 		}
 	}
