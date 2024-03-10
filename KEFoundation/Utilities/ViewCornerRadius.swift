@@ -3,7 +3,7 @@
 #if !os(watchOS)
 import UIKit
 
-public enum ViewCornerRadius {
+public enum ViewCornerRadius: Sendable {
 	public static let full: ViewCornerRadius = .fraction(1)
 	public static let zero: ViewCornerRadius = .fraction(0)
 
@@ -19,6 +19,7 @@ public enum ViewCornerRadius {
 		}
 	}
 
+	@MainActor
 	public func apply(to view: UIView) {
 		apply(to: view.layer)
 	}

@@ -54,6 +54,7 @@ extension NSLayoutConstraint {
 	}
 }
 
+@MainActor
 extension [NSLayoutConstraint] {
 	#if canImport(UIKit)
 

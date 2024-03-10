@@ -34,7 +34,7 @@ extension URLSession {
 	}
 
 	public typealias DataTaskResult = Result<(Data, URLResponse), TaskError>
-	public typealias DataTaskCompletionHandler = (DataTaskResult) -> Void
+	public typealias DataTaskCompletionHandler = @Sendable (DataTaskResult) -> Void
 
 	/// Based on this [blog post](https://oleb.net/blog/2018/03/making-illegal-states-unrepresentable/) by Ole Begemann.
 	public func dataTask(with url: URL, completionHandler: @escaping DataTaskCompletionHandler) -> URLSessionDataTask {
@@ -54,7 +54,7 @@ extension URLSession {
 	}
 
 	public typealias DownloadTaskResult = Result<(URL, URLResponse), TaskError>
-	public typealias DownloadTaskCompletionHandler = (DownloadTaskResult) -> Void
+	public typealias DownloadTaskCompletionHandler = @Sendable (DownloadTaskResult) -> Void
 
 	/// Based on this [blog post](https://oleb.net/blog/2018/03/making-illegal-states-unrepresentable/) by Ole Begemann.
 	public func downloadTask(

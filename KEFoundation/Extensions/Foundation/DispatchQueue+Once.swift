@@ -29,7 +29,7 @@
 import Foundation
 
 extension DispatchQueue {
-	private static var onceTokens: Set<String> = []
+	private nonisolated(unsafe) static var onceTokens: Set<String> = []
 
 	/// Executes a block of code, associated with a unique token, only once.  The code is thread safe and will
 	/// only execute the code once even in the presence of multithreaded calls.

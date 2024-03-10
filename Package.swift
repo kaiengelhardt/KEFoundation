@@ -23,7 +23,10 @@ let package = Package(
 		.target(
 			name: "KEFoundation",
 			dependencies: [],
-			path: "KEFoundation"
+			path: "KEFoundation",
+			swiftSettings: [
+				.enableExperimentalFeature("StrictConcurrency"),
+			]
 		),
 		.testTarget(
 			name: "KEFoundation-Unit-Tests",

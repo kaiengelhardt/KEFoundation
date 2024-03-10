@@ -29,6 +29,7 @@
 #if !os(watchOS)
 import UIKit
 
+@MainActor
 @propertyWrapper
 public struct ActiveConstraint<Constraint: ConstraintActivatable> where Constraint: Equatable {
 	public var wrappedValue: Constraint {
@@ -53,6 +54,7 @@ extension ActiveConstraint where Constraint: DefaultValueProviding {
 	}
 }
 
+@MainActor
 public protocol ConstraintActivatable {
 	func activate()
 	func deactivate()

@@ -30,12 +30,20 @@
 import QuartzCore
 import UIKit
 
-public struct Shadow {
+public struct Shadow: Sendable {
 	public var color: CGColor?
 	public var opacity: Float
 	public var offset: CGSize
 	public var radius: Double
-	public var path: CGPath?
+	private var pathContainer = PathContainer()
+	public var path: CGPath? {
+		get {
+			return pathContainer.path
+		}
+		set {
+			pathContainer.path = newValue
+		}
+	}
 
 	public static let noShadow = Shadow(color: nil, opacity: 0, offset: .zero, radius: 0)
 	public static let `default` = Shadow(color: UIColor.black.cgColor, opacity: 0.2, offset: .zero, radius: 16)
@@ -45,7 +53,25 @@ public struct Shadow {
 		self.opacity = opacity
 		self.offset = offset
 		self.radius = radius
-		self.path = path
+		self.path = path?.copy()
+	}
+}
+
+private struct PathContainer: @unchecked Sendable {
+	private let lock = NSRecursiveLock()
+
+	private var _path: CGPath?
+	fileprivate var path: CGPath? {
+		get {
+			return lock.withLock {
+				return _path
+			}
+		}
+		set {
+			lock.withLock {
+				_path = newValue
+			}
+		}
 	}
 }
 

@@ -37,6 +37,7 @@ import AppKit
 
 #endif
 
+@MainActor
 public protocol LayoutSurface {
 	var leadingAnchor: NSLayoutXAxisAnchor { get }
 	var trailingAnchor: NSLayoutXAxisAnchor { get }
@@ -342,6 +343,7 @@ extension NSLayoutGuide: LayoutSurface {}
 
 #endif
 
+@MainActor
 extension Array where Element: LayoutSurface {
 	public func constraintsMatchingWidth() -> [NSLayoutConstraint] {
 		guard

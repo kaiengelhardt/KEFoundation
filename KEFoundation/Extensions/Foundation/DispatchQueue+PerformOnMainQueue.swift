@@ -29,7 +29,7 @@
 import Foundation
 
 extension DispatchQueue {
-	public static func performOnMainQueue(execute closure: @escaping () -> Void) {
+	public static func performOnMainQueue(execute closure: @Sendable @escaping () -> Void) {
 		if Thread.isMainThread {
 			closure()
 		} else {
