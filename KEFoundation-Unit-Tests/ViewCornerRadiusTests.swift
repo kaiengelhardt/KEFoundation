@@ -32,6 +32,7 @@ import UIKit
 import XCTest
 
 final class ViewCornerRadiusTests: XCTestCase {
+	@MainActor
 	func testApplyFullViewCornerRadiusOnView() {
 		let view = UIView()
 		view.frame = CGRect(x: 20, y: 20, width: 200, height: 100)
@@ -47,6 +48,7 @@ final class ViewCornerRadiusTests: XCTestCase {
 		XCTAssertEqual(view.layer.cornerRadius, 0)
 	}
 
+	@MainActor
 	func testApplyFractionalCornerRadiusOnView() {
 		let view = UIView()
 		view.frame = CGRect(x: 20, y: 20, width: 200, height: 100)
@@ -62,6 +64,7 @@ final class ViewCornerRadiusTests: XCTestCase {
 		XCTAssertEqual(view.layer.cornerRadius, 0)
 	}
 
+	@MainActor
 	func testApplyFixedCornerRadiusOnView() {
 		let view = UIView()
 		view.frame = CGRect(x: 20, y: 20, width: 200, height: 100)
@@ -77,6 +80,7 @@ final class ViewCornerRadiusTests: XCTestCase {
 		XCTAssertEqual(view.layer.cornerRadius, 30)
 	}
 
+	@MainActor
 	func testApplyZeroCornerRadiusOnView() {
 		let view = UIView()
 		view.frame = CGRect(x: 20, y: 20, width: 200, height: 100)
@@ -92,6 +96,7 @@ final class ViewCornerRadiusTests: XCTestCase {
 		XCTAssertEqual(view.layer.cornerRadius, 0)
 	}
 
+	@MainActor
 	func testApplyCornerRadiusOnLayer() {
 		let layer = CALayer()
 		layer.frame = CGRect(x: 20, y: 20, width: 200, height: 100)
