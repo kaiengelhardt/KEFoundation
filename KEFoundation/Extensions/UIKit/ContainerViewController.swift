@@ -58,7 +58,7 @@ open class ContainerViewController: UIViewController {
 				)
 			}
 			#if os(iOS) || targetEnvironment(macCatalyst) || os(tvOS) || os(visionOS)
-			if #available(iOS 16, macCatalyst 16, *) {
+			if #available(iOS 16, macCatalyst 16, tvOS 16, *) {
 				setNeedsUpdateOfSupportedInterfaceOrientations()
 			}
 			#endif
@@ -123,8 +123,6 @@ open class ContainerViewController: UIViewController {
 		embeddedViewController?.shouldAutorotate ?? true
 	}
 
-	#endif
-
 	open override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
 		if let embeddedViewController {
 			return embeddedViewController.supportedInterfaceOrientations
@@ -132,6 +130,8 @@ open class ContainerViewController: UIViewController {
 			return .all
 		}
 	}
+
+	#endif
 
 	#if os(iOS) || targetEnvironment(macCatalyst) || os(visionOS)
 
