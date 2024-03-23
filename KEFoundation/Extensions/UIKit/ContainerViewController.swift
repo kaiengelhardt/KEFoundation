@@ -57,12 +57,27 @@ open class ContainerViewController: UIViewController {
 					of: embeddedViewControllerPositioningLayoutSurface
 				)
 			}
-			#if os(iOS)
-			#if !os(visionOS)
+			#if os(iOS) || targetEnvironment(macCatalyst) || os(tvOS) || os(visionOS)
+			if #available(iOS 16, macCatalyst 16, *) {
+				setNeedsUpdateOfSupportedInterfaceOrientations()
+			}
+			#endif
+			#if os(iOS) || targetEnvironment(macCatalyst)
 			setNeedsStatusBarAppearanceUpdate()
 			#endif
+			#if os(iOS) || targetEnvironment(macCatalyst) || os(visionOS)
 			setNeedsUpdateOfHomeIndicatorAutoHidden()
 			setNeedsUpdateOfScreenEdgesDeferringSystemGestures()
+			setNeedsUpdateOfPrefersPointerLocked()
+			#endif
+			#if targetEnvironment(macCatalyst)
+			setNeedsTouchBarUpdate()
+			#endif
+			#if os(tvOS)
+			setNeedsUserInterfaceAppearanceUpdate()
+			#endif
+			#if os(visionOS)
+			setNeedsUpdateOfPreferredContainerBackgroundStyle()
 			#endif
 		}
 	}
@@ -102,7 +117,23 @@ open class ContainerViewController: UIViewController {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-	#if os(iOS)
+	#if os(iOS) || targetEnvironment(macCatalyst) || os(visionOS)
+
+	open override var shouldAutorotate: Bool {
+		embeddedViewController?.shouldAutorotate ?? true
+	}
+
+	#endif
+
+	open override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+		if let embeddedViewController {
+			return embeddedViewController.supportedInterfaceOrientations
+		} else {
+			return .all
+		}
+	}
+
+	#if os(iOS) || targetEnvironment(macCatalyst) || os(visionOS)
 
 	open override var childForStatusBarStyle: UIViewController? {
 		embeddedViewController
@@ -117,6 +148,34 @@ open class ContainerViewController: UIViewController {
 	}
 
 	open override var childForScreenEdgesDeferringSystemGestures: UIViewController? {
+		embeddedViewController
+	}
+
+	open override var childViewControllerForPointerLock: UIViewController? {
+		embeddedViewController
+	}
+
+	#endif
+
+	#if targetEnvironment(macCatalyst)
+
+	open override var childViewControllerForTouchBar: UIViewController? {
+		embeddedViewController
+	}
+
+	#endif
+
+	#if os(tvOS)
+
+	open override var childViewControllerForUserInterfaceStyle: UIViewController? {
+		embeddedViewController
+	}
+
+	#endif
+
+	#if os(visionOS)
+
+	open override var childViewControllerForPreferredContainerBackgroundStyle: UIViewController? {
 		embeddedViewController
 	}
 
