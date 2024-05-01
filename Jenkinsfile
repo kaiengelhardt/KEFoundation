@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         SCHEME = 'KEFoundation'
-        SCRIPT_PATH = 'Scripts'
+        SCRIPT_PATH = '.scripts'
         TEST_RESULTS_DIR = 'test-results'
         NUMBER_OF_FAILED_STAGES = 0
     }
