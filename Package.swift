@@ -18,11 +18,14 @@ let package = Package(
 		),
 	],
 	dependencies: [
+		.package(url: "https://github.com/kaiengelhardt/consti", from: "1.0.1"),
 	],
 	targets: [
 		.target(
 			name: "KEFoundation",
-			dependencies: [],
+			dependencies: [
+				.product(name: "Consti", package: "Consti"),
+			],
 			path: "KEFoundation",
 			swiftSettings: [
 				.enableExperimentalFeature("StrictConcurrency"),

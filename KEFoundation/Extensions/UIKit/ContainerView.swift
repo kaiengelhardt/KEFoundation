@@ -27,6 +27,7 @@
 //
 
 #if !os(watchOS)
+import Consti
 import UIKit
 
 public class ContainerView: UIView {
@@ -67,7 +68,7 @@ public class ContainerView: UIView {
 	}
 
 	private func embeddedViewConstraints(for view: UIView, insets: NSDirectionalEdgeInsets) -> [NSLayoutConstraint] {
-		return view.constraintsMatchingEdgesOfSuperview(insetBy: UIEdgeInsets(insets: insets))
+		return view.constraintsMatchingEdgesOfSuperview(insetBy: insets)
 	}
 }
 #endif

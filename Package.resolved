@@ -1,0 +1,15 @@
+{
+  "originHash" : "59bd95d907a8c61cd3424a2e7554e302800808ca7ad6748c3825f3e9148e0c09",
+  "pins" : [
+    {
+      "identity" : "consti",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kaiengelhardt/consti",
+      "state" : {
+        "revision" : "f3b48eb08350d90354170854ed3339fe757e743d",
+        "version" : "1.0.1"
+      }
+    }
+  ],
+  "version" : 3
+}
