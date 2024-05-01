@@ -1,16 +1,19 @@
-# SwiftFormat version: 0.50.0
+# SwiftFormat version: 0.53.8
 
 # Rules
 --rules \
 anyObjectProtocol, \
+applicationMain, \
 assertionFailures, \
 blankLineAfterImports, \
 blankLinesAroundMark, \
 blankLinesAtEndOfScope, \
 blankLinesAtStartOfScope, \
 blankLinesBetweenImports, \
+blankLinesBetweenChainedFunctions, \
 blankLinesBetweenScopes, \
 braces, \
+conditionalAssignment, \
 consecutiveBlankLines, \
 consecutiveSpaces, \
 duplicateImports, \
@@ -31,7 +34,6 @@ modifierOrder, \
 numberFormatting, \
 opaqueGenericParameters, \
 preferForLoop, \
-preferKeyPath, \
 redundantBackticks, \
 redundantBreak, \
 redundantClosure, \
@@ -39,6 +41,7 @@ redundantExtensionACL, \
 redundantFileprivate, \
 redundantGet, \
 redundantInit, \
+redundantInternal, \
 redundantLet, \
 redundantLetError, \
 redundantNilInit, \
@@ -47,11 +50,12 @@ redundantOptionalBinding, \
 redundantParens, \
 redundantPattern, \
 redundantSelf, \
+redundantStaticSelf, \
 redundantType, \
 redundantVoidReturnType, \
 semicolons, \
 sortDeclarations, \
-sortedImports, \
+sortImports, \
 spaceAroundBraces, \
 spaceAroundBrackets, \
 spaceAroundComments, \
@@ -76,18 +80,34 @@ wrapArguments, \
 wrapAttributes, \
 wrapConditionalBodies, \
 wrapEnumCases, \
+wrapLoopBodies, \
 wrapMultilineStatementBraces, \
 wrapSwitchCases, \
 yodaConditions
 
 --disable \
 # --------------------
+# This rules is disabled by default.
 acronyms, \
+# We want to use &&, instead of comma, if possible.
 andOperator, \
+# This rules is disabled by default.
 blockComments, \
+# We want to be intentional about wether comments are doc comments or not.
+docComments, \
+# We don't want our fileheader to be linted.
 fileHeader, \
+# We don't have file names in file headers.
+headerFileName, \
+# We want the try and await keywords to be at the expressions they are referring to.
+hoistAwait, \
+hoistTry, \
+# This rule is disabled by default.
+noExplicitOwnership, \
 # Disabling this rule, because it changes the code too much. It sorts all declarations by visibility.
 organizeDeclarations, \
+# Introduces too many errors.
+preferKeyPath, \
 # Raw values should not be removed, as they might be stored persistently and that could be problematic when refactoring.
 redundantRawValues, \
 # This removes return statements in properties, which is not cool.
@@ -95,8 +115,12 @@ redundantReturn, \
 # Often it makes sense for cases to have a specific logical order, instead of the alphabetic one.
 # Example: UIGestureRecognizer.state
 sortedSwitchCases, \
+# We want to preserve a logical order for protocol composition typealiases.
+sortTypealiases, \
 # It's good to have parameter names, even if you don't use the parameter. It helps with documentation.
 unusedArguments, \
+# This rule does not make the code much clearer.
+wrapMultilineConditionalAssignment, \
 # This rule incorrectly breaks doc comments.
 wrapSingleLineComments
 
@@ -105,14 +129,17 @@ wrapSingleLineComments
 # acronyms options
 --acronyms ID,URL,UUID, UDID, GID, HTTP, HTTPS, ASCII
 
-# blankLinesAtStartOfScope options
---typeblanklines remove
-
 # blankLinesAroundMark options
 --lineaftermarks true
 
+# blankLinesAtStartOfScope options
+--typeblanklines remove
+
 # braces options
 --allman false
+
+# docComments options
+--doccomments before-declarations
 
 # elseOnSameLine options
 --elseposition same-line
@@ -133,8 +160,14 @@ wrapSingleLineComments
 # genericExtensions options
 --generictypes
 
+# hoistAwait options
+--asynccapturing
+
 # hoistPatternLet options
 --patternlet hoist
+
+# hoistTry options
+--throwcapturing
 
 # indent options
 --indent tab
@@ -169,7 +202,7 @@ wrapSingleLineComments
 --exponentcase lowercase
 
 # opaqueGenericParameters options
---someAny true
+--someany true
 
 # organizeDeclarations options
 --categorymark "MARK: %c"
@@ -181,6 +214,10 @@ wrapSingleLineComments
 --classthreshold 0
 --enumthreshold 0
 --extensionlength 0
+
+# preferForLoop options
+--anonymousforeach convert
+--onelineforeach convert
 
 # redundantSelf options
 --self remove
@@ -242,9 +279,21 @@ wrapSingleLineComments
 --typeattributes prev-line
 --varattributes preserve
 
+# wrapEnumCases options
+--wrapenumcases always
+
 # yodaConditions options
 --yodaswap always
 
 # global options
 --conflictmarkers reject
 --fragment false
+
+# file options
+--exclude \
+**/R.generated.swift, \
+build, \
+DerivedData, \
+SourcePackageCache, \
+temp, \
+vendor

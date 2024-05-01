@@ -58,11 +58,10 @@ public struct UserDefault<Value: UserDefaultValue, PreferenceContainer: Preferen
 			let key = instance[keyPath: storageKeyPath].key
 			let defaultValue = instance[keyPath: storageKeyPath].defaultValue
 			let value = Value.readValue(forKey: key, from: instance.userDefaults)
-			let result: Value
-			if value is any OptionalType && value.flattened == nil {
-				result = defaultValue
+			let result: Value = if value is any OptionalType && value.flattened == nil {
+				defaultValue
 			} else {
-				result = value ?? defaultValue
+				value ?? defaultValue
 			}
 			return result
 		}

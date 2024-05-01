@@ -45,11 +45,10 @@ public class PageViewController: UIViewController {
 	private var currentPage: Int {
 		let horizontalContentOffset = scrollView.contentOffset.x
 		let width = scrollView.bounds.width
-		let currentPage: Int
-		if width > 0 {
-			currentPage = Int((horizontalContentOffset + 0.5 * width) / width)
+		let currentPage = if width > 0 {
+			Int((horizontalContentOffset + 0.5 * width) / width)
 		} else {
-			currentPage = 0
+			0
 		}
 		return currentPage
 	}

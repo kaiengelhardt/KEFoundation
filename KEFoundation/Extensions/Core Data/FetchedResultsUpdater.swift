@@ -89,23 +89,21 @@ extension FetchedResultsUpdater: NSFetchedResultsControllerDelegate {
 		for type: NSFetchedResultsChangeType,
 		newIndexPath _newIndexPath: IndexPath?
 	) {
-		let indexPath: IndexPath?
-		if let _indexPath {
-			indexPath = IndexPath(
+		let indexPath: IndexPath? = if let _indexPath {
+			IndexPath(
 				row: _indexPath.row + indexPathOffset.row,
 				section: _indexPath.section + indexPathOffset.section
 			)
 		} else {
-			indexPath = nil
+			nil
 		}
-		let newIndexPath: IndexPath?
-		if let _newIndexPath {
-			newIndexPath = IndexPath(
+		let newIndexPath: IndexPath? = if let _newIndexPath {
+			IndexPath(
 				row: _newIndexPath.row + indexPathOffset.row,
 				section: _newIndexPath.section + indexPathOffset.section
 			)
 		} else {
-			newIndexPath = nil
+			nil
 		}
 
 		switch type {
