@@ -33,7 +33,7 @@ extension String {
 		Self.emailPredicate.evaluate(with: self)
 	}
 
-	private static let emailPredicate: NSPredicate = {
+	private nonisolated(unsafe) static let emailPredicate: NSPredicate = {
 		let regex = "^[a-zA-Z0-9äÄöÖüÜß._%+-]+@[a-zA-Z0-9äÄöÖüÜß._-]+\\.[a-zA-Z]{2,24}$"
 		let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
 		return predicate
