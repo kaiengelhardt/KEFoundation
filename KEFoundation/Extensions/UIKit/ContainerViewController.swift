@@ -120,10 +120,6 @@ open class ContainerViewController: UIViewController {
 
 	#if os(iOS) || targetEnvironment(macCatalyst) || os(visionOS)
 
-	open override var shouldAutorotate: Bool {
-		embeddedViewController?.shouldAutorotate ?? true
-	}
-
 	open override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
 		if let embeddedViewController {
 			return embeddedViewController.supportedInterfaceOrientations
