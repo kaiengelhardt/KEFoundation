@@ -110,7 +110,6 @@ open class ContainerViewController: UIViewController {
 
 	public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
 		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-		view.preservesSuperviewLayoutMargins = true
 	}
 
 	@available(*, unavailable)
@@ -177,6 +176,11 @@ open class ContainerViewController: UIViewController {
 	}
 
 	#endif
+
+	open override func viewDidLoad() {
+		super.viewDidLoad()
+		view.preservesSuperviewLayoutMargins = true
+	}
 
 	public func animate(to viewController: UIViewController) {
 		UIView.transition(
