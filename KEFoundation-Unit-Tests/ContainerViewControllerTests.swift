@@ -26,6 +26,7 @@
 //  SOFTWARE.
 //
 
+#if canImport(UIKit) && !os(watchOS)
 @testable import KEFoundation
 import XCTest
 
@@ -35,3 +36,4 @@ class ContainerViewControllerTests: XCTestCase {
 		XCTAssertFalse(container.isViewLoaded)
 	}
 }
+#endif
