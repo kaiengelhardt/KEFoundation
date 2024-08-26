@@ -24,7 +24,12 @@ let package = Package(
 		.target(
 			name: "KEFoundation",
 			dependencies: [
-				.product(name: "Consti", package: "Consti"),
+				.product(name: "Consti", package: "Consti", condition: .when(platforms: [
+					.iOS,
+					.macCatalyst,
+					.tvOS,
+					.visionOS,
+				])),
 			],
 			path: "KEFoundation",
 			swiftSettings: [
