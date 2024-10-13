@@ -1,6 +1,6 @@
 // Created by Kai Engelhardt on 27.09.22.
 
-#if !os(watchOS)
+#if !os(watchOS) && canImport(UIKit)
 import UIKit
 
 public enum ViewCornerRadius: Sendable {

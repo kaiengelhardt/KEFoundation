@@ -26,6 +26,8 @@
 //  SOFTWARE.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 extension String {
@@ -41,3 +43,5 @@ extension String {
 		return image
 	}
 }
+
+#endif

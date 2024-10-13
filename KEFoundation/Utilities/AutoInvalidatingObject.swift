@@ -56,5 +56,6 @@ extension Timer: Invalidatable {}
 
 // MARK: - CADisplayLink + Invalidatable
 
+@available(macOS 14, *)
 extension CADisplayLink: Invalidatable {}
 #endif

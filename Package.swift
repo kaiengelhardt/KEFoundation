@@ -6,6 +6,7 @@ let package = Package(
 	name: "KEFoundation",
 	platforms: [
 		.iOS(.v14),
+		.macOS(.v11),
 		.macCatalyst(.v14),
 		.watchOS(.v8),
 		.tvOS(.v14),
@@ -26,6 +27,7 @@ let package = Package(
 			dependencies: [
 				.product(name: "Consti", package: "Consti", condition: .when(platforms: [
 					.iOS,
+					.macOS,
 					.macCatalyst,
 					.tvOS,
 					.visionOS,

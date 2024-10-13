@@ -26,6 +26,8 @@
 //  SOFTWARE.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 extension NSDirectionalEdgeInsets {
@@ -33,3 +35,5 @@ extension NSDirectionalEdgeInsets {
 		self.init(top: insets.top, leading: insets.left, bottom: insets.bottom, trailing: insets.right)
 	}
 }
+
+#endif

@@ -26,6 +26,8 @@
 //  SOFTWARE.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 extension UIFont {
@@ -38,3 +40,5 @@ extension UIFont {
 		return UIFont(descriptor: fontDescriptor, size: pointSize)
 	}
 }
+
+#endif

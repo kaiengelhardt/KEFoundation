@@ -26,7 +26,7 @@
 //  SOFTWARE.
 //
 
-#if !os(watchOS)
+#if !os(watchOS) && canImport(UIKit)
 import UIKit
 
 extension UIWindow {

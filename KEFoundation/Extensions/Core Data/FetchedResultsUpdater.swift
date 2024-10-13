@@ -41,7 +41,7 @@ public class FetchedResultsUpdater: NSObject {
 		case move(IndexPath, IndexPath)
 	}
 
-	public var indexPathOffset = IndexPath(row: 0, section: 0)
+	public var indexPathOffset = IndexPath(item: 0, section: 0)
 
 	public weak var delegate: FetchedResultsUpdaterDelegate?
 
@@ -91,7 +91,7 @@ extension FetchedResultsUpdater: NSFetchedResultsControllerDelegate {
 	) {
 		let indexPath: IndexPath? = if let _indexPath {
 			IndexPath(
-				row: _indexPath.row + indexPathOffset.row,
+				item: _indexPath.item + indexPathOffset.item,
 				section: _indexPath.section + indexPathOffset.section
 			)
 		} else {
@@ -99,7 +99,7 @@ extension FetchedResultsUpdater: NSFetchedResultsControllerDelegate {
 		}
 		let newIndexPath: IndexPath? = if let _newIndexPath {
 			IndexPath(
-				row: _newIndexPath.row + indexPathOffset.row,
+				item: _newIndexPath.item + indexPathOffset.item,
 				section: _newIndexPath.section + indexPathOffset.section
 			)
 		} else {

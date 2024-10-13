@@ -26,6 +26,8 @@
 //  SOFTWARE.
 //
 
+#if canImport(UIKit)
+
 import CoreGraphics
 import UIKit
 
@@ -58,3 +60,5 @@ extension UIImage {
 		return self
 	}
 }
+
+#endif

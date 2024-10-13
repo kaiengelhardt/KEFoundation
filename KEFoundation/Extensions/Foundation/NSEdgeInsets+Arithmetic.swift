@@ -38,7 +38,7 @@ extension NSEdgeInsets {
 	}
 
 	public static func + (lhs: NSEdgeInsets, rhs: NSEdgeInsets) -> NSEdgeInsets {
-		return UIEdgeInsets(
+		return NSEdgeInsets(
 			top: lhs.top + rhs.top,
 			left: lhs.left + rhs.left,
 			bottom: lhs.bottom + rhs.bottom,
@@ -47,7 +47,7 @@ extension NSEdgeInsets {
 	}
 
 	public static func - (lhs: NSEdgeInsets, rhs: NSEdgeInsets) -> NSEdgeInsets {
-		return UIEdgeInsets(
+		return NSEdgeInsets(
 			top: lhs.top - rhs.top,
 			left: lhs.left - rhs.left,
 			bottom: lhs.bottom - rhs.bottom,

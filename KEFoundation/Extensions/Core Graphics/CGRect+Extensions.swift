@@ -26,7 +26,10 @@
 //  SOFTWARE.
 //
 
+import CoreGraphics
+#if canImport(UIKit)
 import UIKit
+#endif
 
 extension CGRect {
 	public var center: CGPoint {
@@ -41,6 +44,7 @@ extension CGRect {
 		size.largestDimension
 	}
 
+	#if canImport(UIKit)
 	public func insetBy(insets: UIEdgeInsets) -> CGRect {
 		return CGRect(
 			x: origin.x + insets.left,
@@ -49,4 +53,5 @@ extension CGRect {
 			height: height - (insets.top + insets.bottom)
 		)
 	}
+	#endif
 }

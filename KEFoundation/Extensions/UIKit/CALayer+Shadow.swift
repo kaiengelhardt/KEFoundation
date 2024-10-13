@@ -28,7 +28,16 @@
 
 #if !os(watchOS)
 import QuartzCore
+
+#if canImport(UIKit)
 import UIKit
+
+fileprivate typealias Color = UIColor
+#elseif canImport(AppKit)
+import AppKit
+
+fileprivate typealias Color = NSColor
+#endif
 
 public struct Shadow: Sendable {
 	public var color: CGColor?
@@ -46,7 +55,7 @@ public struct Shadow: Sendable {
 	}
 
 	public static let noShadow = Shadow(color: nil, opacity: 0, offset: .zero, radius: 0)
-	public static let `default` = Shadow(color: UIColor.black.cgColor, opacity: 0.2, offset: .zero, radius: 16)
+	public static let `default` = Shadow(color: Color.black.cgColor, opacity: 0.2, offset: .zero, radius: 16)
 
 	public init(color: CGColor?, opacity: Float, offset: CGSize, radius: Double, path: CGPath? = nil) {
 		self.color = color

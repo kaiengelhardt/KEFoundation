@@ -26,6 +26,8 @@
 //  SOFTWARE.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 extension UIEdgeInsets {
@@ -33,3 +35,5 @@ extension UIEdgeInsets {
 		self.init(top: insets.top, left: insets.leading, bottom: insets.bottom, right: insets.trailing)
 	}
 }
+
+#endif
