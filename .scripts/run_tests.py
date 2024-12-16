@@ -9,28 +9,28 @@ from utilities import get_mac_architecture
 
 device_configurations = {
 	"iOS": {
-		"device_name": "iPhone 15 Pro",
-		"device_type": "iPhone 15 Pro",
+		"device_name": "iPhone 16 Pro",
+		"device_type": "iPhone 16 Pro",
 		"platform": "iOS",
-		"runtime_version": "17.2"
+		"runtime_version": "18.2"
 	},
 	"watchOS": {
 		"device_name": "Apple Watch Ultra 2 (49mm)",
 		"device_type": "Apple Watch Ultra 2 (49mm)",
 		"platform": "watchOS",
-		"runtime_version": "10.2"
+		"runtime_version": "11.2"
 	},
 	"tvOS": {
 		"device_name": "Apple TV 4K (3rd generation)",
 		"device_type": "Apple TV 4K (3rd generation)",
 		"platform": "tvOS",
-		"runtime_version": "17.2"
+		"runtime_version": "18.2"
 	},
 	"visionOS": {
 		"device_name": "Apple Vision Pro",
 		"device_type": "Apple Vision Pro",
 		"platform": "visionOS",
-		"runtime_version": "1.0"
+		"runtime_version": "2.2"
 	},
 	"macOS": {
 		"catalyst": True
