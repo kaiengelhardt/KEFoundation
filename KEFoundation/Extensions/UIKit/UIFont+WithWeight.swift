@@ -35,7 +35,7 @@ extension UIFont {
 		let symbolicTraits = fontDescriptor.symbolicTraits
 		let traits: [UIFontDescriptor.TraitKey: Any] = [
 			.weight: weight,
-			.symbolic: symbolicTraits,
+			.symbolic: NSNumber(value: symbolicTraits.rawValue),
 		]
 		let fontDescriptor = UIFontDescriptor(fontAttributes: [
 			.family: familyName,
