@@ -19,7 +19,7 @@ let package = Package(
 		),
 	],
 	dependencies: [
-		.package(url: "https://github.com/kaiengelhardt/consti", from: "1.0.1"),
+		.package(url: "https://github.com/kaiengelhardt/consti", from: "1.0.3"),
 	],
 	targets: [
 		.target(
