@@ -28,7 +28,7 @@
 
 import Foundation
 
-public protocol UserDefaultValue {
+public protocol UserDefaultValue: Sendable {
 	static func readValue(forKey key: String, from userDefaults: UserDefaults) -> Self?
 	func writeValue(forKey key: String, to userDefaults: UserDefaults) throws
 }

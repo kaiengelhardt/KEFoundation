@@ -27,14 +27,17 @@
 //
 
 import Foundation
+import Observation
 
 /// Based on this [blog post](https://www.avanderlee.com/swift/appstorage-explained/).
+@available(iOS 17.0, macOS 14.0, macCatalyst 17.0, tvOS 17.0, watchOS 10.0, visionOS 1.0, *)
 @propertyWrapper
-public struct UserDefault<Value: UserDefaultValue, PreferenceContainer: Preferences> {
+public struct UserDefault<Value: UserDefaultValue, PreferenceContainer: Preferences>: Sendable {
 	public let key: String
 	public let defaultValue: Value
+	private let observationRegistrar = ObservationRegistrar()
 
-	@available(*, unavailable, message: "@Published can only be applied to classes")
+	@available(*, unavailable, message: "@UserDefault can only be applied to classes conforming to Preferences")
 	public var wrappedValue: Value {
 		get {
 			preconditionFailure()
@@ -55,8 +58,10 @@ public struct UserDefault<Value: UserDefaultValue, PreferenceContainer: Preferen
 		storage storageKeyPath: ReferenceWritableKeyPath<PreferenceContainer, Self>
 	) -> Value {
 		get {
-			let key = instance[keyPath: storageKeyPath].key
-			let defaultValue = instance[keyPath: storageKeyPath].defaultValue
+			let storage = instance[keyPath: storageKeyPath]
+			storage.observationRegistrar.access(instance, keyPath: wrappedKeyPath)
+			let key = storage.key
+			let defaultValue = storage.defaultValue
 			let value = Value.readValue(forKey: key, from: instance.userDefaults)
 			let result: Value = if value is any OptionalType && value.flattened == nil {
 				defaultValue
@@ -66,20 +71,21 @@ public struct UserDefault<Value: UserDefaultValue, PreferenceContainer: Preferen
 			return result
 		}
 		set {
-			let key = instance[keyPath: storageKeyPath].key
-			do {
-				try newValue.writeValue(forKey: key, to: instance.userDefaults)
-			} catch {
-				print("Failed to write value \(newValue) for key \(key) to UserDefaults!\n\(error).")
+			let storage = instance[keyPath: storageKeyPath]
+			storage.observationRegistrar.withMutation(of: instance, keyPath: wrappedKeyPath) {
+				do {
+					try newValue.writeValue(forKey: storage.key, to: instance.userDefaults)
+				} catch {
+					print("Failed to write value \(newValue) for key \(storage.key) to UserDefaults!\n\(error).")
+				}
 			}
-			instance.preferencesChangedSubject.send(wrappedKeyPath)
 		}
 	}
 }
 
+@available(iOS 17.0, macOS 14.0, macCatalyst 17.0, tvOS 17.0, watchOS 10.0, visionOS 1.0, *)
 extension UserDefault where Value: OptionalType {
 	init(_ key: String) {
 		self.init(wrappedValue: .none, key)
-		print(#function, key)
 	}
 }

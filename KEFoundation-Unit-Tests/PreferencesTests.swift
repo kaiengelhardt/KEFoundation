@@ -26,11 +26,11 @@
 //  SOFTWARE.
 //
 
-import Combine
+import Observation
 @testable import KEFoundation
 import XCTest
 
-private let testDefaults = UserDefaults()
+nonisolated(unsafe) private let testDefaults = UserDefaults()
 
 private let firstNameKey = "name"
 private let defaultFirstName = "Kai"
@@ -84,14 +84,13 @@ private let defaultRawRepresentableStringRawValue: RawRepresentableExample = .on
 
 // DON'T FORGET ABOUT TransformableUserDefault
 
-final class TestPreferences: Preferences {
+@available(iOS 26.0, macOS 26.0, macCatalyst 26.0, tvOS 26.0, watchOS 26.0, visionOS 26.0, *)
+final class TestPreferences: Preferences, @unchecked Sendable {
 	typealias UserDefault<Value: UserDefaultValue> = KEFoundation.UserDefault<Value, TestPreferences>
 
 	static let `default` = TestPreferences()
 
 	var userDefaults: UserDefaults
-
-	var preferencesChangedSubject = PassthroughSubject<AnyKeyPath, Never>()
 
 	init(userDefaults: UserDefaults = testDefaults) {
 		self.userDefaults = userDefaults
@@ -115,9 +114,11 @@ final class TestPreferences: Preferences {
 	var rawRepresentableStringRawValue = defaultRawRepresentableStringRawValue
 }
 
-typealias Preference<Value> = KEFoundation.Preference<Value, TestPreferences>
+@available(iOS 26.0, macOS 26.0, macCatalyst 26.0, tvOS 26.0, watchOS 26.0, visionOS 26.0, *)
+typealias Preference<Value: Sendable> = KEFoundation.Preference<Value, TestPreferences>
 
-class Object {
+@available(iOS 26.0, macOS 26.0, macCatalyst 26.0, tvOS 26.0, watchOS 26.0, visionOS 26.0, *)
+final class Object: @unchecked Sendable {
 	@Preference(\.firstName) var firstName
 	@Preference(\.age) var age
 	@Preference(\.middleName) var middleName
@@ -135,12 +136,10 @@ class Object {
 	@Preference(\.rawRepresentableStringRawValue) var rawRepresentableStringRawValue
 }
 
+@available(iOS 26.0, macOS 26.0, macCatalyst 26.0, tvOS 26.0, watchOS 26.0, visionOS 26.0, *)
 class PreferencesTests: XCTestCase {
-	private var observations: Set<AnyCancellable> = []
-
 	override func setUpWithError() throws {
 		try super.setUpWithError()
-		observations = []
 		testDefaults.reset()
 	}
 
@@ -202,28 +201,59 @@ class PreferencesTests: XCTestCase {
 		XCTAssertEqual(object.jobTitle, defaultJobTitle)
 	}
 
-	func testPublisherPublishesInitialValue() {
-		var values: [String] = []
+	func testObservationsProvidesInitialAndSubsequentValues() async {
 		let object = Object()
-		object.$firstName.publisher.sink { firstName in
-			values.append(firstName)
-		}
-		.store(in: &observations)
-		XCTAssertEqual(values, [defaultFirstName])
-	}
+		var iterator = Observations {
+			object.firstName
+		}.makeAsyncIterator()
 
-	func testPublisherPublishesSubsequentValues() {
-		var values: [String] = []
-		let object = Object()
-		object.$firstName.publisher.sink { firstName in
-			values.append(firstName)
-		}
-		.store(in: &observations)
+		let initialName = await iterator.next()
+		XCTAssertEqual(initialName, defaultFirstName)
+
 		let secondName = "Ralph"
 		object.firstName = secondName
+		let observedSecondName = await iterator.next()
+		XCTAssertEqual(observedSecondName, secondName)
+
 		let thirdName = "Lennart"
 		object.firstName = thirdName
-		XCTAssertEqual(values, [defaultFirstName, secondName, thirdName])
+		let observedThirdName = await iterator.next()
+		XCTAssertEqual(observedThirdName, thirdName)
+	}
+
+	func testObservationIsSynchronizedAcrossDeclarations() async {
+		let object1 = Object()
+		let object2 = Object()
+		var iterator = Observations {
+			object2.firstName
+		}.makeAsyncIterator()
+
+		let initialName = await iterator.next()
+		XCTAssertEqual(initialName, defaultFirstName)
+
+		let newName = "Sarah"
+		object1.firstName = newName
+		let observedName = await iterator.next()
+		XCTAssertEqual(observedName, newName)
+	}
+
+	func testProjectedValueIsBinding() {
+		let object = Object()
+		let binding = object.$firstName
+
+		XCTAssertEqual(binding.wrappedValue, defaultFirstName)
+		binding.wrappedValue = "Sarah"
+		XCTAssertEqual(object.firstName, "Sarah")
+	}
+
+	func testPreferencesCanBeAccessedFromDetachedTask() async {
+		let preferences = TestPreferences.default
+		let name = await Task.detached {
+			preferences.firstName = "Sarah"
+			return preferences.firstName
+		}.value
+
+		XCTAssertEqual(name, "Sarah")
 	}
 
 	func testUserDefaultValueTypes() {

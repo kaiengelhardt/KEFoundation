@@ -26,13 +26,13 @@
 //  SOFTWARE.
 //
 
-import Combine
 import Foundation
+import Observation
 
 /// Based on this [blog post](https://www.avanderlee.com/swift/appstorage-explained/).
-public protocol Preferences: AnyObject {
+@available(iOS 17.0, macOS 14.0, macCatalyst 17.0, tvOS 17.0, watchOS 10.0, visionOS 1.0, *)
+public protocol Preferences: AnyObject, Observable, Sendable {
 	static var `default`: Self { get }
 
 	var userDefaults: UserDefaults { get }
-	var preferencesChangedSubject: PassthroughSubject<AnyKeyPath, Never> { get }
 }

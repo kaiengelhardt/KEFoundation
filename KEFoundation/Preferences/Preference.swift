@@ -26,14 +26,12 @@
 //  SOFTWARE.
 //
 
-import Combine
-import Foundation
 import SwiftUI
 
 /// Based on this [blog post](https://www.avanderlee.com/swift/appstorage-explained/).
+@available(iOS 17.0, macOS 14.0, macCatalyst 17.0, tvOS 17.0, watchOS 10.0, visionOS 1.0, *)
 @propertyWrapper
-public struct Preference<Value, PreferenceContainer: Preferences>: DynamicProperty {
-	@ObservedObject private var preferencesObserver: PublisherObservableObject
+public struct Preference<Value: Sendable, PreferenceContainer: Preferences>: DynamicProperty, @unchecked Sendable {
 	private let keyPath: ReferenceWritableKeyPath<PreferenceContainer, Value>
 	private let preferences: PreferenceContainer
 
@@ -52,69 +50,16 @@ public struct Preference<Value, PreferenceContainer: Preferences>: DynamicProper
 	) {
 		self.keyPath = keyPath
 		self.preferences = preferences
-
-		let publisher = preferences
-			.preferencesChangedSubject
-			.filter { changedKeyPath in
-				changedKeyPath == keyPath
-			}
-			.map { _ in () }
-			.eraseToAnyPublisher()
-		preferencesObserver = .init(publisher: publisher)
 	}
 
-	public var projectedValue: PublisherAndBinding<Value> {
-		return .init(
-			bindingProvider: {
-				return Binding(get: {
-					return wrappedValue
-				}, set: {
-					wrappedValue = $0
-				})
-			}, publisherProvider: {
-				let publisher = preferencesObserver
-					.objectWillChange
-					.map {
-						return wrappedValue
-					}
-				return Publishers.Merge(Just(wrappedValue), publisher)
-					.eraseToAnyPublisher()
+	public var projectedValue: Binding<Value> {
+		Binding(
+			get: {
+				wrappedValue
+			},
+			set: {
+				wrappedValue = $0
 			}
 		)
-	}
-}
-
-// MARK: Preference.PublisherAndBinding
-
-extension Preference {
-	public struct PublisherAndBinding<Element> {
-		public var binding: Binding<Element> {
-			return bindingProvider()
-		}
-
-		public var publisher: AnyPublisher<Element, Never> {
-			return publisherProvider()
-		}
-
-		private let bindingProvider: () -> Binding<Element>
-		private let publisherProvider: () -> AnyPublisher<Element, Never>
-
-		fileprivate init(
-			bindingProvider: @escaping () -> Binding<Element>,
-			publisherProvider: @escaping () -> AnyPublisher<Element, Never>
-		) {
-			self.bindingProvider = bindingProvider
-			self.publisherProvider = publisherProvider
-		}
-	}
-}
-
-private class PublisherObservableObject: ObservableObject {
-	var subscriber: AnyCancellable?
-
-	init(publisher: AnyPublisher<Void, Never>) {
-		subscriber = publisher.sink { [weak self] _ in
-			self?.objectWillChange.send()
-		}
 	}
 }
